@@ -1,0 +1,106 @@
+  <svg width="1053" height="1056" class="fixed top-0 left-0">
+    <path
+      d="M 238.51500000000004 528 L 238.51500000000004 0 M 238.51500000000004 528 L 238.51500000000004 1056"
+      stroke="var(--svg-line)"
+      stroke-width="2"
+      fill="none"
+      opacity="1"
+      pathLength="1"
+      stroke-dashoffset="0px"
+      stroke-dasharray="1px 1px"
+    ></path>
+    <path
+      d="M 370.14 528 L 370.14 0 M 370.14 528 L 370.14 1056"
+      stroke="var(--svg-line)"
+      stroke-width="2"
+      fill="none"
+      opacity="1"
+      pathLength="1"
+      stroke-dashoffset="0px"
+      stroke-dasharray="1px 1px"
+    ></path>
+    <path
+      d="M 400.14 528 L 400.14 0 M 400.14 528 L 400.14 1056"
+      stroke="var(--svg-line)"
+      stroke-width="2"
+      fill="none"
+      opacity="1"
+      pathLength="1"
+      stroke-dashoffset="0px"
+      stroke-dasharray="1px 1px"
+    ></path>
+    <path
+      d="M 526.5 528 L 526.5 0 M 526.5 528 L 526.5 1056"
+      stroke="var(--svg-line)"
+      stroke-width="2"
+      fill="none"
+      opacity="1"
+      pathLength="1"
+      stroke-dashoffset="0px"
+      stroke-dasharray="1px 1px"
+    ></path>
+    <path
+      d="M 652.86 528 L 652.86 0 M 652.86 528 L 652.86 1056"
+      stroke="var(--svg-line)"
+      stroke-width="2"
+      fill="none"
+      opacity="1"
+      pathLength="1"
+      stroke-dashoffset="0px"
+      stroke-dasharray="1px 1px"
+    ></path>
+    <path
+      d="M 682.86 528 L 682.86 0 M 682.86 528 L 682.86 1056"
+      stroke="var(--svg-line)"
+      stroke-width="2"
+      fill="none"
+      opacity="1"
+      pathLength="1"
+      stroke-dashoffset="0px"
+      stroke-dasharray="1px 1px"
+    ></path>
+    <path
+      d="M 814.4849999999999 528 L 814.4849999999999 0 M 814.4849999999999 528 L 814.4849999999999 1056"
+      stroke="var(--svg-line)"
+      stroke-width="2"
+      fill="none"
+      opacity="1"
+      pathLength="1"
+      stroke-dashoffset="0px"
+      stroke-dasharray="1px 1px"
+    ></path>
+  </svg>
+  <svg width="1053" height="1056" viewBox="0 0 1053 1056" class="fixed top-0 left-0 ">
+    <path
+      d="M 400.14 704 
+                L 526.5 804 
+                L 526.5 836 
+                L 400.14 736 Z"
+      stroke="var(--svg-line)"
+      stroke-width="2"
+      fill="var(--svg-line)"
+      fill-opacity="0"
+      pathLength="1"
+      stroke-dashoffset="0px"
+      stroke-dasharray="0.999921412585536px 1px"
+      style="transform: none; transform-origin: 463.32px 770px 0px;"
+      transform-origin="463.32000732421875px 770px"
+    ></path>
+  </svg>
+  <svg width="1053" height="1056" viewBox="0 0 1053 1056" class="fixed top-0 left-0 ">
+    <path
+      d="M 652.86 704 
+                L 526.5 804 
+                L 526.5 836 
+                L 652.86 736 Z"
+      stroke="var(--svg-line)"
+      stroke-width="2"
+      fill="var(--svg-line)"
+      fill-opacity="0"
+      pathLength="1"
+      stroke-dashoffset="0px"
+      stroke-dasharray="0.999921412585536px 1px"
+      style="transform: none; transform-origin: 589.68px 770px 0px;"
+      transform-origin="589.6799926757812px 770px"
+    ></path>
+  </svg>
