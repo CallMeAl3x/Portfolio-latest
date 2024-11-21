@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --svg-line: #2c2c2c;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,5 +19,33 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
+}
+
+@media (max-width: 400px) {
+  #vertical-lines path:nth-child(1) {
+    d: path("M 15 0 L 15 100");
+  }
+  #vertical-lines path:nth-child(2) {
+    d: path("M 50 0 L 50 100");
+  }
+  #vertical-lines path:nth-child(3) {
+    d: path("M 85 0 L 85 100");
+  }
+
+  #left-arrow {
+    d: path("M 15 50 L 50 65 L 50 70 L 15 55 Z");
+  }
+  #right-arrow {
+    d: path("M 85 50 L 50 65 L 50 70 L 85 55 Z");
+  }
+}
+
+.circle {
+  filter: blur(10px);
+  transition: filter 0.5s ease-in-out;
+}
+
+.fade-out-line {
+  mask-image: linear-gradient(to bottom, white 0%, white 80%, transparent 100%);
 }

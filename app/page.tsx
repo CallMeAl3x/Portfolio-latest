@@ -1,85 +1,34 @@
-import Image from "next/image";
+"use client";
+import React, { useRef, useState } from "react";
+import Lines from "./(components)/Lines";
+import Circle from "./(components)/Circle";
+import Arrows from "./(components)/Arrows";
+export default function Test() {
+  const [startArrowAnimation, setStartArrowAnimation] = useState(false);
 
-export default function Home() {
   return (
-    <div className="w-screen overflow-hidden h-screen flex flex-col justify-center items-center relative">
-      <div className="fixed top-1/2 left-1/2 w-[642px] h-[642px] transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 bg-[radial-gradient(circle,rgba(190,190,255,0.06)_0%,transparent_50%)] opacity-100">
-        test
+    <>
+      <div className="w-screen h-[130vh] relative test-space bg-gradient-c">
+        <div className="h-[125vh] overflow-hidden relative">
+          <Arrows startAnimation={startArrowAnimation} />
+          <div className="h-screen overflow-hidden w-screen relative flex flex-col justify-center items-center">
+            <Circle />
+            <div className="flex justify-center items-center relative z-10 flex-col mt-8">
+              <h1 className="md:text-[80px] max-sm:text-[10vw] sm:text-[10vw] max-sm:max-w-sm max-sm:leading-tight text-light khula-extrabold w-[732px] text-center leading-[85px]">
+                Turning ideas into <span>creative</span> solutions.
+              </h1>
+              <p className="poppins-regular text-lg mt-4 max-w-[390px] text-gray-2 max-sm:text-[4vw] px-4 text-center leading-[123%]">
+                Innovative web developer crafting unique user experiences.
+              </p>
+            </div>
+          </div>
+        </div>
+        <Lines onAnimationComplete={() => setStartArrowAnimation(true)} />
       </div>
-      <div className="fixed top-0 left-0 flex w-full overflow-hidden h-full flex-col justify-center items-center z-[1]">
-        <svg width="1493" height="1037" className="fixed top-0 left-0">
-          <path
-            d="M 350.715 518.5 L 350.715 0 M 350.715 518.5 L 350.715 1037"
-            stroke="#2c2c2c"
-            stroke-width="2"
-            fill="none"
-            opacity="1"
-            pathLength="1"
-            stroke-dashoffset="0px"
-            stroke-dasharray="1px 1px"
-          ></path>
-          <path
-            d="M 537.34 518.5 L 537.34 0 M 537.34 518.5 L 537.34 1037"
-            stroke="#2c2c2c"
-            stroke-width="2"
-            fill="none"
-            opacity="1"
-            pathLength="1"
-            stroke-dashoffset="0px"
-            stroke-dasharray="1px 1px"
-          ></path>
-          <path
-            d="M 567.34 518.5 L 567.34 0 M 567.34 518.5 L 567.34 1037"
-            stroke="#2c2c2c"
-            stroke-width="2"
-            fill="none"
-            opacity="1"
-            pathLength="1"
-            stroke-dashoffset="0px"
-            stroke-dasharray="1px 1px"
-          ></path>
-          <path
-            d="M 746.5 518.5 L 746.5 0 M 746.5 518.5 L 746.5 1037"
-            stroke="#2c2c2c"
-            stroke-width="2"
-            fill="none"
-            opacity="1"
-            pathLength="1"
-            stroke-dashoffset="0px"
-            stroke-dasharray="1px 1px"
-          ></path>
-          <path
-            d="M 925.66 518.5 L 925.66 0 M 925.66 518.5 L 925.66 1037"
-            stroke="#2c2c2c"
-            stroke-width="2"
-            fill="none"
-            opacity="1"
-            pathLength="1"
-            stroke-dashoffset="0px"
-            stroke-dasharray="1px 1px"
-          ></path>
-          <path
-            d="M 955.66 518.5 L 955.66 0 M 955.66 518.5 L 955.66 1037"
-            stroke="#2c2c2c"
-            stroke-width="2"
-            fill="none"
-            opacity="1"
-            pathLength="1"
-            stroke-dashoffset="0px"
-            stroke-dasharray="1px 1px"
-          ></path>
-          <path
-            d="M 1142.285 518.5 L 1142.285 0 M 1142.285 518.5 L 1142.285 1037"
-            stroke="#2c2c2c"
-            stroke-width="2"
-            fill="none"
-            opacity="1"
-            pathLength="1"
-            stroke-dashoffset="0px"
-            stroke-dasharray="1px 1px"
-          ></path>
-        </svg>
-      </div>
-    </div>
+      {/* Div de test pour simuler du scroll */}
+      <div className="h-[100vh]"></div>
+      <h2 className="text-black">Votre sous-titre</h2>
+      <div className="h-[100vh]"></div>
+    </>
   );
 }
