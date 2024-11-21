@@ -23,9 +23,7 @@ export default function Arrows({ startAnimation }: ArrowsProps) {
           style={{
             top: "18%",
             transform: `translateY(${scrollY}px)`,
-            transition: "transform 0.1s cubic-bezier(0.25, 0.1, 0.25, 1)"
-          }}
-        >
+          }}>
           <path
             id="left-arrow"
             d="M 25 50 L 50 65 L 50 70 L 25 55 Z"

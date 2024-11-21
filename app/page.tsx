@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Lines from "./(components)/Lines";
 import Circle from "./(components)/Circle";
 import Arrows from "./(components)/Arrows";
@@ -8,8 +8,8 @@ export default function Test() {
 
   return (
     <>
-      <div className="w-screen h-[130vh] relative test-space bg-gradient-c">
-        <div className="h-[125vh] overflow-hidden relative">
+      <div className="w-screen md:h-[130vh] h-screen relative test-space bg-gradient-c">
+        <div className="md:h-[125vh] h-screen overflow-hidden relative">
           <Arrows startAnimation={startArrowAnimation} />
           <div className="h-screen overflow-hidden w-screen relative flex flex-col justify-center items-center">
             <Circle />
