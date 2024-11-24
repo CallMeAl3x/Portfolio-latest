@@ -65,8 +65,8 @@ export const useArrowAnimation = (start: boolean) => {
           fill: "var(--svg-line)"
         },
         {
-          stroke: "#ffffff",
-          fill: "#ffffff",
+          stroke: "var(--foreground)",
+          fill: "var(--foreground)",
           scrollTrigger: {
             trigger: ".test-space",
             start: "top top",

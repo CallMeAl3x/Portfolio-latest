@@ -8,8 +8,6 @@ export const useLineAnimation = (onComplete?: () => void) => {
   useEffect(() => {
     const lines = gsap.utils.toArray<HTMLElement>(".line");
 
-    console.log("Lignes sélectionnées pour l'animation :", lines);
-
     // Animation initiale
     gsap.fromTo(
       lines,
@@ -27,7 +25,6 @@ export const useLineAnimation = (onComplete?: () => void) => {
           amount: 0.2
         },
         onComplete: () => {
-          console.log("Animation initiale terminée");
           if (onComplete) {
             setTimeout(onComplete, 200);
           }
@@ -38,20 +35,6 @@ export const useLineAnimation = (onComplete?: () => void) => {
     // Animation au scroll
     lines.forEach((line, index) => {
       line.id = `path-${index}`;
-
-      // Définir les positions de départ en fonction de l'ID
-      let startOffset;
-      if (index === 3 || index === 6) {
-        startOffset = 100; // Groupe 1: paths 3 et 6
-      } else if (index === 4 || index === 5) {
-        startOffset = 0; // Groupe 2: paths 4 et 5
-      } else if (index === 0 || index === 2) {
-        startOffset = -300; // Groupe 2: paths 0 et 2
-      } else if (index === 1) {
-        startOffset = -400; // Groupe 3: path 1
-      } else {
-        startOffset = -400; // Position par défaut
-      }
 
       gsap.fromTo(
         line,
@@ -64,20 +47,9 @@ export const useLineAnimation = (onComplete?: () => void) => {
           ease: "power1.out",
           scrollTrigger: {
             trigger: ".test-space",
-            start: () => {
-              const condition = window.scrollY > 100;
-              console.log("Condition de départ pour ligne", index + 1, ":", condition);
-              return `top+=${condition ? startOffset : 0} top`;
-            },
-            end: () => {
-              const condition = window.scrollY > 100;
-              return `bottom+=${condition ? startOffset : 0} top`;
-            },
-            scrub: true,
-            invalidateOnRefresh: true, // Pour s'assurer que les positions sont recalculées
-            onUpdate: (self) => {
-              // console.log(`Progression du scroll pour ligne ${index + 1} : ${self.progress}`);
-            }
+            start: `top top`,
+            end: `bottom top`,
+            scrub: true
           }
         }
       );

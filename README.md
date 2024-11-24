@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bienvenue sur mon Portfolio
 
-## Getting Started
+## À propos de moi
 
-First, run the development server:
+Je suis un développeur passionné par la création de solutions web innovantes. Mon portfolio présente une sélection de mes projets les plus intéressants et pertinents. À travers ces travaux, je souhaite partager non seulement mon expertise technique mais aussi ma capacité à résoudre des problèmes complexes et à mener des projets du concept à la réalisation.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Mes Projets
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Dans ce portfolio, vous trouverez une diversité de projets sur lesquels j'ai travaillé. Chaque projet est accompagné d'une brève description, des technologies utilisées, ainsi que d'un lien vers le projet en lui-même ou vers le code source. Ces projets illustrent mon savoir-faire en matière de développement web, de conception UI/UX.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Fait avec
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Langages de Programmation :** Vite.js, TailwindCSS, ReactContext, AnimateCSS, CurvedText, React-intl
+- **Outils utilisés :** Git, ChatGPT
 
-## Learn More
+## Me Contacter
 
-To learn more about Next.js, take a look at the following resources:
+Je suis toujours ouvert à discuter de nouvelles opportunités, de collaborations ou tout simplement d'échanger sur des idées innovantes. N'hésitez pas à me contacter :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Email :** [Alexandre.bonefons@outlook.fr](mailto:Alexandre.bonefons@outlook.fr)
+- **LinkedIn :** [Bonefons Alexandre](https://www.linkedin.com/in/alexandre-bonefons-166875250/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Merci d'avoir visité mon portfolio. J'espère que mes travaux vous inspireront ou ouvriront la porte à de futures collaborations.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© [Bonefons Alexandre]. Tous droits réservés.

@@ -3,21 +3,23 @@ import React, { useState } from "react";
 import Lines from "./(components)/Lines";
 import Circle from "./(components)/Circle";
 import Arrows from "./(components)/Arrows";
+import Menu from "./(components)/Menu";
 export default function Test() {
   const [startArrowAnimation, setStartArrowAnimation] = useState(false);
 
   return (
     <>
+      <Menu />
       <div className="w-screen md:h-[130vh] h-screen relative test-space bg-gradient-c">
         <div className="md:h-[125vh] h-screen overflow-hidden relative">
           <Arrows startAnimation={startArrowAnimation} />
           <div className="h-screen overflow-hidden w-screen relative flex flex-col justify-center items-center">
             <Circle />
             <div className="flex justify-center items-center relative z-10 flex-col mt-8">
-              <h1 className="md:text-[80px] max-sm:text-[10vw] sm:text-[10vw] max-sm:max-w-sm max-sm:leading-tight text-light khula-extrabold w-[732px] text-center leading-[85px]">
+              <h1 className="md:text-[80px] max-sm:text-[10vw] sm:text-[10vw] max-sm:max-w-sm max-sm:leading-tight text-light font-khula-extrabold w-[732px] text-center leading-[85px]">
                 Turning ideas into <span>creative</span> solutions.
               </h1>
-              <p className="poppins-regular text-lg mt-4 max-w-[390px] text-gray-2 max-sm:text-[4vw] px-4 text-center leading-[123%]">
+              <p className="font-poppins-reg text-lg mt-4 max-w-[390px] text-gray-2 max-sm:text-[4vw] px-4 text-center leading-[123%]">
                 Innovative web developer crafting unique user experiences.
               </p>
             </div>
