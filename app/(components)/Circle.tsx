@@ -1,14 +1,14 @@
 "use client";
 import gsap from "gsap";
 import _ScrollTrigger from "gsap/ScrollTrigger";
-import React from "react";
+import React, { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(_ScrollTrigger);
 
 export default function Circle() {
   useGSAP(() => {
-    gsap.to(".circle", {
+    const animation = gsap.to(".circle", {
       scale: 10,
       background: "radial-gradient(circle, #B3E5FC 0%, #FFAB91 50%, #545453 100%)",
       filter: "blur(0px)",
@@ -25,17 +25,22 @@ export default function Circle() {
         scrub: true,
         onUpdate: (self) => {
           if (self.progress > 0.6) {
-            gsap.to("body", { backgroundColor: "#ededed", duration: 1.25 });
+            gsap.to("body", { backgroundColor: "#ededed", duration: 0 });
             gsap.to("#menutitle", { color: "#000000", duration: 1.25 });
             gsap.to("#menuicon", { stroke: "#000000", duration: 1.25, overwrite: true });
           } else {
-            gsap.to("body", { backgroundColor: "#0a0a0a", duration: 1.25 });
+            gsap.to("body", { backgroundColor: "#0a0a0a", duration: 0 });
             gsap.to("#menutitle", { color: "#ededed", duration: 1.25 });
             gsap.to("#menuicon", { stroke: "#ededed", duration: 1.25, overwrite: true });
           }
         }
       }
     });
+
+    return () => {
+      gsap.to("#menutitle", { color: "", duration: 0 });
+      gsap.to("#menuicon", { stroke: "", duration: 0 });
+    };
   }, []);
 
   return (

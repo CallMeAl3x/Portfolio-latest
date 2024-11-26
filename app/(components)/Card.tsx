@@ -4,16 +4,16 @@ import { Link } from "@/i18n/routing";
 
 interface CardProps {
   title: string;
-  description: string;
+  cardDescription: string;
+  cardImage: string;
   index: number;
   link: string;
-  img: string;
   isHovered: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
 }
 
-export default function Card({ title, description, index, link, isHovered, img }: CardProps) {
+export default function Card({ title, cardDescription, index, link, isHovered, cardImage }: CardProps) {
   return (
     <>
       {/* Desktop */}
@@ -31,7 +31,7 @@ export default function Card({ title, description, index, link, isHovered, img }
         <p
           className={`ml-auto mt-auto mb-3 text-2xl transition-all ${isHovered ? "text-gray-500 -translate-x-4" : ""}`}
         >
-          {description}
+          {cardDescription}
         </p>
       </Link>
 
@@ -42,11 +42,11 @@ export default function Card({ title, description, index, link, isHovered, img }
         passHref
       >
         <div className="px-6 h-full w-full">
-          <Image src={img} alt={description} height={200} width={385} className="ml-auto mr-auto" />
+          <Image src={cardImage} alt={cardDescription} height={200} width={385} className="ml-auto mr-auto" />
         </div>
         <div className="flex flex-col gap-1 justify-center items-center">
           <h4 className="font-khula-regular text-4xl">{title}</h4>
-          <p className="text-lg text-center">{description}</p>
+          <p className="text-lg text-center">{cardDescription}</p>
         </div>
       </Link>
     </>

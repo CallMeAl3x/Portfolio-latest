@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { NavigationTracker } from "../(utils)/navigationTracker";
 
 export const metadata: Metadata = {
   title: "Portfolio Alexandre Bonefons",
@@ -32,6 +33,7 @@ export default async function LocaleLayout({
   return (
     <html lang={lang}>
       <body className="antialiased" suppressHydrationWarning>
+        <NavigationTracker />
         {/* suppressHydrationWarning cause it sucks */}
         <NextIntlClientProvider messages={messages}>
           {children}

@@ -29,8 +29,8 @@ export default function Projects() {
 
   useEffect(() => {
     cardList.forEach((card) => {
-      const img = new window.Image();
-      img.src = card.img;
+      const cardImage = new window.Image();
+      cardImage.src = card.cardImage;
     });
   }, []);
 
@@ -112,7 +112,7 @@ export default function Projects() {
             {cardList.map((card, index) => (
               <img
                 key={index}
-                src={card.img}
+                src={card.cardImage}
                 alt={card.description}
                 className="w-[385px] h-[200px] object-cover object-center"
               />
