@@ -75,7 +75,10 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
       gsap.to("#overlay", {
         opacity: 0.65,
         duration: 0.5,
-        ease: "power1.inOut"
+        ease: "power1.inOut",
+        onComplete: () => {
+          document.getElementById("overlay")?.style.setProperty("pointer-events", "auto");
+        }
       });
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -88,7 +91,10 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
       gsap.to("#overlay", {
         opacity: 0,
         duration: 0.5,
-        ease: "power1.inOut"
+        ease: "power1.inOut",
+        onComplete: () => {
+          document.getElementById("overlay")?.style.setProperty("pointer-events", "none");
+        }
       });
     }
 
@@ -101,7 +107,7 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
     <>
       <div
         id="overlay" // Make the page darker when the menu is open
-        className="fixed bg-background z-50 left-0 w-2/3 max-2xl:w-1/2 max-xl:w-2/3 h-screen opacity-0 pointer-events-none"
+        className="fixed bg-background z-[999] left-0 w-2/3 max-2xl:w-1/2 max-xl:w-2/3 h-screen opacity-0 pointer-events-none"
       ></div>
       <nav
         id="navbar"

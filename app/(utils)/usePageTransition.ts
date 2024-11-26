@@ -13,7 +13,6 @@ export const usePageTransition = () => {
     const isGoingToLangRoot = localStorage.getItem("isGoingToLangRoot") === "true";
 
     if (wasInLangRoot === false && isGoingToLangRoot === true) {
-      console.log("User is going to /{lang}/");
       const projectsElement = document.getElementById("projects");
       if (projectsElement) {
         projectsElement.scrollIntoView({ behavior: "smooth" });
@@ -52,7 +51,7 @@ export const usePageTransition = () => {
             width: "100%",
             height: "100%",
             opacity: 1,
-            duration: 1.2,
+            duration: 0.75,
             ease: "power2.inOut"
           }
         ).to(transitionRef.current, {
@@ -97,7 +96,7 @@ export const usePageTransition = () => {
             width: "100%",
             height: "100%",
             opacity: 1,
-            duration: 1.5,
+            duration: 0.75,
             ease: "power2.inOut"
           }
         ).to(transitionRef.current, {
