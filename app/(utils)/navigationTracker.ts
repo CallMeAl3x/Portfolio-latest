@@ -24,6 +24,8 @@ export function NavigationTracker() {
       navigationDirection = "forward";
     } else if (isGoingToLangRoot && wasInLangRoot) {
       navigationDirection = "back";
+    } else if (!isGoingToLangRoot && !wasInLangRoot) {
+      navigationDirection = "forward";
     }
     localStorage.setItem("navigation_direction", navigationDirection);
 

@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 export const usePageTransition = () => {
   const pageRef = useRef<HTMLDivElement>(null);
   const transitionRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null); // Référence pour le contenu de la page
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const reloading = localStorage.getItem("reloading");
@@ -13,11 +13,21 @@ export const usePageTransition = () => {
     const isGoingToLangRoot = localStorage.getItem("isGoingToLangRoot") === "true";
 
     if (wasInLangRoot === false && isGoingToLangRoot === true) {
+      // Scroll to the projects section if the user is was in projects
       const projectsElement = document.getElementById("projects");
       if (projectsElement) {
         projectsElement.scrollIntoView({ behavior: "smooth" });
       }
+    } else {
+      // Scroll to the top of the page if the user was in the root already
+      document.body.style.backgroundColor = "#0A0A0A";
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: "smooth"
+      });
     }
+
     if (pageRef.current && transitionRef.current && contentRef.current && reloading === "false") {
       const direction = localStorage.getItem("navigation_direction");
       const tl = gsap.timeline();
@@ -31,35 +41,36 @@ export const usePageTransition = () => {
           transitionRef.current,
           {
             transform: "translateY(100%)",
-            clipPath: "inset(90% 0% 0% 0%)", // Clip the bottom part initially
-            borderRadius: "50% 50% 0% 0%", // Rounded corners at the bottom
+            clipPath: "inset(90% 0% 0% 0%)",
+            borderRadius: "50% 50% 0% 0%",
             width: "100%",
             height: "10%",
             opacity: 0
           },
           {
             transform: "translateY(0%)",
-            clipPath: "inset(0% 0% 0% 0%)", // Reveal the whole div
-            borderRadius: "50% 50% 0% 0%", // Rounded corners at the bottom
+            clipPath: "inset(0% 0% 0% 0%)",
+            borderRadius: "50% 50% 0% 0%",
             width: "100%",
             height: "100%",
             opacity: 1,
             duration: 0.75,
-            ease: "power2.inOut",
+            ease: "power3.inOut",
             onComplete: () => {
               setTimeout(() => {
-                // Faire apparaître le contenu après l'animation
                 gsap.to(contentRef.current, {
                   opacity: 1,
                   onComplete: () => {
-                    contentRef.current.style.visibility = "visible"; // Rendre le contenu visible
+                    if (contentRef.current) {
+                      contentRef.current.style.visibility = "visible";
+                    }
                   }
                 });
               }, 250);
             }
           }
         ).to(transitionRef.current, {
-          borderRadius: "0% 0% 0% 0%", // Reset border radius to square
+          borderRadius: "0% 0% 0% 0%",
           duration: 0.3,
           ease: "power1.inOut",
           onComplete: () => {
@@ -69,10 +80,7 @@ export const usePageTransition = () => {
             document.body.style.backgroundColor = "#0A0A0A";
           }
         });
-      }
-
-      // Handle back animation (completely different effect)
-      else if (direction === "back") {
+      } else if (direction === "back") {
         tl.fromTo(
           transitionRef.current,
           {
@@ -98,7 +106,9 @@ export const usePageTransition = () => {
                   opacity: 1,
                   duration: 0.15,
                   onComplete: () => {
-                    contentRef.current.style.visibility = "visible";
+                    if (contentRef.current) {
+                      contentRef.current.style.visibility = "visible";
+                    }
                   }
                 });
               }, 350);
@@ -125,7 +135,7 @@ export const usePageTransition = () => {
           });
       }
     } else {
-      gsap.set(contentRef.current, { opacity: 1, visibility: "visible", duration: 1 });
+      gsap.set(contentRef.current, { opacity: 1, visibility: "visible" });
     }
   }, []);
 

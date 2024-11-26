@@ -106,13 +106,13 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
   return (
     <>
       <div
-        id="overlay" // Make the page darker when the menu is open
-        className="fixed bg-background z-[999] left-0 w-2/3 max-2xl:w-1/2 max-xl:w-2/3 h-screen opacity-0 pointer-events-none"
+        id="overlay" // Make the page darker when the menu is open to make the menu more visible
+        className="fixed top-0 left-0 w-full h-full bg-background z-[99] flex flex-col p-6 overflow-y-auto opacity-0 pointer-events-none"
       ></div>
       <nav
         id="navbar"
         ref={navbarRef}
-        className="fixed right-0 h-screen w-1/3 max-2xl:w-1/2 max-xl:w-2/3 max-md:w-full z-[100] flex flex-col p-4 sm:p-6 max-w-screen-md bg-foreground overflow-y-auto will-change-auto translate-x-full"
+        className="fixed right-0 h-screen w-1/3 max-2xl:w-1/2 max-xl:w-2/3 max-md:w-full z-[100] flex flex-col p-6 justify-center max-w-screen-md bg-foreground overflow-y-auto will-change-auto translate-x-full"
       >
         <div
           className="fixed top-[1.65rem] right-3 sm:right-16 md:right-[4.50rem] z-2 py-2 px-4 md:top-8 cursor-pointer"
@@ -142,11 +142,13 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
             ))}
           </ul>
         </div>
-        <div className="mb-12 text-background sm:px-12 px-1">
+        <div className="mb-12 text-background sm:px-12 px-1 justify-center items-center">
           <LangageSwitcher />
           <p className="font-khula-light text-lg sm:text-left text-center">Get in touch</p>
-          <div onClick={handleCopy} className="flex items-center cursor-pointer">
-            <p className="font-khula-regular sm:text-2xl text-lg">Alexandre.bonefons@outlook.fr</p>
+          <div onClick={handleCopy} className="flex max-sm:items-center cursor-pointer max-sm:justify-center">
+            <p className="font-khula-regular sm:text-2xl text-lg sm:text-left text-center">
+              Alexandre.bonefons@outlook.fr
+            </p>
             <Image
               src={"/img/copy.svg"}
               alt="copy"
