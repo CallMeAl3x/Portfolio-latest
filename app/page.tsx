@@ -4,6 +4,7 @@ import Lines from "./(components)/Lines";
 import Circle from "./(components)/Circle";
 import Arrows from "./(components)/Arrows";
 import Menu from "./(components)/Menu";
+import Projects from "./(components)/Projects";
 export default function Test() {
   const [startArrowAnimation, setStartArrowAnimation] = useState(false);
 
@@ -29,6 +30,7 @@ export default function Test() {
       </div>
       {/* Div de test pour simuler du scroll */}
       <div className="h-[100vh]"></div>
+      <Projects />
       <h2 className="text-black">Votre sous-titre</h2>
       <div className="h-[100vh]"></div>
     </>

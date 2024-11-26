@@ -11,6 +11,20 @@
   }
 
   @font-face {
+    font-family: "poppins-light";
+    font-style: normal;
+    font-display: swap;
+    src: url(/fonts/Poppins/Poppins-Light.ttf) format("truetype");
+  }
+
+  @font-face {
+    font-family: "poppins-extralight";
+    font-style: normal;
+    font-display: swap;
+    src: url(/fonts/Poppins/Poppins-ExtraLight.ttf) format("truetype");
+  }
+
+  @font-face {
     font-family: "khula-regular";
     font-display: swap;
     font-style: normal;

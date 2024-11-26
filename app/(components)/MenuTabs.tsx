@@ -127,6 +127,7 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
                 <a
                   href={href}
                   className="text-[2.5rem] hover:left-2 left-0 relative transition-[left] duration-300 ease-in-out"
+                  onClick={handleMenu}
                 >
                   {label}
                 </a>
