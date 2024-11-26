@@ -9,8 +9,8 @@ export const forwardAnimation = (transitionRef: HTMLDivElement, contentRef: HTML
     transitionRef,
     {
       transform: "translateY(100%)",
-      clipPath: "inset(70% 0% 0% 0%)",
-      borderRadius: isMobile ? "50% 50% 0% 0%" : "85% 85% 0% 0",
+      clipPath: isMobile ? "inset(70% 0% 0% 0%)" : "inset(60% 0% 0% 0%)",
+      borderRadius: isMobile ? "50% 50% 0% 0%" : "40% 40% 0% 0",
       width: "100%",
       height: "10%",
       opacity: 0
@@ -18,7 +18,7 @@ export const forwardAnimation = (transitionRef: HTMLDivElement, contentRef: HTML
     {
       transform: "translateY(0%)",
       clipPath: "inset(0% 0% 0% 0%)",
-      borderRadius: isMobile ? "50% 50% 0% 0%" : "85% 85% 0% 0",
+      borderRadius: isMobile ? "50% 50% 0% 0%" : "40% 40% 0% 0",
       width: "100%",
       height: "100%",
       opacity: 1,
