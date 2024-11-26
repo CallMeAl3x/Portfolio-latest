@@ -1,15 +1,11 @@
 export const handleScrolling = (wasAtHome: boolean, isGoingHome: boolean) => {
-  if (
-    (wasAtHome === false && isGoingHome === true && window.location.pathname === "/") ||
-    window.location.hash === "#projects"
-  ) {
+  if (wasAtHome === false && isGoingHome === true) {
     // Scroll to the projects section if the user was in projects
     const projectsElement = document.getElementById("projects");
-    if (projectsElement) {
+    if (projectsElement || window.location.pathname === "/" || window.location.hash === "#projects") {
       projectsElement?.scrollIntoView({ behavior: "smooth" });
     }
   } else if (wasAtHome === true && isGoingHome === true && window.location.hash !== "#projects") {
-    console.log("scrolling to the top");
     // Scroll to the top of the page if the user was in the root already
     document.body.style.backgroundColor = "#0A0A0A";
     window.scrollTo({
