@@ -8,7 +8,18 @@ export const usePageTransition = () => {
   const contentRef = useRef<HTMLDivElement>(null); // Référence pour le contenu de la page
 
   useGSAP(() => {
-    if (pageRef.current && transitionRef.current && contentRef.current) {
+    const reloading = localStorage.getItem("reloading");
+    const wasInLangRoot = localStorage.getItem("wasInLangRoot") === "true";
+    const isGoingToLangRoot = localStorage.getItem("isGoingToLangRoot") === "true";
+
+    if (wasInLangRoot === false && isGoingToLangRoot === true) {
+      console.log("User is going to /{lang}/");
+      const projectsElement = document.getElementById("projects");
+      if (projectsElement) {
+        projectsElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    if (pageRef.current && transitionRef.current && contentRef.current && reloading === "false") {
       const direction = localStorage.getItem("navigation_direction");
       const tl = gsap.timeline();
 
@@ -72,7 +83,7 @@ export const usePageTransition = () => {
         tl.fromTo(
           transitionRef.current,
           {
-            transform: "translateY(-100%)", // Start from the top
+            transform: "translateY(100%)", // Start from the top
             clipPath: "inset(0% 0% 90% 0%)", // Clip the top part initially
             borderRadius: "0% 0% 50% 50%", // Rounded corners at the top
             width: "100%",
@@ -96,7 +107,6 @@ export const usePageTransition = () => {
             setTimeout(() => {
               transitionRef.current?.remove();
               localStorage.removeItem("navigation_direction");
-              document.body.style.backgroundColor = "#0A0A0A";
 
               // Faire apparaître le contenu après l'animation
               gsap.to(contentRef.current, {
@@ -110,6 +120,8 @@ export const usePageTransition = () => {
           }
         });
       }
+    } else {
+      gsap.set(contentRef.current, { opacity: 1, visibility: "visible", duration: 1 });
     }
   }, []);
 

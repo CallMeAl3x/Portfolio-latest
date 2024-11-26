@@ -18,7 +18,7 @@ export default function ProjectPage({ params }: { params: { projectId: string } 
 
   return (
     <PageWrapper>
-      <div id="projects" className="relative">
+      <div className="relative">
         <div
           data-lenis-prevent="true"
           className="text-white inset-0 overflow-y-scroll overflow-x-hidden fixed max-h-[100vh] px-4 w-full flex justify-center pb-12"

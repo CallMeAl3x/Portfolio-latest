@@ -74,52 +74,54 @@ export default function Projects() {
   }, [cardList.length, activeCardIndex]);
 
   return (
-    <div className="flex justify-center items-center max-w-[1000px] ml-auto mr-auto flex-col gap-9">
-      <h3 className="text-2xl md:text-3xl xl:text-4xl font-poppins-light mb-8 text-background text-center">
-        Selected Projects
-      </h3>
-      <div className="cards flex flex-col gap-28 w-full relative mt-2" ref={containerRef}>
-        {cardList.map((card, index) => (
-          <Card
-            key={index}
-            {...card}
-            isHovered={index === activeCardIndex}
-            onMouseEnter={() => {
-              setPrevCardIndex(activeCardIndex);
-              setActiveCardIndex(index);
-            }}
-            onMouseLeave={() => {
-              setActiveCardIndex(-1);
-              setPrevCardIndex(-1);
-            }}
-          />
-        ))}
-      </div>
-      {isVisible && activeCardIndex >= 0 && isLaptop && (
-        <div
-          className="fixed top-0 left-0 pointer-events-none z-50 overflow-hidden rounded-xl will-change-auto h-[200px] w-[385px]"
-          style={{
-            transform: `translate(${mousePosition.x - 192.5}px, ${mousePosition.y - 100}px)`
-          }}
-        >
+    <div className="pt-[25vh]" id="projects">
+      <div className="flex justify-center items-center max-w-[1000px] ml-auto mr-auto flex-col gap-9">
+        <h3 className="text-2xl md:text-3xl xl:text-4xl font-poppins-light mb-8 text-background text-center">
+          Selected Projects
+        </h3>
+        <div className="cards flex flex-col gap-28 w-full relative mt-2" ref={containerRef}>
+          {cardList.map((card, index) => (
+            <Card
+              key={index}
+              {...card}
+              isHovered={index === activeCardIndex}
+              onMouseEnter={() => {
+                setPrevCardIndex(activeCardIndex);
+                setActiveCardIndex(index);
+              }}
+              onMouseLeave={() => {
+                setActiveCardIndex(-1);
+                setPrevCardIndex(-1);
+              }}
+            />
+          ))}
+        </div>
+        {isVisible && activeCardIndex >= 0 && isLaptop && (
           <div
-            className="absolute flex flex-col transition-transform duration-600  will-change-auto"
+            className="fixed top-0 left-0 pointer-events-none z-50 overflow-hidden rounded-xl will-change-auto h-[200px] w-[385px]"
             style={{
-              transform: `translateY(-${activeCardIndex * 200}px)`,
-              height: `${cardList.length * 200}px`
+              transform: `translate(${mousePosition.x - 192.5}px, ${mousePosition.y - 100}px)`
             }}
           >
-            {cardList.map((card, index) => (
-              <img
-                key={index}
-                src={card.cardImage}
-                alt={card.description}
-                className="w-[385px] h-[200px] object-cover object-center"
-              />
-            ))}
+            <div
+              className="absolute flex flex-col transition-transform duration-600  will-change-auto"
+              style={{
+                transform: `translateY(-${activeCardIndex * 200}px)`,
+                height: `${cardList.length * 200}px`
+              }}
+            >
+              {cardList.map((card, index) => (
+                <img
+                  key={index}
+                  src={card.cardImage}
+                  alt={card.description}
+                  className="w-[385px] h-[200px] object-cover object-center"
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

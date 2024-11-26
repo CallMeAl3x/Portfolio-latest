@@ -9,16 +9,21 @@ export function NavigationTracker() {
   useEffect(() => {
     // Get navigation history from localStorage
     const navigationHistory = JSON.parse(localStorage.getItem("navigation_history") || "[]");
+    console.log("navigationHistory:", navigationHistory); // Log navigation history
 
-    // Define the language pattern (e.g., /en/ or /fr/)
-    const langPattern = /^\/([a-z]{2})\//; // Matches '/en/', '/fr/', etc.
-
-    // Check if the pathname starts with a language prefix and has something after it
-    const match = pathname.match(langPattern);
-    const isLangPage = match !== null;
-    const hasSubPath = isLangPage && pathname.split("/").length > 3; // Check if there's something after /{lang}/
-
-    console.log("isLangPage:", isLangPage, "hasSubPath:", hasSubPath);
+    const previousPath = navigationHistory[navigationHistory.length - 1] || "";
+    console.log("previousPath:", previousPath); // Log previous path
+    // Check if the user was in `/{lang}` or `/{lang}/` and not `/{lang}/[projectId]`
+    const wasInLangRoot = /^\/[a-z]{2}(\/)?$/.test(previousPath);
+    const isGoingToLangRoot = /^\/[a-z]{2}(\/)?$/.test(pathname);
+    localStorage.setItem("wasInLangRoot", wasInLangRoot.toString());
+    localStorage.setItem("isGoingToLangRoot", isGoingToLangRoot.toString());
+    if (wasInLangRoot && isGoingToLangRoot) {
+      console.log("User was in /{lang}/ and is going to /{lang}/");
+      localStorage.setItem("reloading", "true");
+    } else {
+      localStorage.setItem("reloading", "false");
+    }
 
     if (navigationHistory.length > 0 && navigationHistory[navigationHistory.length - 1] !== pathname) {
       // Check if current path exists in previous history

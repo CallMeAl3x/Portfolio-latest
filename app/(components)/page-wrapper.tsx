@@ -10,14 +10,16 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
     // Access localStorage only on the client side
     const storedDirection = localStorage.getItem("navigation_direction");
     setDirection(storedDirection);
-    console.log("storedDirection", storedDirection);
   }, []);
 
   return (
     <div ref={pageRef} className="relative overflow-hidden min-h-screen">
       <div
         ref={transitionRef}
-        className={`fixed inset-x-0 bg-background z-50 ${direction === "forward" ? "bottom-0" : "top-0"}`}
+        className="fixed inset-x-0 z-50 bg-background"
+        style={{
+          [direction === "forward" ? "bottom" : "top"]: 0
+        }}
       ></div>
       <div ref={contentRef} className="transition-opacity duration-500 opacity-0">
         {children} {/* Contenu qui sera animé */}
