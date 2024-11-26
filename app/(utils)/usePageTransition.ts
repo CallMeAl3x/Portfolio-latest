@@ -25,15 +25,8 @@ export const usePageTransition = () => {
       // Assure-toi que le contenu est caché au départ
       gsap.set(contentRef.current, { opacity: 0, visibility: "hidden" });
 
-      // Set initial background color based on direction
       if (direction === "forward") {
         document.body.style.backgroundColor = "#ededed";
-      } else {
-        document.body.style.backgroundColor = "#0A0A0A";
-      }
-
-      // Handle forward animation
-      if (direction === "forward") {
         tl.fromTo(
           transitionRef.current,
           {
@@ -52,27 +45,28 @@ export const usePageTransition = () => {
             height: "100%",
             opacity: 1,
             duration: 0.75,
-            ease: "power2.inOut"
+            ease: "power2.inOut",
+            onComplete: () => {
+              setTimeout(() => {
+                // Faire apparaître le contenu après l'animation
+                gsap.to(contentRef.current, {
+                  opacity: 1,
+                  onComplete: () => {
+                    contentRef.current.style.visibility = "visible"; // Rendre le contenu visible
+                  }
+                });
+              }, 250);
+            }
           }
         ).to(transitionRef.current, {
           borderRadius: "0% 0% 0% 0%", // Reset border radius to square
           duration: 0.3,
           ease: "power1.inOut",
           onComplete: () => {
-            setTimeout(() => {
-              transitionRef.current?.remove();
-              localStorage.removeItem("navigation_direction");
-              document.body.style.backgroundColor = "#0A0A0A";
+            transitionRef.current?.remove();
+            localStorage.removeItem("navigation_direction");
 
-              // Faire apparaître le contenu après l'animation
-              gsap.to(contentRef.current, {
-                opacity: 1,
-                duration: 0.15,
-                onComplete: () => {
-                  contentRef.current.style.visibility = "visible"; // Rendre le contenu visible
-                }
-              });
-            }, 300);
+            document.body.style.backgroundColor = "#0A0A0A";
           }
         });
       }
@@ -82,42 +76,53 @@ export const usePageTransition = () => {
         tl.fromTo(
           transitionRef.current,
           {
-            transform: "translateY(100%)", // Start from the top
-            clipPath: "inset(0% 0% 90% 0%)", // Clip the top part initially
-            borderRadius: "0% 0% 50% 50%", // Rounded corners at the top
-            width: "100%",
-            height: "10%",
-            opacity: 0
-          },
-          {
-            transform: "translateY(0%)", // Slide into position
-            clipPath: "inset(0% 0% 0% 0%)", // Reveal the whole div
-            borderRadius: "0% 0% 50% 50%", // Rounded corners at the top
+            transform: "translateY(0%)",
+            clipPath: "inset(0% 0% 0% 0%)",
+            borderRadius: "0% 0% 50% 50%",
             width: "100%",
             height: "100%",
+            opacity: 1
+          },
+          {
+            transform: "translateY(-10%)",
+            clipPath: "inset(0% 0% 0% 0%)",
+            borderRadius: "0% 0% 65% 65%",
+            width: "100%",
+            height: "45%",
             opacity: 1,
-            duration: 0.75,
-            ease: "power2.inOut"
+            duration: 1.25,
+            ease: "power3.inOut",
+            onComplete: () => {
+              setTimeout(() => {
+                gsap.to(contentRef.current, {
+                  opacity: 1,
+                  duration: 0.15,
+                  onComplete: () => {
+                    contentRef.current.style.visibility = "visible";
+                  }
+                });
+              }, 350);
+            }
           }
-        ).to(transitionRef.current, {
-          borderRadius: "0% 0% 0% 0%", // Reset border radius after animation
-          duration: 0.25,
-          onComplete: () => {
-            setTimeout(() => {
+        )
+          .to(transitionRef.current, {
+            transform: "translateY(-81%)",
+            clipPath: "inset(0% 0% 0% 0%)",
+            borderRadius: "0% 0% 85% 85%",
+            width: "100%",
+            height: "35%",
+            opacity: 1,
+            duration: 1.5,
+            ease: "power3.inOut"
+          })
+          .to(transitionRef.current, {
+            duration: 0.3,
+            ease: "power1.inOut",
+            onComplete: () => {
               transitionRef.current?.remove();
               localStorage.removeItem("navigation_direction");
-
-              // Faire apparaître le contenu après l'animation
-              gsap.to(contentRef.current, {
-                opacity: 1,
-                duration: 0.15,
-                onComplete: () => {
-                  contentRef.current.style.visibility = "visible"; // Rendre le contenu visible
-                }
-              });
-            }, 100);
-          }
-        });
+            }
+          });
       }
     } else {
       gsap.set(contentRef.current, { opacity: 1, visibility: "visible", duration: 1 });

@@ -14,13 +14,11 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div ref={pageRef} className="relative overflow-hidden min-h-screen">
-      <div
-        ref={transitionRef}
-        className="fixed inset-x-0 z-50 bg-background"
-        style={{
-          [direction === "forward" ? "bottom" : "top"]: 0
-        }}
-      ></div>
+      {direction === "forward" ? (
+        <div ref={transitionRef} className="fixed inset-x-0 z-50 bg-background bottom-0"></div>
+      ) : (
+        <div ref={transitionRef} className="fixed inset-x-0 z-50 bg-background top-0"></div>
+      )}
       <div ref={contentRef} className="transition-opacity duration-500 opacity-0">
         {children} {/* Contenu qui sera animé */}
       </div>
