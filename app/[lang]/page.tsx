@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
-import Lines from "../(components)/Lines";
-import Circle from "../(components)/Circle";
-import Arrows from "../(components)/Arrows";
+import Lines from "../(components)/(elements)/Lines";
+import Circle from "../(components)/(elements)/Circle";
+import Arrows from "../(components)/(elements)/Arrows";
 import Menu from "../(components)/Menu";
 import Projects from "../(components)/Projects";
 import { useTranslations } from "next-intl";
-import { PageWrapper } from "../(components)/page-wrapper";
+import { PageWrapper } from "../(components)/(utils)/page-wrapper";
 
 export default function Homepage() {
   const [startArrowAnimation, setStartArrowAnimation] = useState(false);

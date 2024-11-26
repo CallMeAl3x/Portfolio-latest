@@ -1,14 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { PageRefs } from "../(components)/(types)/pageRef";
-import { getStorageValue } from "../(components)/hooks/usePageTransition/storage";
-import {
-  ANIMATION_STATES,
-  INITIAL_CONTENT_STATE,
-  VISIBLE_CONTENT_STATE
-} from "../(components)/hooks/usePageTransition/constant";
-import { backAnimation, forwardAnimation } from "../(components)/hooks/usePageTransition/animations";
-import { handleScrolling } from "../(components)/hooks/usePageTransition/utils";
+import { PageRefs } from "../(types)/pageRef";
+import { getStorageValue } from "./(usePageTransition)/storage";
+import { ANIMATION_STATES, INITIAL_CONTENT_STATE, VISIBLE_CONTENT_STATE } from "./(usePageTransition)/constant";
+import { backAnimation, forwardAnimation } from "./(usePageTransition)/animations";
+import { handleScrolling } from "./(usePageTransition)/utils";
 
 export const usePageTransition = (): PageRefs => {
   const pageRef = useRef<HTMLDivElement>(null);

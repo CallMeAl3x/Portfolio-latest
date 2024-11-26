@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Card from "./Card";
+import Card from "./(elements)/Card";
 import { cardList } from "../(data)/cardList";
 
 export default function Projects() {

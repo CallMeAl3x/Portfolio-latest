@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import MenuTabs from "./MenuTabs";
+import OpenIcon from "./(elements)/OpenIcon";
 
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,22 +24,7 @@ export default function Menu() {
             menu
           </button>
           <button className="fixed top-[1.65rem] right-4 sm:right-16 z-[11] px-4 py-2 text-light text-xl font-poppins-reg flex flex-row gap-x-2 items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="32"
-              height="32"
-              id="menuicon"
-              className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <line x1="5" x2="19" y1="9" y2="9"></line>
-              <line x1="5" x2="19" y1="15" y2="15"></line>
-            </svg>
+            <OpenIcon />
           </button>
         </>
       </div>

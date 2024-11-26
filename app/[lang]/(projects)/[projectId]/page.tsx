@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import { cardList } from "@/app/(data)/cardList";
 import Link from "next/link";
-import { PageWrapper } from "@/app/(components)/page-wrapper";
+import { PageWrapper } from "@/app/(components)/(utils)/page-wrapper";
+import ArrowUp from "@/app/(components)/(elements)/ArrowUp";
+import CloseIcon from "@/app/(components)/(elements)/CloseIcon";
 
 export async function generateStaticParams() {
   return cardList.map((project) => ({
@@ -33,21 +35,7 @@ export default function ProjectPage({ params }: { params: { projectId: string } 
                 className="cursor-pointer hover:bg-light hover:text-dark rounded-full size-12 transition-colors ease-in duration-300"
                 title="Project Link"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="48"
-                  height="48"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="lucide lucide-arrow-up-right mb-2"
-                >
-                  <path d="M7 7h10v10"></path>
-                  <path d="M7 17L17 7"></path>
-                </svg>
+                <ArrowUp />
               </a>
             </div>
             <div className="flex flex-col">
@@ -91,21 +79,7 @@ export default function ProjectPage({ params }: { params: { projectId: string } 
           href="/"
           className="fixed z-[9999] top-6 right-6 px-4 py-2 text-light text-xl poppins-regular flex flex-row gap-x-2 items-center"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="lucide lucide-x"
-          >
-            <path d="M18 6L6 18"></path>
-            <path d="M6 6l12 12"></path>
-          </svg>
+          <CloseIcon />
         </Link>
       </div>
     </PageWrapper>

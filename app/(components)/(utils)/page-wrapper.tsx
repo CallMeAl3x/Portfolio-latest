@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { usePageTransition } from "../(utils)/usePageTransition";
+import { usePageTransition } from "../../(utils)/usePageTransition";
 
 export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   const { pageRef, transitionRef, contentRef } = usePageTransition();

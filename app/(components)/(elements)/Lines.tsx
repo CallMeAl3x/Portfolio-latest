@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useLineAnimation } from "../(utils)/useLineAnimation";
+import { useLineAnimation } from "../../(utils)/useLineAnimation";
 
 const additionalLinePositions = ["20", "30", "70", "80"];
 

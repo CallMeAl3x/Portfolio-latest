@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Link } from "@/i18n/routing";
-import { CardProps } from "./(types)/card";
+import { CardProps } from "../../(types)/card";
 
 export default function Card({ title, cardDescription, index, link, isHovered, cardImage }: CardProps) {
   return (
