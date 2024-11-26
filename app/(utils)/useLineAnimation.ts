@@ -1,11 +1,11 @@
-import { useEffect } from "react";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const useLineAnimation = (onComplete?: () => void) => {
-  useEffect(() => {
+  useGSAP(() => {
     const lines = gsap.utils.toArray<HTMLElement>(".line");
 
     // Animation initiale
@@ -46,7 +46,7 @@ export const useLineAnimation = (onComplete?: () => void) => {
           duration: 1,
           ease: "power1.out",
           scrollTrigger: {
-            trigger: ".test-space",
+            trigger: ".LandingSpace",
             start: `top top`,
             end: `bottom top`,
             scrub: true

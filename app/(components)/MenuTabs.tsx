@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 gsap.registerPlugin(_ScrollTrigger);
+import LangageSwitcher from "./LangageSwitcher";
 
 interface MenuTabsProps {
   isOpen: boolean;
@@ -100,7 +101,7 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
     <>
       <div
         id="overlay" // Make the page darker when the menu is open
-        className="fixed bg-black z-50 left-0 w-2/3 max-2xl:w-1/2 max-xl:w-2/3 h-screen opacity-0 pointer-events-none"
+        className="fixed bg-background z-50 left-0 w-2/3 max-2xl:w-1/2 max-xl:w-2/3 h-screen opacity-0 pointer-events-none"
       ></div>
       <nav
         id="navbar"
@@ -119,7 +120,7 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
             className="w-8 h-8 sm:w-12 sm:h-12 md:w-12 md:h-12"
           />
         </div>
-        <div className="text-black px-12 mt-auto mb-auto">
+        <div className="text-background px-12 mt-auto mb-auto">
           <h3 className="text-2xl font-khula-light mb-8">Menu</h3>
           <ul className="flex flex-col items-start justify-center gap-2">
             {navbarList.map(({ href, label }) => (
@@ -135,7 +136,8 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
             ))}
           </ul>
         </div>
-        <div className="mb-12 text-black sm:px-12 px-1">
+        <div className="mb-12 text-background sm:px-12 px-1">
+          <LangageSwitcher />
           <p className="font-khula-light text-lg sm:text-left text-center">Get in touch</p>
           <div onClick={handleCopy} className="flex items-center cursor-pointer">
             <p className="font-khula-regular sm:text-2xl text-lg">Alexandre.bonefons@outlook.fr</p>

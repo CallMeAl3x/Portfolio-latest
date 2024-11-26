@@ -1,13 +1,10 @@
+"use client";
 import React from "react";
 import { useLineAnimation } from "../(utils)/useLineAnimation";
 
 const additionalLinePositions = ["20", "30", "70", "80"];
 
-export default function Lines({
-  onAnimationComplete,
-}: {
-  onAnimationComplete: () => void;
-}) {
+export default function Lines({ onAnimationComplete }: { onAnimationComplete: () => void }) {
   useLineAnimation(onAnimationComplete);
 
   return (
@@ -20,7 +17,8 @@ export default function Lines({
           height="100%"
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
-          className="absolute top-0 left-0 md:h-[125vh] h-screen overflow-hidden">
+          className="absolute top-0 left-0 md:h-[125vh] h-screen overflow-hidden"
+        >
           {["25", "50", "75"].map((x) => (
             <path
               key={x}
@@ -40,7 +38,8 @@ export default function Lines({
         height="100%"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
-        className="absolute top-0 left-0 hidden 2xl:block">
+        className="absolute top-0 left-0 hidden 2xl:block"
+      >
         {additionalLinePositions.map((x) => (
           <path
             key={x}

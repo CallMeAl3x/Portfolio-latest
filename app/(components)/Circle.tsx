@@ -1,11 +1,13 @@
 "use client";
 import gsap from "gsap";
 import _ScrollTrigger from "gsap/ScrollTrigger";
-import React, { useEffect } from "react";
+import React from "react";
+import { useGSAP } from "@gsap/react";
+
 gsap.registerPlugin(_ScrollTrigger);
 
 export default function Circle() {
-  useEffect(() => {
+  useGSAP(() => {
     gsap.to(".circle", {
       scale: 10,
       background: "radial-gradient(circle, #B3E5FC 0%, #FFAB91 50%, #545453 100%)",
@@ -17,7 +19,7 @@ export default function Circle() {
       transformOrigin: "50% 50%", // Spécifie un centre de transformation optimal
       willChange: "transform, opacity", // Indique à Chrome que ces propriétés vont changer
       scrollTrigger: {
-        trigger: ".test-space",
+        trigger: ".LandingSpace",
         start: "top top",
         end: "bottom top",
         scrub: true,

@@ -1,12 +1,11 @@
-// useArrowAnimation.ts
-import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const useArrowAnimation = (start: boolean) => {
-  useEffect(() => {
+  useGSAP(() => {
     if (!start) return;
 
     const calculateProgressColor = (progress: number) => {
@@ -68,7 +67,7 @@ export const useArrowAnimation = (start: boolean) => {
           stroke: "var(--foreground)",
           fill: "var(--foreground)",
           scrollTrigger: {
-            trigger: ".test-space",
+            trigger: ".LandingSpace",
             start: "top top",
             end: "bottom top",
             scrub: true,

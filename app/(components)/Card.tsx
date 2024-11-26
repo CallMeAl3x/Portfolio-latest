@@ -1,6 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
+import { Link } from "@/i18n/routing";
 
 interface CardProps {
   title: string;
@@ -19,8 +19,8 @@ export default function Card({ title, description, index, link, isHovered, img }
       {/* Desktop */}
       <Link
         href={link}
-        className={`lg:flex group hidden font-poppins-extralight relative after:-bottom-[75%] after:h-[1.75px] after:bg-black/40 after:content-[''] after:w-1/3 after:ease-in-out after:duration-500 after:absolute text-black w-full cursor-pointer ${
-          isHovered ? "after:w-full after:h-[1.95px] after:bg-black/60" : ""
+        className={`lg:flex group hidden font-poppins-extralight relative after:-bottom-[75%] after:h-[1.75px] after:bg-background/40 after:content-[''] after:w-1/3 after:ease-in-out after:duration-500 after:absolute text-background w-full cursor-pointer ${
+          isHovered ? "after:w-full after:h-[1.95px] after:bg-background/60" : ""
         }`}
         passHref
       >
@@ -38,7 +38,7 @@ export default function Card({ title, description, index, link, isHovered, img }
       {/* Mobile */}
       <Link
         href={link}
-        className="lg:hidden group flex flex-col font-poppins-extralight justify-center items-center relative text-black w-full cursor-pointer gap-5"
+        className="lg:hidden group flex flex-col font-poppins-extralight justify-center items-center relative text-background w-full cursor-pointer gap-5"
         passHref
       >
         <div className="px-6 h-full w-full">

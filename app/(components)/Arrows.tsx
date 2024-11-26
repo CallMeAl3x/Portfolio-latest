@@ -1,4 +1,5 @@
 // Arrows.tsx
+"use client";
 import React from "react";
 import { useSmoothScroll } from "../(utils)/useSmoothScroll";
 import { useArrowAnimation } from "../(utils)/useArrowAnimation";
@@ -22,8 +23,9 @@ export default function Arrows({ startAnimation }: ArrowsProps) {
           className="absolute left-0 z-0 will-change-transform top-[18%] pointer-events-none"
           style={{
             top: "18%",
-            transform: `translateY(${scrollY}px)`,
-          }}>
+            transform: `translateY(${scrollY}px)`
+          }}
+        >
           <path
             id="left-arrow"
             d="M 25 50 L 50 65 L 50 70 L 25 55 Z"

@@ -5,7 +5,6 @@ export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMenu = () => {
-    console.log(isOpen);
     setIsOpen(!isOpen);
   };
 
