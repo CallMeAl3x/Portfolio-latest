@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+"use client";
+import { useState } from "react";
 import MenuTabs from "./MenuTabs";
 
 export default function Menu() {

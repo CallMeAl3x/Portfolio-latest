@@ -1,17 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Link } from "@/i18n/routing";
-
-interface CardProps {
-  title: string;
-  cardDescription: string;
-  cardImage: string;
-  index: number;
-  link: string;
-  isHovered: boolean;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-}
+import { CardProps } from "./(types)/card";
 
 export default function Card({ title, cardDescription, index, link, isHovered, cardImage }: CardProps) {
   return (

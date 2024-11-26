@@ -1,14 +1,13 @@
 "use client";
 import gsap from "gsap";
 import _ScrollTrigger from "gsap/ScrollTrigger";
-import React, { useEffect } from "react";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(_ScrollTrigger);
 
 export default function Circle() {
   useGSAP(() => {
-    const animation = gsap.to(".circle", {
+    gsap.to(".circle", {
       scale: 10,
       background: "radial-gradient(circle, #B3E5FC 0%, #FFAB91 50%, #545453 100%)",
       filter: "blur(0px)",

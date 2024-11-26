@@ -34,7 +34,6 @@ export default async function LocaleLayout({
     <html lang={lang}>
       <body className="antialiased" suppressHydrationWarning>
         <NavigationTracker />
-        {/* suppressHydrationWarning cause it sucks */}
         <NextIntlClientProvider messages={messages}>
           {children}
           <Toaster richColors position="top-left" duration={2000} />

@@ -1,14 +1,9 @@
-// Arrows.tsx
 "use client";
 import React from "react";
 import { useSmoothScroll } from "../(utils)/useSmoothScroll";
 import { useArrowAnimation } from "../(utils)/useArrowAnimation";
 
-interface ArrowsProps {
-  startAnimation: boolean;
-}
-
-export default function Arrows({ startAnimation }: ArrowsProps) {
+export default function Arrows({ startAnimation }: { startAnimation: boolean }) {
   const scrollY = useSmoothScroll();
   useArrowAnimation(startAnimation);
 

@@ -6,11 +6,7 @@ import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 gsap.registerPlugin(_ScrollTrigger);
 import LangageSwitcher from "./LangageSwitcher";
-
-interface MenuTabsProps {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
-}
+import { MenuTabsProps } from "./(types)/menuTab";
 
 export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
   const navbarList = [

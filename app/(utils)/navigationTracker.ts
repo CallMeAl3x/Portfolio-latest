@@ -10,21 +10,21 @@ export function NavigationTracker() {
     const navigationHistory = JSON.parse(localStorage.getItem("navigation_history") || "[]");
     const previousPath = navigationHistory[navigationHistory.length - 1] || "";
 
-    const wasInLangRoot = /^\/[a-z]{2}(\/)?$/.test(previousPath);
-    const isGoingToLangRoot = /^\/[a-z]{2}(\/)?$/.test(pathname);
+    const wasAtHome = /^\/[a-z]{2}(\/)?$/.test(previousPath);
+    const isGoingHome = /^\/[a-z]{2}(\/)?$/.test(pathname);
 
-    localStorage.setItem("wasInLangRoot", wasInLangRoot.toString());
-    localStorage.setItem("isGoingToLangRoot", isGoingToLangRoot.toString());
-    localStorage.setItem("reloading", (wasInLangRoot && isGoingToLangRoot).toString());
+    localStorage.setItem("wasAtHome", wasAtHome.toString());
+    localStorage.setItem("isGoingHome", isGoingHome.toString());
+    localStorage.setItem("reloading", (wasAtHome && isGoingHome).toString());
 
     let navigationDirection = "";
-    if (!wasInLangRoot && isGoingToLangRoot) {
+    if (!wasAtHome && isGoingHome) {
       navigationDirection = "back";
-    } else if (wasInLangRoot && !isGoingToLangRoot) {
+    } else if (wasAtHome && !isGoingHome) {
       navigationDirection = "forward";
-    } else if (isGoingToLangRoot && wasInLangRoot) {
+    } else if (isGoingHome && wasAtHome) {
       navigationDirection = "back";
-    } else if (!isGoingToLangRoot && !wasInLangRoot) {
+    } else if (!isGoingHome && !wasAtHome) {
       navigationDirection = "forward";
     }
     localStorage.setItem("navigation_direction", navigationDirection);

@@ -1,13 +1,12 @@
 "use client";
-import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-const availableLocales = ["en", "fr"]; // Define your available locales here
+const availableLocales = ["en", "fr"];
 
 export default function LangageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
-  const currentLocale = pathname.split("/")[1]; // Extract the current locale from the pathname
+  const currentLocale = pathname.split("/")[1];
 
   const switchLanguage = (lng: string) => {
     const newPathname = pathname.replace(`/${currentLocale}`, `/${lng}`);

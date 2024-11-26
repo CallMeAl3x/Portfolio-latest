@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import Lines from "../(components)/Lines";
 import Circle from "../(components)/Circle";
 import Arrows from "../(components)/Arrows";
