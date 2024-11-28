@@ -8,7 +8,7 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
     <>
       {/* Desktop */}
       <Link
-        href={link}
+        href={"/projects/" + link}
         className={`lg:flex group hidden font-poppins-extralight relative after:-bottom-[75%] after:h-[1.75px] after:bg-background/40 after:content-[''] after:w-1/3 after:ease-in-out after:duration-500 after:absolute text-background w-full cursor-pointer ${
           isHovered ? "after:w-full after:h-[1.95px] after:bg-background/60" : ""
         }`}

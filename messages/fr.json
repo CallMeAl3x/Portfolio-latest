@@ -2,5 +2,59 @@
   "HomePage": {
     "title": "Transformer des idées en solutions créatives.",
     "description": "Développeur web innovant créant des expériences utilisateur uniques."
+  },
+  "CardList": {
+    "weather-app": {
+      "title": "Weather App",
+      "cardDescription": "Développement Web / API",
+      "description": "Une application web permettant aux utilisateurs de consulter la météo actuelle et les prévisions pour la ville de leur choix. L'application offre une interface intuitive avec des données météorologiques en temps réel.",
+      "technologies": {
+        "frontend": "Vite, TailwindCSS, React Context",
+        "backend": "Fetch API"
+      },
+      "cardImage": "/img/projects/weather-app.webp",
+      "img": "/img/projects/weather-app.webp",
+      "link": "/weather-app",
+      "index": 1
+    },
+    "web-documentary": {
+      "title": "Web Documentary",
+      "cardDescription": "Documentation Web / Interactif",
+      "description": "Un projet de deuxième année DUT MMI (S3) explorant les applications de rencontres, axé sur l'expérience masculine. Le projet vise à découvrir les défis de ces plateformes en combinant interactivité et crédibilité.",
+      "technologies": {
+        "frontend": "React, TailwindCSS, TinderCard, React Context",
+        "backend": "N/A"
+      },
+      "cardImage": "/img/projects/webdocumentary.webp",
+      "img": "/img/projects/webdocumentary.webp",
+      "link": "/web-documentary",
+      "index": 2
+    },
+    "data-visualization": {
+      "title": "Data Visualization",
+      "cardDescription": "Analyse de Données / Graphiques",
+      "description": "Projet de deuxième année DUT MMI (S3), ce site propose une analyse de données cinématographiques via des APIs, affichant les informations à travers deux graphiques.",
+      "technologies": {
+        "frontend": "Vite, TailwindCSS, ChartJS, Zustand",
+        "backend": "Appels API"
+      },
+      "cardImage": "/img/projects/data-visualization.webp",
+      "img": "/img/projects/data-visualization.webp",
+      "link": "/data-visualization",
+      "index": 3
+    },
+    "translate-app": {
+      "title": "Translate App",
+      "cardDescription": "Application Web / Traduction",
+      "description": "Une application web offrant la traduction jusqu'à 500 caractères dans différentes langues, avec la possibilité d'écouter et de copier les textes, notamment en anglais et en français.",
+      "technologies": {
+        "frontend": "Vite, TailwindCSS, ResponsiveVoice, Mymemory",
+        "backend": "API Fetch"
+      },
+      "cardImage": "/img/projects/translate-app.webp",
+      "img": "/img/projects/translate-app.webp",
+      "link": "/translate-app",
+      "index": 4
+    }
   }
 }

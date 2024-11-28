@@ -1,7 +1,7 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import Card from "./(elements)/Card";
-import { cardList } from "../(data)/cardList";
+import { useMessages, useTranslations } from "next-intl";
 
 export default function Projects() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -10,6 +10,10 @@ export default function Projects() {
   const [isLaptop, setIsLaptop] = useState(true);
   const [prevCardIndex, setPrevCardIndex] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const t = useTranslations("CardList");
+  const messages = useMessages();
+  const card = Object.keys(messages.CardList);
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,11 +32,11 @@ export default function Projects() {
   }, []);
 
   useEffect(() => {
-    cardList.forEach((card) => {
+    card.forEach((card) => {
       const cardImage = new window.Image();
-      cardImage.src = card.cardImage;
+      cardImage.src = t(`${card}.cardImage`);
     });
-  }, []);
+  }, [card, t]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -42,16 +46,14 @@ export default function Projects() {
       setMousePosition({ x: e.clientX, y: e.clientY });
       const containerRect = container.getBoundingClientRect();
       const relativeY = e.clientY - containerRect.top;
-      const cardHeight = containerRect.height / cardList.length;
+      const cardHeight = containerRect.height / card.length;
       const newIndex = Math.floor(relativeY / cardHeight);
-      const boundedIndex = Math.max(0, Math.min(newIndex, cardList.length - 1));
-
+      const boundedIndex = Math.max(0, Math.min(newIndex, card.length - 1));
       if (boundedIndex !== activeCardIndex) {
         setPrevCardIndex(activeCardIndex);
         setActiveCardIndex(boundedIndex);
       }
     };
-
     const handleMouseEnter = () => {
       setIsVisible(true);
     };
@@ -71,7 +73,7 @@ export default function Projects() {
       container.removeEventListener("mouseenter", handleMouseEnter);
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [cardList.length, activeCardIndex]);
+  }, [card, activeCardIndex]);
 
   return (
     <div className="pt-[25vh]" id="projects">
@@ -80,19 +82,17 @@ export default function Projects() {
           Selected Projects
         </h3>
         <div className="cards flex flex-col gap-28 w-full relative mt-2" ref={containerRef}>
-          {cardList.map((card, index) => (
+          {card.map((card, index) => (
             <Card
-              key={index}
-              {...card}
+              index={index}
+              title={t(`${card}.title`)}
+              cardDescription={t(`${card}.cardDescription`)}
+              cardImage={t(`${card}.cardImage`)}
+              link={t(`${card}.link`)}
+              key={card}
               isHovered={index === activeCardIndex}
-              onMouseEnter={() => {
-                setPrevCardIndex(activeCardIndex);
-                setActiveCardIndex(index);
-              }}
-              onMouseLeave={() => {
-                setActiveCardIndex(-1);
-                setPrevCardIndex(-1);
-              }}
+              onMouseEnter={() => setActiveCardIndex(index)}
+              onMouseLeave={() => setActiveCardIndex(-1)}
             />
           ))}
         </div>
@@ -104,17 +104,17 @@ export default function Projects() {
             }}
           >
             <div
-              className="absolute flex flex-col transition-transform duration-600  will-change-auto"
+              className="absolute flex flex-col transition-transform duration-600 will-change-auto"
               style={{
                 transform: `translateY(-${activeCardIndex * 200}px)`,
-                height: `${cardList.length * 200}px`
+                height: `${card.length * 200}px`
               }}
             >
-              {cardList.map((card, index) => (
+              {card.map((card, index) => (
                 <img
                   key={index}
-                  src={card.cardImage}
-                  alt={card.description}
+                  src={t(`${card}.cardImage`)}
+                  alt={t(`${card}.description`)}
                   className="w-[385px] h-[200px] object-cover object-center"
                 />
               ))}

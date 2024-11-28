@@ -10,8 +10,8 @@ export const cardList = [
       frontend: ["NextJS", "TailwindCSS", "ThreeJS"],
       backend: ["Spring Boot", "GraphQL", "PostgreSQL", "MongoDB"]
     },
-    cardImage: "/img/webdocumentary.webp",
-    img: "/img/webdocumentary.webp",
+    cardImage: "/img/projects/webdocumentary.webp",
+    img: "/img/projects/webdocumentary.webp",
     link: "/meetmate1"
   },
   {
@@ -19,8 +19,8 @@ export const cardList = [
     index: 2,
     title: "MeetMate",
     cardDescription: "WebDeveloppement / Design",
-    img: "/img/webdocumentary.webp",
-    cardImage: "/img/webdocumentary.webp",
+    img: "/img/projects/webdocumentary.webp",
+    cardImage: "/img/projects/webdocumentary.webp",
     link: "/meetmate2"
   },
   {
@@ -28,8 +28,8 @@ export const cardList = [
     index: 3,
     title: "MeetMate",
     cardDescription: "WebDeveloppement / Design",
-    cardImage: "/img/webdocumentary.webp",
-    img: "/img/webdocumentary.webp",
+    cardImage: "/img/projects/webdocumentary.webp",
+    img: "/img/projects/webdocumentary.webp",
     link: "/meetmate3"
   }
 ];
