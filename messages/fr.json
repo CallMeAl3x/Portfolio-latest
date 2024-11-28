@@ -14,11 +14,11 @@
       },
       "cardImage": "/img/projects/weather-app.webp",
       "img": "/img/projects/weather-app.webp",
-      "link": "/weather-app",
+      "link": "https://weather.bonefons.com/",
       "index": 1
     },
     "web-documentary": {
-      "title": "Web Documentary",
+      "title": "Documentaire Web",
       "cardDescription": "Documentation Web / Interactif",
       "description": "Un projet de deuxième année DUT MMI (S3) explorant les applications de rencontres, axé sur l'expérience masculine. Le projet vise à découvrir les défis de ces plateformes en combinant interactivité et crédibilité.",
       "technologies": {
@@ -27,12 +27,12 @@
       },
       "cardImage": "/img/projects/webdocumentary.webp",
       "img": "/img/projects/webdocumentary.webp",
-      "link": "/web-documentary",
+      "link": "https://webdoc-dating-app.netlify.app/",
       "index": 2
     },
     "data-visualization": {
-      "title": "Data Visualization",
-      "cardDescription": "Analyse de Données / Graphiques",
+      "title": "Visualisation de Données",
+      "cardDescription": "Analyse de Données",
       "description": "Projet de deuxième année DUT MMI (S3), ce site propose une analyse de données cinématographiques via des APIs, affichant les informations à travers deux graphiques.",
       "technologies": {
         "frontend": "Vite, TailwindCSS, ChartJS, Zustand",
@@ -40,11 +40,11 @@
       },
       "cardImage": "/img/projects/data-visualization.webp",
       "img": "/img/projects/data-visualization.webp",
-      "link": "/data-visualization",
+      "link": "https://datavisualisation-cinema.netlify.app/",
       "index": 3
     },
     "translate-app": {
-      "title": "Translate App",
+      "title": "Application de Traduction",
       "cardDescription": "Application Web / Traduction",
       "description": "Une application web offrant la traduction jusqu'à 500 caractères dans différentes langues, avec la possibilité d'écouter et de copier les textes, notamment en anglais et en français.",
       "technologies": {
@@ -53,7 +53,7 @@
       },
       "cardImage": "/img/projects/translate-app.webp",
       "img": "/img/projects/translate-app.webp",
-      "link": "/translate-app",
+      "link": "https://translate-app.bonefons.com/",
       "index": 4
     }
   }

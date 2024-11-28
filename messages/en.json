@@ -14,7 +14,7 @@
       },
       "cardImage": "/img/projects/weather-app.webp",
       "img": "/img/projects/weather-app.webp",
-      "link": "/weather-app",
+      "link": "https://weather.bonefons.com/",
       "index": 1
     },
     "web-documentary": {
@@ -27,7 +27,7 @@
       },
       "cardImage": "/img/projects/webdocumentary.webp",
       "img": "/img/projects/webdocumentary.webp",
-      "link": "/web-documentary",
+      "link": "https://webdoc-dating-app.netlify.app/",
       "index": 2
     },
     "data-visualization": {
@@ -40,7 +40,7 @@
       },
       "cardImage": "/img/projects/data-visualization.webp",
       "img": "/img/projects/data-visualization.webp",
-      "link": "/data-visualization",
+      "link": "https://datavisualisation-cinema.netlify.app/",
       "index": 3
     },
     "translate-app": {
@@ -53,7 +53,7 @@
       },
       "cardImage": "/img/projects/translate-app.webp",
       "img": "/img/projects/translate-app.webp",
-      "link": "/translate-app",
+      "link": "https://translate-app.bonefons.com/",
       "index": 4
     }
   }

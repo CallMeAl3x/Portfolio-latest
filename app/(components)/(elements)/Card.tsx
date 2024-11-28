@@ -10,8 +10,8 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
         // Desktop view
         <Link
           href={"/projects" + link}
-          className={`group relative hidden w-full cursor-pointer px-12 py-12 font-poppins-extralight text-background after:absolute after:bottom-[12%] after:h-[1.75px] after:w-1/3 after:bg-background/40 after:duration-500 after:ease-in-out after:content-[''] lg:flex ${
-            isHovered ? "after:h-[1.95px] after:w-[90%] after:bg-background/60" : ""
+          className={`group relative hidden w-full cursor-pointer px-12 font-poppins-extralight text-background after:absolute after:bottom-[12%] after:h-[1.75px] after:w-1/3 after:bg-background/40 after:duration-500 after:ease-in-out after:content-[''] lg:flex lg:py-14 xl:py-16 ${
+            isHovered ? "after:h-[1.95px] after:w-[92.5%] after:bg-background/60" : ""
           }`}
           passHref
         >
@@ -37,7 +37,13 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
           passHref
         >
           <div className="h-full w-full px-6">
-            <Image src={cardImage} alt={cardDescription} height={200} width={385} className="ml-auto mr-auto" />
+            <Image
+              src={cardImage}
+              alt={cardDescription}
+              height={200}
+              width={385}
+              className="ml-auto mr-auto rounded-lg"
+            />
           </div>
           <div className="flex flex-col items-center justify-center gap-1">
             <h4 className="font-khula-regular text-4xl">{title}</h4>

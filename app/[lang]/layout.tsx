@@ -4,16 +4,27 @@ import { Toaster } from "@/components/ui/sonner";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
 import { NavigationTracker } from "../(utils)/navigationTracker";
+import { routing } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Portfolio Alexandre Bonefons",
-  description: "description // add a description",
-  icons: {
-    icon: "/img/logo.jpg"
-  }
-};
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  const { lang } = params;
+
+  return {
+    title: "Portfolio Alexandre Bonefons",
+    description: "description // add a description",
+    icons: {
+      icon: "/img/logo.jpg"
+    },
+    openGraph: {
+      type: "website",
+      locale: lang,
+      url: "https://www.bonefons.fr",
+      siteName: "Portfolio Alexandre Bonefons",
+      images: [{ url: "/img/logo.jpg", alt: "Portfolio Alexandre Bonefons" }]
+    }
+  };
+}
 
 export default async function LocaleLayout({
   children,

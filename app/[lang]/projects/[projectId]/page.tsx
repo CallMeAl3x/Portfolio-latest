@@ -1,34 +1,46 @@
 import { notFound } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { createTranslator, useTranslations } from "next-intl";
 import ArrowUp from "@/app/(components)/(elements)/ArrowUp";
 import CloseIcon from "@/app/(components)/(elements)/CloseIcon";
 import { PageWrapper } from "@/app/(components)/(utils)/page-wrapper";
 import Link from "next/link";
 import { routing } from "@/i18n/routing";
+import { Metadata } from "next";
+import { getProjectMetadata } from "@/lib/projectMetadata";
+import { projectKeys } from "@/lib/utils";
 
 export const dynamicParams = true;
 // to get the list of languages
 const { locales } = routing;
 
+export async function generateMetadata({ params }: { params: { projectId: string; lang: string } }): Promise<Metadata> {
+  const { projectId, lang } = params;
+
+  try {
+    // Appeler la fonction pour obtenir les métadonnées du projet
+    const metadata = await getProjectMetadata(projectId, lang);
+
+    return metadata;
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+    notFound();
+  }
+}
+
 // List of project keys that are used in the URL path.
-const projectKeys = ["weather-app", "web-documentary", "data-visualization", "translate-app"] as const;
-
 export async function generateStaticParams() {
-  // Get the locales list from the routing configuration
+  // Generate all routes for all projects in all languages
 
-  // `flatMap` is used to combine the language and project keys into a single array of objects.
-  // Each object contains the `lang` (language) and `projectId` (project key),
-  // which are passed to the page component as dynamic parameters.
   return locales.flatMap((lang) =>
     projectKeys.map((projectId) => ({
       lang, // The language
-      projectId // The project ID (e.g., 'meetmate', 'meetmate2')
+      projectId // The project ID
     }))
   );
 }
 
-export default function ProjectPage({ params }: { params: { projectId: string } }) {
-  const { projectId } = params; // Extract the `projectId` from the URL parameters.
+export default function ProjectPage({ params }: { params: { projectId: string; lang: string } }) {
+  const { projectId } = params;
 
   const t = useTranslations("CardList");
 
@@ -41,9 +53,9 @@ export default function ProjectPage({ params }: { params: { projectId: string } 
     <PageWrapper>
       <div className="relative">
         <div className="fixed inset-0 flex max-h-[100vh] w-full justify-center overflow-x-hidden overflow-y-scroll px-4 pb-12 text-white">
-          <div className="mt-[20vh] w-full max-w-[1000px]">
-            <div className="mb-[4vh] flex w-full flex-row items-center justify-between pr-12">
-              <h1 className="khula-regular text-8xl tracking-[calc(6rem*0.03)] max-sm:text-[12vw]">
+          <div className="mt-[8.5vh] w-full max-w-[1000px]">
+            <div className="mb-[4vh] flex w-full flex-row items-center pr-4 sm:gap-4 xl:justify-between">
+              <h1 className="khula-regular text-7xl tracking-[calc(6rem*0.03)] max-sm:text-[11.5vw] lg:text-8xl">
                 {t(`${projectId}.title`)}
               </h1>
               <a
@@ -57,7 +69,7 @@ export default function ProjectPage({ params }: { params: { projectId: string } 
               </a>
             </div>
             <div className="flex flex-col">
-              <div className="flex flex-row gap-x-12">
+              <div className="flex flex-col gap-x-12 sm:flex-row">
                 <div>
                   <p className="khula-light text-gray-1 text-sm uppercase tracking-[calc(0.875rem*0.05)]">
                     Description
@@ -85,7 +97,7 @@ export default function ProjectPage({ params }: { params: { projectId: string } 
                 </div>
               </div>
               <img
-                className="mb-12 w-full select-none rounded-2xl object-cover object-top"
+                className="mb-12 max-h-[700px] w-full select-none rounded-2xl object-cover object-top"
                 style={{ border: "1px solid rgb(255, 255, 255)" }}
                 src={t(`${projectId}.img`)}
                 alt={t(`${projectId}.title`)}

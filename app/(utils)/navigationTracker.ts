@@ -13,6 +13,7 @@ export function NavigationTracker() {
     const wasAtHome = /^\/[a-z]{2}(\/)?$/.test(previousPath);
     const isGoingHome = /^\/[a-z]{2}(\/)?$/.test(pathname);
 
+    const isFirstTime = navigationHistory.length === 0;
     localStorage.setItem("wasAtHome", wasAtHome.toString());
     localStorage.setItem("isGoingHome", isGoingHome.toString());
     localStorage.setItem("reloading", (wasAtHome && isGoingHome).toString());
@@ -38,6 +39,8 @@ export function NavigationTracker() {
         const currentIndex = navigationHistory.lastIndexOf(pathname);
         navigationHistory.splice(currentIndex + 1);
       }
+    } else if (isFirstTime) {
+      navigationHistory.push(pathname);
     }
 
     localStorage.setItem("navigation_history", JSON.stringify(navigationHistory));
