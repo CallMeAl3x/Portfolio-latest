@@ -19,11 +19,11 @@ export default function Menu() {
         <>
           <button
             id="menutitle"
-            className={`fixed top-7 sm:right-[7.65rem] md:right-[8.35rem] md:top-9 z-[11] px-4 py-2 sm:text-3xl  font-poppins-reg hidden flex-row gap-x-2 items-center text-foreground sm:flex`}
+            className={`fixed top-7 z-[11] hidden flex-row items-center gap-x-2 px-4 py-2 font-poppins-reg text-foreground sm:right-[7.65rem] sm:flex sm:text-3xl md:right-[8.35rem] md:top-9`}
           >
             menu
           </button>
-          <button className="fixed top-[1.65rem] right-4 sm:right-16 z-[11] px-4 py-2 text-light text-xl font-poppins-reg flex flex-row gap-x-2 items-center">
+          <button className="text-light fixed right-4 top-[1.65rem] z-[11] flex flex-row items-center gap-x-2 px-4 py-2 font-poppins-reg text-xl sm:right-16">
             <OpenIcon />
           </button>
         </>

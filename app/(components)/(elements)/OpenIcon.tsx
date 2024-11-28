@@ -7,7 +7,7 @@ export default function OpenIcon() {
       width="32"
       height="32"
       id="menuicon"
-      className="w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16"
+      className="h-8 w-8 sm:h-12 sm:w-12 md:h-16 md:w-16"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"

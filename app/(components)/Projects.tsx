@@ -1,5 +1,5 @@
 "use client";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Card from "./(elements)/Card";
 import { useMessages, useTranslations } from "next-intl";
 
@@ -10,11 +10,24 @@ export default function Projects() {
   const [isLaptop, setIsLaptop] = useState(true);
   const [prevCardIndex, setPrevCardIndex] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isScaled, setIsScaled] = useState(false);
+  const [isRendered, setIsRendered] = useState(false);
 
-  const t = useTranslations("CardList");
-  const messages = useMessages();
-  const card = Object.keys(messages.CardList);
+  // scale effect
+  useEffect(() => {
+    if (isVisible && activeCardIndex >= 0 && isLaptop) {
+      const timer = setTimeout(() => setIsScaled(true), 10);
+      setIsRendered(true);
+      return () => clearTimeout(timer);
+    } else {
+      setIsScaled(false);
+      // Attendre la fin de l'animation avant de retirer l'élément
+      const timer = setTimeout(() => setIsRendered(false), 150); // 300ms correspond à la durée de l'animation
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, activeCardIndex, isLaptop]);
 
+  // check if the screen is laptop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1024) {
@@ -31,13 +44,20 @@ export default function Projects() {
     };
   }, []);
 
+  // use i18n translations
+  const t = useTranslations("CardList");
+  const messages = useMessages();
+  const cards = Object.keys(messages.CardList);
+
+  // Preload images
   useEffect(() => {
-    card.forEach((card) => {
+    cards.forEach((card) => {
       const cardImage = new window.Image();
       cardImage.src = t(`${card}.cardImage`);
     });
-  }, [card, t]);
+  }, [cards, t]);
 
+  // Mouse move effect
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -46,9 +66,9 @@ export default function Projects() {
       setMousePosition({ x: e.clientX, y: e.clientY });
       const containerRect = container.getBoundingClientRect();
       const relativeY = e.clientY - containerRect.top;
-      const cardHeight = containerRect.height / card.length;
+      const cardHeight = containerRect.height / cards.length;
       const newIndex = Math.floor(relativeY / cardHeight);
-      const boundedIndex = Math.max(0, Math.min(newIndex, card.length - 1));
+      const boundedIndex = Math.max(0, Math.min(newIndex, cards.length - 1));
       if (boundedIndex !== activeCardIndex) {
         setPrevCardIndex(activeCardIndex);
         setActiveCardIndex(boundedIndex);
@@ -73,16 +93,16 @@ export default function Projects() {
       container.removeEventListener("mouseenter", handleMouseEnter);
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [card, activeCardIndex]);
+  }, [cards, activeCardIndex]);
 
   return (
     <div className="pt-[25vh]" id="projects">
-      <div className="flex justify-center items-center max-w-[1000px] ml-auto mr-auto flex-col gap-9">
-        <h3 className="text-2xl md:text-3xl xl:text-4xl font-poppins-light mb-8 text-background text-center">
+      <div className="ml-auto mr-auto flex max-w-[1048px] flex-col items-center justify-center gap-9">
+        <h3 className="mb-8 text-center font-poppins-light text-2xl text-background md:text-3xl xl:text-4xl">
           Selected Projects
         </h3>
-        <div className="cards flex flex-col gap-28 w-full relative mt-2" ref={containerRef}>
-          {card.map((card, index) => (
+        <div className="cards relative mt-2 flex w-full flex-col" ref={containerRef}>
+          {cards.map((card, index) => (
             <Card
               index={index}
               title={t(`${card}.title`)}
@@ -90,32 +110,35 @@ export default function Projects() {
               cardImage={t(`${card}.cardImage`)}
               link={t(`${card}.link`)}
               key={card}
+              isLaptop={isLaptop}
               isHovered={index === activeCardIndex}
               onMouseEnter={() => setActiveCardIndex(index)}
               onMouseLeave={() => setActiveCardIndex(-1)}
             />
           ))}
         </div>
-        {isVisible && activeCardIndex >= 0 && isLaptop && (
+        {isRendered && (
           <div
-            className="fixed top-0 left-0 pointer-events-none z-50 overflow-hidden rounded-xl will-change-auto h-[200px] w-[385px]"
+            className="pointer-events-none fixed left-0 top-0 z-50 h-[200px] w-[385px] overflow-hidden rounded-xl transition-transform duration-300 ease-out will-change-auto"
             style={{
-              transform: `translate(${mousePosition.x - 192.5}px, ${mousePosition.y - 100}px)`
+              transform: `translate(${mousePosition.x - 192.5}px, ${mousePosition.y - 100}px) scale(${
+                isScaled ? 1 : 0
+              })`
             }}
           >
             <div
               className="absolute flex flex-col transition-transform duration-600 will-change-auto"
               style={{
                 transform: `translateY(-${activeCardIndex * 200}px)`,
-                height: `${card.length * 200}px`
+                height: `${cards.length * 200}px`
               }}
             >
-              {card.map((card, index) => (
+              {cards.map((card, index) => (
                 <img
                   key={index}
                   src={t(`${card}.cardImage`)}
                   alt={t(`${card}.description`)}
-                  className="w-[385px] h-[200px] object-cover object-center"
+                  className="h-[200px] w-[385px] object-cover object-center"
                 />
               ))}
             </div>

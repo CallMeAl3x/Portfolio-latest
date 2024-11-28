@@ -8,14 +8,14 @@ export default function Arrows({ startAnimation }: { startAnimation: boolean }) 
   useArrowAnimation(startAnimation);
 
   return (
-    <div className="absolute inset-0 flex justify-center pointer-events-none">
-      <div className="w-full max-w-[1300px] relative">
+    <div className="pointer-events-none absolute inset-0 flex justify-center">
+      <div className="relative w-full max-w-[1300px]">
         <svg
           width="100%"
           height="80%"
           viewBox="0 0 100 120"
           preserveAspectRatio="none"
-          className="absolute left-0 z-0 will-change-transform top-[18%] pointer-events-none"
+          className="pointer-events-none absolute left-0 top-[18%] z-0 will-change-transform"
           style={{
             top: "18%",
             transform: `translateY(${scrollY}px)`

@@ -8,8 +8,8 @@ export default function Lines({ onAnimationComplete }: { onAnimationComplete: ()
   useLineAnimation(onAnimationComplete);
 
   return (
-    <div className="absolute inset-0 flex justify-center pointer-events-none">
-      <div className="w-full max-w-[1300px] relative">
+    <div className="pointer-events-none absolute inset-0 flex justify-center">
+      <div className="relative w-full max-w-[1300px]">
         {/* Main Vertical Lines */}
         <svg
           id="vertical-lines"
@@ -17,7 +17,7 @@ export default function Lines({ onAnimationComplete }: { onAnimationComplete: ()
           height="100%"
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
-          className="absolute top-0 left-0 md:h-[125vh] h-screen overflow-hidden"
+          className="absolute left-0 top-0 h-screen overflow-hidden md:h-[125vh]"
         >
           {["25", "50", "75"].map((x) => (
             <path
@@ -38,7 +38,7 @@ export default function Lines({ onAnimationComplete }: { onAnimationComplete: ()
         height="100%"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
-        className="absolute top-0 left-0 hidden 2xl:block"
+        className="absolute left-0 top-0 hidden 2xl:block"
       >
         {additionalLinePositions.map((x) => (
           <path

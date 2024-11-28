@@ -43,6 +43,6 @@ export default function Circle() {
   }, []);
 
   return (
-    <div className="circle fixed top-1/2 left-1/2 w-[642px] h-[642px] transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0 bg-[radial-gradient(circle,rgba(190,190,255,0.10)_0%,transparent_50%)] blur-[10px] rounded-[50%]"></div>
+    <div className="circle pointer-events-none fixed left-1/2 top-1/2 z-0 h-[642px] w-[642px] -translate-x-1/2 -translate-y-1/2 transform rounded-[50%] bg-[radial-gradient(circle,rgba(190,190,255,0.10)_0%,transparent_50%)] blur-[10px]"></div>
   );
 }

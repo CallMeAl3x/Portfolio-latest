@@ -5,6 +5,7 @@ export interface CardProps {
   index: number;
   link: string;
   isHovered: boolean;
+  isLaptop: boolean;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
 }

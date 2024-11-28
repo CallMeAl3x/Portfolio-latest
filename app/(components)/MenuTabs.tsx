@@ -103,15 +103,15 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
     <>
       <div
         id="overlay" // Make the page darker when the menu is open to make the menu more visible
-        className="fixed top-0 left-0 w-full h-full bg-background z-[99] flex flex-col p-6 overflow-y-auto opacity-0 pointer-events-none"
+        className="pointer-events-none fixed left-0 top-0 z-[99] flex h-full w-full flex-col overflow-y-auto bg-background p-6 opacity-0"
       ></div>
       <nav
         id="navbar"
         ref={navbarRef}
-        className="fixed right-0 h-screen w-1/3 max-2xl:w-1/2 max-xl:w-2/3 max-md:w-full z-[100] flex flex-col p-6 justify-center max-w-screen-md bg-foreground overflow-y-auto will-change-auto translate-x-full"
+        className="fixed right-0 z-[100] flex h-screen w-1/3 max-w-screen-md translate-x-full flex-col justify-center overflow-y-auto bg-foreground p-6 will-change-auto max-2xl:w-1/2 max-xl:w-2/3 max-md:w-full"
       >
         <div
-          className="fixed top-[1.65rem] right-3 sm:right-16 md:right-[4.50rem] z-2 py-2 px-4 md:top-8 cursor-pointer"
+          className="z-2 fixed right-3 top-[1.65rem] cursor-pointer px-4 py-2 sm:right-16 md:right-[4.50rem] md:top-8"
           onClick={handleMenu}
         >
           <Image
@@ -119,17 +119,17 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
             alt="close"
             width={32}
             height={32}
-            className="w-8 h-8 sm:w-12 sm:h-12 md:w-12 md:h-12"
+            className="h-8 w-8 sm:h-12 sm:w-12 md:h-12 md:w-12"
           />
         </div>
-        <div className="text-background px-12 mt-auto mb-auto">
-          <h3 className="text-2xl font-khula-light mb-8">Menu</h3>
+        <div className="mb-auto mt-auto px-12 text-background">
+          <h3 className="mb-8 font-khula-light text-2xl">Menu</h3>
           <ul className="flex flex-col items-start justify-center gap-2">
             {navbarList.map(({ href, label }) => (
               <li key={href}>
                 <a
                   href={href}
-                  className="text-[2.5rem] hover:left-2 left-0 relative transition-[left] duration-300 ease-in-out"
+                  className="relative left-0 text-[2.5rem] transition-[left] duration-300 ease-in-out hover:left-2"
                   onClick={handleMenu}
                 >
                   {label}
@@ -138,17 +138,17 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
             ))}
           </ul>
         </div>
-        <div className="mb-12 text-background sm:px-12 px-1 justify-center items-center">
+        <div className="mb-12 items-center justify-center px-1 text-background sm:px-12">
           <LangageSwitcher />
-          <p className="font-khula-light text-lg sm:text-left text-center">Get in touch</p>
-          <div onClick={handleCopy} className="flex max-sm:items-center cursor-pointer max-sm:justify-center">
-            <p className="font-khula-regular sm:text-2xl text-lg sm:text-left text-center">
+          <p className="text-center font-khula-light text-lg sm:text-left">Get in touch</p>
+          <div onClick={handleCopy} className="flex cursor-pointer max-sm:items-center max-sm:justify-center">
+            <p className="text-center font-khula-regular text-lg sm:text-left sm:text-2xl">
               Alexandre.bonefons@outlook.fr
             </p>
             <Image
               src={"/img/copy.svg"}
               alt="copy"
-              className="fill-foreground ml-1 sm:ml-2 mb-2"
+              className="mb-2 ml-1 fill-foreground sm:ml-2"
               width={24}
               height={24}
             />

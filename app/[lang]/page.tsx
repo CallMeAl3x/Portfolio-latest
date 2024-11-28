@@ -16,16 +16,16 @@ export default function Homepage() {
     <>
       <PageWrapper>
         <Menu />
-        <div className="w-screen md:h-[130vh] h-screen relative LandingSpace bg-gradient-c">
-          <div className="md:h-[125vh] h-screen overflow-hidden relative">
+        <div className="LandingSpace bg-gradient-c relative h-screen w-screen md:h-[130vh]">
+          <div className="relative h-screen overflow-hidden md:h-[125vh]">
             <Arrows startAnimation={startArrowAnimation} />
-            <div className="h-screen overflow-hidden w-screen relative flex flex-col justify-center items-center">
+            <div className="relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
               <Circle />
-              <div className="flex justify-center items-center relative z-10 flex-col mt-8">
-                <h1 className="md:text-[80px] max-sm:text-[10vw] sm:text-[10vw] max-sm:max-w-sm max-sm:leading-tight text-light font-khula-extrabold w-[732px] text-center leading-[85px]">
+              <div className="relative z-10 mt-8 flex flex-col items-center justify-center">
+                <h1 className="text-light font-khula-extrabold w-[732px] text-center leading-[85px] max-sm:max-w-sm max-sm:text-[10vw] max-sm:leading-tight sm:text-[10vw] md:text-[80px]">
                   {t("title")}
                 </h1>
-                <p className="font-poppins-reg text-lg mt-4 max-w-[390px] text-gray-2 max-sm:text-[4vw] px-4 text-center leading-[123%]">
+                <p className="text-gray-2 mt-4 max-w-[390px] px-4 text-center font-poppins-reg text-lg leading-[123%] max-sm:text-[4vw]">
                   {t("description")}
                 </p>
               </div>
