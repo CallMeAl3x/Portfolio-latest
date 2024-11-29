@@ -30,7 +30,7 @@ export async function getProjectMetadata(projectId: string, lang: string): Promi
       description: projectData.description,
       images: projectData.img,
       siteName: projectData.title,
-      url: projectData.link
+      url: projectData.visitUrl
     },
     twitter: {
       card: "summary_large_image",

@@ -1,103 +1,31 @@
-"use client";
+import React, { useRef } from "react";
 import gsap from "gsap";
 import _ScrollTrigger from "gsap/ScrollTrigger";
-import { toast } from "sonner";
-import React, { useEffect, useRef } from "react";
-import Image from "next/image";
 gsap.registerPlugin(_ScrollTrigger);
+import { useNavbarAnimation } from "../(utils)/useNavbarAnimation";
 import LangageSwitcher from "./LangageSwitcher";
 import { MenuTabsProps } from "../(types)/menuTab";
+import { useMessages, useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
+import Image from "next/image";
+import { useCopyToClipboard } from "../(utils)/useCopyToClipboard";
 
 export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
-  const navbarList = [
-    { href: "#aboutme", label: "About me" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" }
-  ];
+  const messages = useMessages();
+  const navbarList = Object.entries(messages.NavBar).map(([key, value]) => ({
+    href: `#${key.toLowerCase()}`,
+    label: value
+  }));
   const navbarRef = useRef<HTMLDivElement>(null);
+  useNavbarAnimation({ isOpen, setIsOpen, navbarRef });
 
   const handleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleCopy = (() => {
-    let clickData = { count: 0, lastTime: 0 };
+  const handleCopy = useCopyToClipboard("Alexandre.bonefons@outlook.fr");
 
-    return (e: React.MouseEvent<HTMLElement>) => {
-      // Copie le texte
-      const textToCopy = e.currentTarget.textContent || "";
-      navigator.clipboard.writeText(textToCopy);
-
-      const currentTime = Date.now();
-
-      if (currentTime - clickData.lastTime > 2000) {
-        clickData = { count: 0, lastTime: 0 };
-      }
-
-      clickData.count++;
-      clickData.lastTime = currentTime;
-
-      if (clickData.count === 1) {
-        toast.success("L'adresse a été copiée dans le presse-papier");
-      } else if (clickData.count === 2) {
-        toast.info("Tu as cliqué deux fois, continue comme ça !");
-      } else if (clickData.count === 3) {
-        toast.warning("Tu vas user ton curseur à force de cliquer !");
-      } else if (clickData.count >= 4) {
-        toast.error("C'est bon, laisse moi tranquille maintenant !");
-      }
-    };
-  })();
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const toastElement = document.querySelector("[itemID='copy-email']");
-      if (
-        navbarRef.current &&
-        !navbarRef.current.contains(event.target as Node) &&
-        !(toastElement && toastElement.contains(event.target as Node))
-      ) {
-        setIsOpen(false);
-      }
-    };
-    if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      gsap.to("#navbar", {
-        x: 0,
-        opacity: 1,
-        duration: 0.5,
-        ease: "power1.inOut"
-      });
-      gsap.to("#overlay", {
-        opacity: 0.65,
-        duration: 0.5,
-        ease: "power1.inOut",
-        onComplete: () => {
-          document.getElementById("overlay")?.style.setProperty("pointer-events", "auto");
-        }
-      });
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-      gsap.to("#navbar", {
-        x: "100%",
-        opacity: 0.25,
-        duration: 0.5,
-        ease: "power1.inOut"
-      });
-      gsap.to("#overlay", {
-        opacity: 0,
-        duration: 0.5,
-        ease: "power1.inOut",
-        onComplete: () => {
-          document.getElementById("overlay")?.style.setProperty("pointer-events", "none");
-        }
-      });
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isOpen]);
+  const t = useTranslations("Footer");
 
   return (
     <>
@@ -127,20 +55,20 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
           <ul className="flex flex-col items-start justify-center gap-2">
             {navbarList.map(({ href, label }) => (
               <li key={href}>
-                <a
+                <Link
                   href={href}
                   className="relative left-0 text-[2.5rem] transition-[left] duration-300 ease-in-out hover:left-2"
                   onClick={handleMenu}
                 >
-                  {label}
-                </a>
+                  {typeof label === "string" ? label : ""}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
         <div className="mb-12 items-center justify-center px-1 text-background sm:px-12">
           <LangageSwitcher />
-          <p className="text-center font-khula-light text-lg sm:text-left">Get in touch</p>
+          <p className="text-center font-khula-light text-lg sm:text-left">{t("getInTouch")}</p>
           <div onClick={handleCopy} className="flex cursor-pointer max-sm:items-center max-sm:justify-center">
             <p className="text-center font-khula-regular text-lg sm:text-left sm:text-2xl">
               Alexandre.bonefons@outlook.fr

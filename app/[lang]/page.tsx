@@ -7,6 +7,7 @@ import Menu from "../(components)/Menu";
 import Projects from "../(components)/Projects";
 import { useTranslations } from "next-intl";
 import { PageWrapper } from "../(components)/(utils)/page-wrapper";
+import Footer from "../(components)/Footer";
 
 export default function Homepage() {
   const [startArrowAnimation, setStartArrowAnimation] = useState(false);
@@ -16,7 +17,7 @@ export default function Homepage() {
     <>
       <PageWrapper>
         <Menu />
-        <div className="LandingSpace bg-gradient-c relative h-screen w-screen md:h-[130vh]">
+        <div className="LandingSpace bg-gradient-c relative h-screen w-screen md:h-[130vh]" id="home">
           <div className="relative h-screen overflow-hidden md:h-[125vh]">
             <Arrows startAnimation={startArrowAnimation} />
             <div className="relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
@@ -36,8 +37,7 @@ export default function Homepage() {
         {/* Div de test pour simuler du scroll */}
         <div className="h-[100vh]"></div>
         <Projects />
-        <h2 className="text-background">Votre sous-titre</h2>
-        <div className="h-[100vh]"></div>
+        <Footer />
       </PageWrapper>
     </>
   );

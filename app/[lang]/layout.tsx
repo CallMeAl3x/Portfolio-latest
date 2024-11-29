@@ -14,14 +14,14 @@ export async function generateMetadata({ params }: { params: { lang: string } })
     title: "Portfolio Alexandre Bonefons",
     description: "description // add a description",
     icons: {
-      icon: "/img/logo.jpg"
+      icon: "/img/logo.svg"
     },
     openGraph: {
       type: "website",
       locale: lang,
       url: "https://www.bonefons.fr",
       siteName: "Portfolio Alexandre Bonefons",
-      images: [{ url: "/img/logo.jpg", alt: "Portfolio Alexandre Bonefons" }]
+      images: [{ url: "/img/logo.svg", alt: "Portfolio Alexandre Bonefons" }]
     }
   };
 }

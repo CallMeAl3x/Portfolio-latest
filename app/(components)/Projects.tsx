@@ -46,6 +46,7 @@ export default function Projects() {
 
   // use i18n translations
   const t = useTranslations("CardList");
+  const tH = useTranslations("HomePage");
   const messages = useMessages();
   const cards = Object.keys(messages.CardList);
 
@@ -99,12 +100,12 @@ export default function Projects() {
     <div className="pt-[25vh]" id="projects">
       <div className="ml-auto mr-auto flex max-w-[1048px] flex-col items-center justify-center gap-9 2xl:max-w-[1300px]">
         <h3 className="mb-8 text-center font-poppins-light text-2xl text-background md:text-3xl xl:text-4xl">
-          Selected Projects
+          {tH("selectedProjects")}
         </h3>
         <div className="cards relative mt-2 flex w-full flex-col gap-12 lg:gap-0" ref={containerRef}>
           {cards.map((card, index) => (
             <Card
-              index={index}
+              index={index + 1}
               title={t(`${card}.title`)}
               cardDescription={t(`${card}.cardDescription`)}
               cardImage={t(`${card}.cardImage`)}

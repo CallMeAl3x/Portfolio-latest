@@ -59,7 +59,7 @@ export default function ProjectPage({ params }: { params: { projectId: string; l
                 {t(`${projectId}.title`)}
               </h1>
               <a
-                href={t(`${projectId}.link`)}
+                href={t(`${projectId}.visitUrl`)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:bg-light hover:text-dark size-12 cursor-pointer rounded-full transition-colors duration-300 ease-in"
@@ -96,12 +96,14 @@ export default function ProjectPage({ params }: { params: { projectId: string; l
                   </div>
                 </div>
               </div>
-              <img
-                className="mb-12 max-h-[700px] w-full select-none rounded-2xl object-cover object-top"
-                style={{ border: "1px solid rgb(255, 255, 255)" }}
-                src={t(`${projectId}.img`)}
-                alt={t(`${projectId}.title`)}
-              />
+              <Link href={t(`${projectId}.visitUrl`)} target="_blank" rel="noopener noreferrer">
+                <img
+                  className="mb-12 max-h-[700px] w-full select-none rounded-2xl object-cover object-top"
+                  style={{ border: "1px solid rgb(255, 255, 255)" }}
+                  src={t(`${projectId}.img`)}
+                  alt={t(`${projectId}.title`)}
+                />
+              </Link>
             </div>
           </div>
         </div>

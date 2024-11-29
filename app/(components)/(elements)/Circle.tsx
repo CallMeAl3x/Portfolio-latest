@@ -2,6 +2,7 @@
 import gsap from "gsap";
 import _ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Logo from "./Logo";
 
 gsap.registerPlugin(_ScrollTrigger);
 
@@ -24,10 +25,12 @@ export default function Circle() {
         scrub: true,
         onUpdate: (self) => {
           if (self.progress > 0.6) {
+            gsap.to("#logo", { fill: "#1a1c1b", duration: 0 });
             gsap.to("body", { backgroundColor: "#ededed", duration: 0 });
             gsap.to("#menutitle", { color: "#000000", duration: 1.25 });
             gsap.to("#menuicon", { stroke: "#000000", duration: 1.25, overwrite: true });
           } else {
+            gsap.to("#logo", { fill: "#F0EDF2", duration: 0 });
             gsap.to("body", { backgroundColor: "#0a0a0a", duration: 0 });
             gsap.to("#menutitle", { color: "#ededed", duration: 1.25 });
             gsap.to("#menuicon", { stroke: "#ededed", duration: 1.25, overwrite: true });
@@ -43,6 +46,9 @@ export default function Circle() {
   }, []);
 
   return (
-    <div className="circle pointer-events-none fixed left-1/2 top-1/2 z-0 h-[642px] w-[642px] -translate-x-1/2 -translate-y-1/2 transform rounded-[50%] bg-[radial-gradient(circle,rgba(190,190,255,0.10)_0%,transparent_50%)] blur-[10px]"></div>
+    <>
+      <Logo />
+      <div className="circle pointer-events-none fixed left-1/2 top-1/2 z-0 h-[642px] w-[642px] -translate-x-1/2 -translate-y-1/2 transform rounded-[50%] bg-[radial-gradient(circle,rgba(190,190,255,0.10)_0%,transparent_50%)] blur-[10px]"></div>
+    </>
   );
 }

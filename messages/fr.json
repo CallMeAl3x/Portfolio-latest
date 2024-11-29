@@ -1,7 +1,17 @@
 {
   "HomePage": {
     "title": "Transformer des idées en solutions créatives.",
-    "description": "Développeur web innovant créant des expériences utilisateur uniques."
+    "description": "Développeur web innovant créant des expériences utilisateur uniques.",
+    "selectedProjects": "Projets Sélectionnés"
+  },
+  "NavBar": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "about": "Présentation",
+    "contact": "Contact"
+  },
+  "Footer": {
+    "getInTouch": "Entrer en contact"
   },
   "CardList": {
     "weather-app": {
@@ -14,8 +24,8 @@
       },
       "cardImage": "/img/projects/weather-app.webp",
       "img": "/img/projects/weather-app.webp",
-      "link": "https://weather.bonefons.com/",
-      "index": 1
+      "visitUrl": "https://weather.bonefons.com/",
+      "link": "/weather-app"
     },
     "web-documentary": {
       "title": "Documentaire Web",
@@ -27,8 +37,8 @@
       },
       "cardImage": "/img/projects/webdocumentary.webp",
       "img": "/img/projects/webdocumentary.webp",
-      "link": "https://webdoc-dating-app.netlify.app/",
-      "index": 2
+      "visitUrl": "https://webdoc-dating-app.netlify.app/",
+      "link": "/web-documentary"
     },
     "data-visualization": {
       "title": "Visualisation de Données",
@@ -40,8 +50,8 @@
       },
       "cardImage": "/img/projects/data-visualization.webp",
       "img": "/img/projects/data-visualization.webp",
-      "link": "https://datavisualisation-cinema.netlify.app/",
-      "index": 3
+      "visitUrl": "https://datavisualisation-cinema.netlify.app/",
+      "link": "/data-visualization"
     },
     "translate-app": {
       "title": "Application de Traduction",
@@ -53,8 +63,8 @@
       },
       "cardImage": "/img/projects/translate-app.webp",
       "img": "/img/projects/translate-app.webp",
-      "link": "https://translate-app.bonefons.com/",
-      "index": 4
+      "visitUrl": "https://translate-app.bonefons.com/",
+      "link": "/translate-app"
     }
   }
 }
