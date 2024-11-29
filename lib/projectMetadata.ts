@@ -36,6 +36,7 @@ export async function getProjectMetadata(projectId: string, lang: string): Promi
       description: projectData.description,
       images: [{ url: projectData.img, alt: projectData.title }],
       creator: "@alexandrebonefons"
-    }
+    },
+    metadataBase: new URL("https://www.bonefons.fr")
   };
 }

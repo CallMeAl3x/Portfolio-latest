@@ -22,7 +22,14 @@ export async function generateMetadata({ params }: { params: { lang: string } })
       url: "https://www.bonefons.fr",
       siteName: "Portfolio Alexandre Bonefons",
       images: [{ url: "/img/logo.svg", alt: "Portfolio Alexandre Bonefons" }]
-    }
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Portfolio Alexandre Bonefons",
+      description: "description // add a description",
+      creator: "@alexandrebonefons"
+    },
+    metadataBase: new URL("https://www.bonefons.fr")
   };
 }
 
