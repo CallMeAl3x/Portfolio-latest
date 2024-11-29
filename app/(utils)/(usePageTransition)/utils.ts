@@ -5,7 +5,11 @@ export const handleScrolling = (wasAtHome: boolean, isGoingHome: boolean) => {
   if (!isFirstVisit && wasAtHome === false && isGoingHome === true) {
     // Scroll to the projects section if the user was in projects
     const projectsElement = document.getElementById("projects");
-    if (projectsElement || window.location.pathname === "/" || window.location.hash === "#projects") {
+    if (
+      projectsElement ||
+      window.location.pathname === "/" ||
+      (window.location.hash === "#projects" && window.innerWidth > 1024)
+    ) {
       projectsElement?.scrollIntoView({ behavior: "smooth" });
     }
   } else if (wasAtHome === true && isGoingHome === true && window.location.hash !== "#projects") {
