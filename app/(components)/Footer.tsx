@@ -30,7 +30,7 @@ export default function Footer() {
     <div className="footer mt-52 flex flex-col items-center justify-center gap-12 pb-20" id="contact">
       <h2 className="font-poppins-reg text-5xl text-background">Contact</h2>
 
-      <footer className="flex flex-col items-center justify-center gap-12 lg:flex-row">
+      <footer className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-12">
         {contactLinks.map(({ href, icon, alt, text, isEmail }, index) =>
           isEmail ? (
             // Utilisation d'un bouton pour l'email (non cliquable)

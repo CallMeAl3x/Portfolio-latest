@@ -34,17 +34,10 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
   };
 }
 
-export default async function LocaleLayout(
-  props: {
-    children: React.ReactNode;
-    params: Promise<{ lang: string }>;
-  }
-) {
+export default async function LocaleLayout(props: { children: React.ReactNode; params: Promise<{ lang: string }> }) {
   const params = await props.params;
 
-  const {
-    children
-  } = props;
+  const { children } = props;
 
   const { lang } = params;
 

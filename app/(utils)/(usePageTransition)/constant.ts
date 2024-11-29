@@ -7,6 +7,7 @@ export const LOCAL_STORAGE_KEYS = {
   RELOADING: "reloading",
   WAS_AT_HOME: "wasAtHome",
   IS_GOING_HOME: "isGoingHome",
+  IS_FIRST_TIME: "isFirstTime",
   NAVIGATION_DIRECTION: "navigation_direction"
 } as const;
 
