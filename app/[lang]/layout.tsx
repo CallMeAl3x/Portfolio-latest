@@ -7,7 +7,8 @@ import { notFound } from "next/navigation";
 import { NavigationTracker } from "../(utils)/navigationTracker";
 import { routing } from "@/i18n/routing";
 
-export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const { lang } = params;
 
   return {
@@ -33,13 +34,20 @@ export async function generateMetadata({ params }: { params: { lang: string } })
   };
 }
 
-export default async function LocaleLayout({
-  children,
-  params: { lang }
-}: {
-  children: React.ReactNode;
-  params: { lang: string };
-}) {
+export default async function LocaleLayout(
+  props: {
+    children: React.ReactNode;
+    params: Promise<{ lang: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    children
+  } = props;
+
+  const { lang } = params;
+
   // Ensure that the incoming `locale` is valid
   if (!routing.locales.includes(lang as (typeof routing.locales)[number])) {
     notFound();

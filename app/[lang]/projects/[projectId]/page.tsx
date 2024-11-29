@@ -8,12 +8,14 @@ import { routing } from "@/i18n/routing";
 import { Metadata } from "next";
 import { getProjectMetadata } from "@/lib/projectMetadata";
 import { projectKeys } from "@/lib/utils";
+import React, { use } from "react";
 
 export const dynamicParams = true;
 // to get the list of languages
 const { locales } = routing;
 
-export async function generateMetadata({ params }: { params: { projectId: string; lang: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ projectId: string; lang: string }> }): Promise<Metadata> {
+  const params = await props.params;
   const { projectId, lang } = params;
 
   try {
@@ -39,9 +41,9 @@ export async function generateStaticParams() {
   );
 }
 
-export default function ProjectPage({ params }: { params: { projectId: string; lang: string } }) {
+export default function ProjectPage(props: { params: Promise<{ projectId: string; lang: string }> }) {
+  const params = use(props.params);
   const { projectId } = params;
-
   const t = useTranslations("CardList");
 
   // Server-side validation: Check if the `projectId` from the URL is a valid project key. Else show a 404 error.
