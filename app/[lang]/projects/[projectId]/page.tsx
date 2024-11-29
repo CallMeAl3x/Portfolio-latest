@@ -8,6 +8,7 @@ import { routing } from "@/i18n/routing";
 import { Metadata } from "next";
 import { getProjectMetadata } from "@/lib/projectMetadata";
 import { projectKeys } from "@/lib/utils";
+import Image from "next/image";
 
 export const dynamicParams = true;
 // to get the list of languages
@@ -97,7 +98,7 @@ export default function ProjectPage({ params }: { params: { projectId: string; l
                 </div>
               </div>
               <Link href={t(`${projectId}.visitUrl`)} target="_blank" rel="noopener noreferrer">
-                <img
+                <Image
                   className="mb-12 max-h-[700px] w-full select-none rounded-2xl object-cover object-top"
                   style={{ border: "1px solid rgb(255, 255, 255)" }}
                   src={t(`${projectId}.img`)}
