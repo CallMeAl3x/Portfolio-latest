@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { PageRefs } from "../(types)/pageRef";
 import { getStorageValue } from "./(usePageTransition)/storage";
@@ -10,12 +10,28 @@ export const usePageTransition = (): PageRefs => {
   const pageRef = useRef<HTMLDivElement>(null);
   const transitionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const initializeAnimation = useCallback(() => {
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const initializeAnimation = () => {
     if (!pageRef.current || !transitionRef.current || !contentRef.current) return;
+
     const direction = getStorageValue("NAVIGATION_DIRECTION");
     gsap.set(contentRef.current, INITIAL_CONTENT_STATE);
-    const isMobile = window.innerWidth < 768;
+
     switch (direction) {
       case ANIMATION_STATES.FORWARD:
         forwardAnimation(transitionRef.current, contentRef.current, isMobile);
@@ -26,7 +42,7 @@ export const usePageTransition = (): PageRefs => {
       default:
         break;
     }
-  }, []);
+  };
 
   const handleInitialState = () => {
     if (!contentRef.current) return;
@@ -37,7 +53,9 @@ export const usePageTransition = (): PageRefs => {
     const reloading = getStorageValue("RELOADING");
     const wasAtHome = getStorageValue("WAS_AT_HOME") === "true";
     const isGoingHome = getStorageValue("IS_GOING_HOME") === "true";
+
     handleScrolling(wasAtHome, isGoingHome);
+
     if (reloading === "false") {
       initializeAnimation();
     } else {

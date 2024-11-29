@@ -13,7 +13,7 @@ export default function Menu() {
   return (
     <>
       <div
-        className={`flex items-center transition-opacity ${!isOpen ? "opacity-100" : "opacity-0"}`}
+        className={`flex items-center transition-opacity ${!isOpen ? "opacity-100" : "opacity-[0.01=]"}`}
         onClick={handleMenu}
       >
         <>
@@ -23,7 +23,10 @@ export default function Menu() {
           >
             menu
           </button>
-          <button className="text-light fixed right-4 top-[1.65rem] z-[11] flex flex-row items-center gap-x-2 px-4 py-2 font-poppins-reg text-xl sm:right-16">
+          <button
+            aria-label="menu"
+            className="text-light fixed right-4 top-[1.65rem] z-[11] flex flex-row items-center gap-x-2 px-4 py-2 font-poppins-reg text-xl sm:right-16"
+          >
             <OpenIcon />
           </button>
         </>

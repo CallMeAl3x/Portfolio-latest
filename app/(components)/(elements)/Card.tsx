@@ -16,11 +16,9 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
           passHref
         >
           <p className={`mr-4 md:text-2xl ${isHovered ? "text-gray-500" : ""}`}>0{index}</p>
-          <h4
-            className={`font-khula-regular text-6xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}
-          >
+          <p className={`font-khula-regular text-6xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}>
             {title}
-          </h4>
+          </p>
           <p
             className={`mb-3 ml-auto mt-auto text-2xl transition-all ${
               isHovered ? "-translate-x-4 text-gray-500" : ""
@@ -46,7 +44,7 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
             />
           </div>
           <div className="flex flex-col items-center justify-center gap-1">
-            <h4 className="font-khula-regular text-4xl">{title}</h4>
+            <h3 className="font-khula-regular text-4xl">{title}</h3>
             <p className="text-center text-lg">{cardDescription}</p>
           </div>
         </Link>

@@ -12,13 +12,13 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   return (
-    <div ref={pageRef} className="relative overflow-hidden min-h-screen">
+    <div ref={pageRef} className="relative min-h-screen overflow-hidden">
       {direction === "forward" ? (
-        <div ref={transitionRef} className="fixed inset-x-0 z-50 bg-background bottom-0"></div>
+        <div ref={transitionRef} className="fixed inset-x-0 bottom-0 z-50 bg-background"></div>
       ) : (
-        <div ref={transitionRef} className="fixed inset-x-0 z-50 bg-background top-0"></div>
+        <div ref={transitionRef} className="fixed inset-x-0 top-0 z-50 bg-background"></div>
       )}
-      <div ref={contentRef} className="transition-opacity duration-500 opacity-0">
+      <div ref={contentRef} className="opacity-[0.01=] transition-opacity duration-500">
         {children}
       </div>
     </div>

@@ -11,7 +11,7 @@ export const LOCAL_STORAGE_KEYS = {
 } as const;
 
 export const INITIAL_CONTENT_STATE = {
-  opacity: 0,
+  opacity: 0.001,
   visibility: "hidden"
 } as const;
 

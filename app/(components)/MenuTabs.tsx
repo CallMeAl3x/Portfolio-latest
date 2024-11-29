@@ -31,7 +31,7 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
     <>
       <div
         id="overlay" // Make the page darker when the menu is open to make the menu more visible
-        className="pointer-events-none fixed left-0 top-0 z-[99] flex h-full w-full flex-col overflow-y-auto bg-background p-6 opacity-0"
+        className="pointer-events-none fixed left-0 top-0 z-[99] flex h-full w-full flex-col overflow-y-auto bg-background p-6 opacity-[0.01=]"
       ></div>
       <nav
         id="navbar"
@@ -51,7 +51,7 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
           />
         </div>
         <div className="mb-auto mt-auto px-12 text-background">
-          <h3 className="mb-8 font-khula-light text-2xl">Menu</h3>
+          <p className="mb-8 font-khula-light text-2xl">Menu</p>
           <ul className="flex flex-col items-start justify-center gap-2">
             {navbarList.map(({ href, label }) => (
               <li key={href}>

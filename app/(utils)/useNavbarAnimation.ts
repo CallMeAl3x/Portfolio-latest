@@ -45,7 +45,7 @@ export const useNavbarAnimation = ({ isOpen, setIsOpen, navbarRef }: UseNavbarAn
         ease: "power1.inOut"
       });
       gsap.to("#overlay", {
-        opacity: 0,
+        opacity: 0.001,
         duration: 0.5,
         ease: "power1.inOut",
         onComplete: () => {

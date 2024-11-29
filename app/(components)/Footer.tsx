@@ -28,7 +28,7 @@ export default function Footer() {
   const handleCopy = useCopyToClipboard("Alexandre.bonefons@outlook.fr");
   return (
     <div className="footer mt-52 flex flex-col items-center justify-center gap-12 pb-20" id="contact">
-      <h3 className="font-poppins-reg text-5xl text-background">Contact</h3>
+      <h2 className="font-poppins-reg text-5xl text-background">Contact</h2>
 
       <footer className="flex flex-col items-center justify-center gap-12 lg:flex-row">
         {contactLinks.map(({ href, icon, alt, text, isEmail }, index) =>
@@ -45,7 +45,10 @@ export default function Footer() {
           ) : (
             // Lien cliquable pour les autres cas
             <Link key={index} href={href} target="_blank" rel="noreferrer">
-              <button className="flex w-full max-w-[11rem] items-center justify-center gap-2 rounded-[22px] bg-background px-8 py-2 lg:w-fit lg:justify-normal lg:px-10">
+              <button
+                aria-label="socialmedias"
+                className="flex w-full max-w-[11rem] items-center justify-center gap-2 rounded-[22px] bg-background px-8 py-2 lg:w-fit lg:justify-normal lg:px-10"
+              >
                 <img src={icon} className="h-[20px] w-[24px] max-w-none" alt={alt} />
                 <p className="dark:text-text text-xl text-foreground">{text}</p>
               </button>

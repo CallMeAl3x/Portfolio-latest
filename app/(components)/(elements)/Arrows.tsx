@@ -27,7 +27,7 @@ export default function Arrows({ startAnimation }: { startAnimation: boolean }) 
             stroke="var(--svg-line)"
             strokeWidth="1.5"
             fill="none"
-            className="opacity-0"
+            className="opacity-[0.01=]"
             vectorEffect="non-scaling-stroke"
           />
           <path
@@ -36,7 +36,7 @@ export default function Arrows({ startAnimation }: { startAnimation: boolean }) 
             stroke="var(--svg-line)"
             strokeWidth="1.5"
             fill="none"
-            className="opacity-0"
+            className="opacity-[0.01=]"
             vectorEffect="non-scaling-stroke"
           />
         </svg>
