@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { createTranslator } from "next-intl";
 import { notFound } from "next/navigation";
 import { projectKeys } from "./utils";
 
@@ -7,7 +6,6 @@ import { projectKeys } from "./utils";
 export async function getProjectMetadata(projectId: string, lang: string): Promise<Metadata> {
   // Charger les traductions dynamiquement
   const messages = await import(`/messages/${lang}.json`);
-  const t = createTranslator({ locale: lang, messages });
 
   // Vérification : Si le projet n'existe pas, retourner une 404
   const projectList = projectKeys;

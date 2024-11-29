@@ -61,7 +61,7 @@ export const usePageTransition = (): PageRefs => {
     } else {
       handleInitialState();
     }
-  }, []);
+  }, [initializeAnimation]);
 
   return { pageRef, transitionRef, contentRef };
 };

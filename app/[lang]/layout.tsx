@@ -34,7 +34,7 @@ export default async function LocaleLayout({
   params: { lang: string };
 }) {
   // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(lang as any)) {
+  if (!routing.locales.includes(lang as (typeof routing.locales)[number])) {
     notFound();
   }
 

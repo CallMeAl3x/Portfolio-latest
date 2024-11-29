@@ -9,7 +9,6 @@ export default function Projects() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
   const [isLaptop, setIsLaptop] = useState(true);
-  const [prevCardIndex, setPrevCardIndex] = useState(-1);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isScaled, setIsScaled] = useState(false);
   const [isRendered, setIsRendered] = useState(false);
@@ -72,7 +71,6 @@ export default function Projects() {
       const newIndex = Math.floor(relativeY / cardHeight);
       const boundedIndex = Math.max(0, Math.min(newIndex, cards.length - 1));
       if (boundedIndex !== activeCardIndex) {
-        setPrevCardIndex(activeCardIndex);
         setActiveCardIndex(boundedIndex);
       }
     };
@@ -83,7 +81,6 @@ export default function Projects() {
     const handleMouseLeave = () => {
       setIsVisible(false);
       setActiveCardIndex(-1);
-      setPrevCardIndex(-1);
     };
 
     container.addEventListener("mousemove", handleMouseMove);
