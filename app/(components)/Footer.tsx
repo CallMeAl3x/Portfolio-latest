@@ -40,14 +40,14 @@ export default function Footer() {
               className="flex w-full max-w-[11rem] cursor-pointer items-center justify-center gap-2 rounded-[22px] bg-background px-8 py-2 lg:w-fit lg:justify-normal lg:px-10"
               onClick={handleCopy}
             >
-              <Image src={icon} className="h-[20px] w-[24px] max-w-none" height={20} width={24} alt={alt} />
+              <img src={icon} className="h-[20px] w-[24px] max-w-none" alt={alt} />
               <p className="dark:text-text text-xl text-foreground">{text}</p>
             </button>
           ) : (
             // Lien cliquable pour les autres cas
             <Link key={index} href={href} target="_blank" rel="noreferrer">
               <button className="flex w-full max-w-[11rem] items-center justify-center gap-2 rounded-[22px] bg-background px-8 py-2 lg:w-fit lg:justify-normal lg:px-10">
-                <Image src={icon} className="h-[20px] w-[24px] max-w-none" height={20} width={24} alt={alt} />
+                <img src={icon} className="h-[20px] w-[24px] max-w-none" alt={alt} />
                 <p className="dark:text-text text-xl text-foreground">{text}</p>
               </button>
             </Link>

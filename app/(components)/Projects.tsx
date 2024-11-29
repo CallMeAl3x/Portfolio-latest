@@ -2,7 +2,6 @@
 import { useEffect, useRef, useState } from "react";
 import Card from "./(elements)/Card";
 import { useMessages, useTranslations } from "next-intl";
-import Image from "next/image";
 
 export default function Projects() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -133,7 +132,7 @@ export default function Projects() {
               }}
             >
               {cards.map((card, index) => (
-                <Image
+                <img
                   key={index}
                   src={t(`${card}.cardImage`)}
                   alt={t(`${card}.description`)}
