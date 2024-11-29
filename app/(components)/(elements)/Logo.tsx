@@ -6,7 +6,7 @@ export default function Logo() {
     <Link
       href="/"
       passHref
-      className="fixed left-6 top-6 z-[99] h-16 w-16 cursor-pointer lg:left-16 lg:top-8 lg:h-24 lg:w-24"
+      className="fixed left-6 top-6 z-[42] h-16 w-16 cursor-pointer lg:left-16 lg:top-8 lg:h-24 lg:w-24"
       aria-label="home"
     >
       <svg

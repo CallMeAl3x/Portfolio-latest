@@ -14,7 +14,6 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Logo />
       <div ref={pageRef} className="relative min-h-screen overflow-hidden">
         {direction === "forward" ? (
           <div ref={transitionRef} className="fixed inset-x-0 bottom-0 z-[999] bg-background"></div>

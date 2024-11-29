@@ -8,6 +8,7 @@ import Projects from "../(components)/Projects";
 import { useTranslations } from "next-intl";
 import { PageWrapper } from "../(components)/(utils)/page-wrapper";
 import Footer from "../(components)/Footer";
+import Logo from "../(components)/(elements)/Logo";
 
 export default function Homepage() {
   const [startArrowAnimation, setStartArrowAnimation] = useState(false);
@@ -16,6 +17,7 @@ export default function Homepage() {
   return (
     <>
       <PageWrapper>
+        <Logo />
         <Menu />
         <div className="LandingSpace bg-gradient-c relative h-screen w-screen md:h-[130vh]" id="home">
           <div className="relative h-screen overflow-hidden md:h-[125vh]">

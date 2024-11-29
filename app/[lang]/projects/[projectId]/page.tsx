@@ -9,12 +9,15 @@ import { Metadata } from "next";
 import { getProjectMetadata } from "@/lib/projectMetadata";
 import { projectKeys } from "@/lib/utils";
 import React, { use } from "react";
+import Logo from "@/app/(components)/(elements)/Logo";
 
 export const dynamicParams = true;
 // to get the list of languages
 const { locales } = routing;
 
-export async function generateMetadata(props: { params: Promise<{ projectId: string; lang: string }> }): Promise<Metadata> {
+export async function generateMetadata(props: {
+  params: Promise<{ projectId: string; lang: string }>;
+}): Promise<Metadata> {
   const params = await props.params;
   const { projectId, lang } = params;
 
@@ -53,6 +56,7 @@ export default function ProjectPage(props: { params: Promise<{ projectId: string
 
   return (
     <PageWrapper>
+      <Logo />
       <div className="relative">
         <div className="fixed inset-0 flex max-h-[100vh] w-full justify-center overflow-x-hidden overflow-y-scroll px-4 pb-12 text-white">
           <div className="mt-[8.5vh] w-full max-w-[1000px]">

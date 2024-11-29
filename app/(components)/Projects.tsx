@@ -7,7 +7,7 @@ export default function Projects() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
-  const [isLaptop, setIsLaptop] = useState(window.innerWidth >= 1024);
+  const [isLaptop, setIsLaptop] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isScaled, setIsScaled] = useState(false);
   const [isRendered, setIsRendered] = useState(false);
@@ -29,12 +29,11 @@ export default function Projects() {
   // check if the screen is laptop
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setIsLaptop(false);
-      } else {
-        setIsLaptop(true);
-      }
+      setIsLaptop(window.innerWidth >= 1024);
     };
+
+    // Set initial value
+    handleResize();
 
     window.addEventListener("resize", handleResize);
 
@@ -51,10 +50,12 @@ export default function Projects() {
 
   // Preload images
   useEffect(() => {
-    cards.forEach((card) => {
-      const cardImage = new window.Image();
-      cardImage.src = t(`${card}.cardImage`);
-    });
+    if (typeof window !== "undefined") {
+      cards.forEach((card) => {
+        const cardImage = new Image();
+        cardImage.src = t(`${card}.cardImage`);
+      });
+    }
   }, [cards, t]);
 
   // Mouse move effect
