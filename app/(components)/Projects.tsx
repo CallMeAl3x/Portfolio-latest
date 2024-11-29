@@ -7,7 +7,7 @@ export default function Projects() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
-  const [isLaptop, setIsLaptop] = useState(true);
+  const [isLaptop, setIsLaptop] = useState(window.innerWidth >= 1024);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isScaled, setIsScaled] = useState(false);
   const [isRendered, setIsRendered] = useState(false);
@@ -115,7 +115,7 @@ export default function Projects() {
             />
           ))}
         </div>
-        {isRendered && (
+        {isRendered && isLaptop && (
           <div
             className="pointer-events-none fixed left-0 top-0 z-50 h-[200px] w-[385px] overflow-hidden rounded-xl transition-transform duration-300 ease-out will-change-auto"
             style={{

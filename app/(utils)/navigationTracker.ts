@@ -13,10 +13,10 @@ export function NavigationTracker() {
     const wasAtHome = /^\/[a-z]{2}(\/)?$/.test(previousPath);
     const isGoingHome = /^\/[a-z]{2}(\/)?$/.test(pathname);
 
-    const isFirstTime = navigationHistory.length === 0;
+    const isFirstTime = navigationHistory.length === 0 || previousPath === pathname;
+    localStorage.setItem("reloading", (isFirstTime || (wasAtHome && isGoingHome)).toString());
     localStorage.setItem("wasAtHome", wasAtHome.toString());
     localStorage.setItem("isGoingHome", isGoingHome.toString());
-    localStorage.setItem("reloading", (wasAtHome && isGoingHome).toString());
 
     let navigationDirection = "";
     if (!wasAtHome && isGoingHome) {

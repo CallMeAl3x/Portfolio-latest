@@ -31,7 +31,7 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
         // Mobile view
         <Link
           href={"/projects" + link}
-          className="group relative flex w-full flex-col items-center justify-center gap-5 font-poppins-extralight text-background lg:hidden"
+          className="group relative flex w-full flex-col items-center justify-center gap-5 font-poppins-extralight text-background"
           passHref
         >
           <div className="h-full w-full px-6">
