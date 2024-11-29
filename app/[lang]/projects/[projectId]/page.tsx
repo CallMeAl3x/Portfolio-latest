@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { createTranslator, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import ArrowUp from "@/app/(components)/(elements)/ArrowUp";
 import CloseIcon from "@/app/(components)/(elements)/CloseIcon";
 import { PageWrapper } from "@/app/(components)/(utils)/page-wrapper";

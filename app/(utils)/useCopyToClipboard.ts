@@ -1,11 +1,4 @@
-import { useState, useCallback } from "react";
 import { toast } from "sonner";
-
-// Définition de l'interface ClickData
-interface ClickData {
-  count: number;
-  lastTime: number;
-}
 
 // Hook personnalisé pour la gestion du clic
 export const useCopyToClipboard = (text: string) => {

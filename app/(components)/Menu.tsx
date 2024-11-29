@@ -2,8 +2,6 @@
 import { useState } from "react";
 import MenuTabs from "./MenuTabs";
 import OpenIcon from "./(elements)/OpenIcon";
-import Image from "next/image";
-import Logo from "./(elements)/Logo";
 
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
