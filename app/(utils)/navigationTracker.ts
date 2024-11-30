@@ -10,10 +10,10 @@ export function NavigationTracker() {
     const navigationHistory = JSON.parse(localStorage.getItem("navigation_history") || "[]");
     const previousPath = navigationHistory[navigationHistory.length - 1] || "";
 
-    const wasAtHome = /^\/[a-z]{2}(\/)?$/.test(previousPath);
+    const wasAtHome = /^\/[a-z]{2}(\/)?$/.test(previousPath) || navigationHistory.length === 0;
     const isGoingHome = /^\/[a-z]{2}(\/)?$/.test(pathname);
 
-    const isFirstTime = navigationHistory.length < 1 || navigationHistory === "null";
+    const isFirstTime = navigationHistory.length < 0 || navigationHistory === "null";
     localStorage.setItem("isFirstTime", isFirstTime.toString());
     localStorage.setItem("reloading", (wasAtHome && isGoingHome).toString());
     localStorage.setItem("wasAtHome", wasAtHome.toString());

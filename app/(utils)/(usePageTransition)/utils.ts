@@ -1,8 +1,9 @@
-export const handleScrolling = (wasAtHome: boolean, isGoingHome: boolean) => {
-  const navigationHistory = JSON.parse(localStorage.getItem("navigation_history") || "[]");
-  const isFirstVisit = navigationHistory.length === 0;
+import { getStorageValue } from "./storage";
 
-  if (!isFirstVisit && wasAtHome === false && isGoingHome === true) {
+export const handleScrolling = (wasAtHome: boolean, isGoingHome: boolean) => {
+  const isFirstTime = getStorageValue("IS_FIRST_TIME") === "true";
+
+  if (!isFirstTime && wasAtHome === false && isGoingHome === true) {
     // Scroll to the projects section if the user was in projects
     const projectsElement = document.getElementById("projects");
     if (
