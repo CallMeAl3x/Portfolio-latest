@@ -11,7 +11,7 @@ export const usePageTransition = (): PageRefs => {
   const transitionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const isFirstTime = getStorageValue("IS_FIRST_TIME") === "true";
+  const isFirstTime = getStorageValue("IS_FIRST_TIME");
 
   useEffect(() => {
     const handleResize = () => {
@@ -57,9 +57,9 @@ export const usePageTransition = (): PageRefs => {
 
     handleScrolling(wasAtHome, isGoingHome);
 
-    if (reloading === "false") {
+    if (reloading === "false" && (isFirstTime !== "true" || isFirstTime === null)) {
       initializeAnimation();
-    } else if (isFirstTime && reloading === "false") {
+    } else if ((isFirstTime === "true" || isFirstTime === null) && reloading === "false") {
       handleInitialState();
     }
   }, []);
