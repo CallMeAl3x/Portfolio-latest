@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export function NavigationTracker() {
   const pathname = usePathname();
@@ -18,6 +18,12 @@ export function NavigationTracker() {
     localStorage.setItem("reloading", (wasAtHome && isGoingHome).toString());
     localStorage.setItem("wasAtHome", wasAtHome.toString());
     localStorage.setItem("isGoingHome", isGoingHome.toString());
+
+    console.log("wasAtHome", wasAtHome);
+    console.log("isGoingHome", isGoingHome);
+    console.log("isFirstTime", isFirstTime);
+    console.log("reloading", wasAtHome && isGoingHome);
+    console.log("navigationHistory", navigationHistory);
 
     let navigationDirection = "";
     if (!wasAtHome && isGoingHome) {
