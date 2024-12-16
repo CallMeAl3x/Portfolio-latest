@@ -1,15 +1,15 @@
-import { notFound } from "next/navigation";
-import { useTranslations } from "next-intl";
 import ArrowUp from "@/app/(components)/(elements)/ArrowUp";
-import CloseIcon from "@/app/(components)/(elements)/CloseIcon";
+import Logo from "@/app/(components)/(elements)/Logo";
 import { PageWrapper } from "@/app/(components)/(utils)/page-wrapper";
-import Link from "next/link";
+import CloseLink from "@/components/closeLink";
 import { routing } from "@/i18n/routing";
-import { Metadata } from "next";
 import { getProjectMetadata } from "@/lib/projectMetadata";
 import { projectKeys } from "@/lib/utils";
-import React, { use } from "react";
-import Logo from "@/app/(components)/(elements)/Logo";
+import { Metadata } from "next";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { use } from "react";
 
 export const dynamicParams = true;
 // to get the list of languages
@@ -114,12 +114,7 @@ export default function ProjectPage(props: { params: Promise<{ projectId: string
             </div>
           </div>
         </div>
-        <Link
-          href="/"
-          className="text-light poppins-regular fixed right-6 top-6 z-[9999] flex flex-row items-center gap-x-2 px-4 py-2 text-xl"
-        >
-          <CloseIcon />
-        </Link>
+        <CloseLink href="/" />
       </div>
     </PageWrapper>
   );

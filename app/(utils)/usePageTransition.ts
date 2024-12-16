@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useEffect, useRef, useState } from "react";
 import { PageRefs } from "../(types)/pageRef";
-import { getStorageValue } from "./(usePageTransition)/storage";
-import { ANIMATION_STATES, INITIAL_CONTENT_STATE, VISIBLE_CONTENT_STATE } from "./(usePageTransition)/constant";
 import { backAnimation, forwardAnimation } from "./(usePageTransition)/animations";
+import { ANIMATION_STATES, INITIAL_CONTENT_STATE, VISIBLE_CONTENT_STATE } from "./(usePageTransition)/constant";
+import { getStorageValue } from "./(usePageTransition)/storage";
 import { handleScrolling } from "./(usePageTransition)/utils";
 
 export const usePageTransition = (): PageRefs => {
@@ -31,6 +31,7 @@ export const usePageTransition = (): PageRefs => {
     if (!pageRef.current || !transitionRef.current || !contentRef.current) return;
 
     const direction = getStorageValue("NAVIGATION_DIRECTION");
+    console.log(direction);
     gsap.set(contentRef.current, INITIAL_CONTENT_STATE);
 
     switch (direction) {
