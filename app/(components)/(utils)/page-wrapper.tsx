@@ -9,22 +9,23 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const direction = usePageAnimationStore((state) => state.direction);
   const [opacity, setOpacity] = useState<number>(0.01);
+  const setDirection = usePageAnimationStore((state) => state.setDirection);
 
   useEffect(() => {
     if (transitionRef.current && contentRef.current) {
       if (direction === "forward") {
         setOpacity(0.01);
-        forwardAnimation(transitionRef.current, contentRef.current, window.innerWidth <= 768);
+        forwardAnimation(transitionRef.current, contentRef.current, window.innerWidth <= 768, setDirection);
       } else if (direction === "backward") {
         setOpacity(0.01);
-        backAnimation(transitionRef.current, contentRef.current);
+        backAnimation(transitionRef.current, contentRef.current, setDirection);
       } else if (direction === null && (window.location.pathname === "/en" || window.location.pathname === "/fr")) {
         scrollBy(0, 1);
         setOpacity(1);
       } else if (window.location.pathname.includes("projects") && direction === null) {
-        resetAnimation(transitionRef.current, contentRef.current, false);
+        resetAnimation(transitionRef.current, contentRef.current, false, setDirection);
       } else {
-        resetAnimation(transitionRef.current, contentRef.current, true);
+        resetAnimation(transitionRef.current, contentRef.current, true, setDirection);
       }
     }
   }, [direction]);

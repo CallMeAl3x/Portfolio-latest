@@ -1,6 +1,11 @@
 import gsap from "gsap";
 
-export const forwardAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDivElement, isMobile: boolean) => {
+export const forwardAnimation = (
+  transitionRef: HTMLDivElement,
+  contentRef: HTMLDivElement,
+  isMobile: boolean,
+  setDirection: (dir: "forward" | "backward" | null) => void
+) => {
   const tl = gsap.timeline();
 
   const body = document.querySelector("body");
@@ -47,15 +52,19 @@ export const forwardAnimation = (transitionRef: HTMLDivElement, contentRef: HTML
       duration: 0.25,
       onComplete: () => {
         if (transitionRef) transitionRef.style.display = "none";
+        setDirection(null);
       }
     });
 
   return tl;
 };
 
-export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDivElement) => {
+export const backAnimation = (
+  transitionRef: HTMLDivElement,
+  contentRef: HTMLDivElement,
+  setDirection: (dir: "forward" | "backward" | null) => void
+) => {
   const tl = gsap.timeline();
-
   // Disable clicks during the animation
   gsap.set(contentRef, {
     pointerEvents: "none"
@@ -102,7 +111,7 @@ export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDiv
       // Re-enable pointer events earlier
       setTimeout(() => {
         contentRef.style.pointerEvents = "auto";
-      }, 300);
+      }, 800);
     }
   })
     .to(transitionRef, {
@@ -120,13 +129,19 @@ export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDiv
       ease: "power1.inOut",
       onComplete: () => {
         if (transitionRef) transitionRef.style.display = "none";
+        setDirection(null);
       }
     });
 
   return tl;
 };
 
-export const resetAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDivElement, isHome: boolean) => {
+export const resetAnimation = (
+  transitionRef: HTMLDivElement,
+  contentRef: HTMLDivElement,
+  isHome: boolean,
+  setDirection: (dir: "forward" | "backward" | null) => void
+) => {
   const tl = gsap.timeline();
 
   if (!isHome) {
@@ -144,5 +159,7 @@ export const resetAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDi
     opacity: 1,
     visibility: "visible"
   });
+
+  setDirection(null);
   return tl;
 };
