@@ -22,9 +22,9 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
         scrollBy(0, 1);
         setOpacity(1);
       } else if (window.location.pathname.includes("projects") && direction === null) {
-        resetAnimation(transitionRef.current, contentRef.current);
+        resetAnimation(transitionRef.current, contentRef.current, false);
       } else {
-        resetAnimation(transitionRef.current, contentRef.current);
+        resetAnimation(transitionRef.current, contentRef.current, true);
       }
     }
   }, [direction]);

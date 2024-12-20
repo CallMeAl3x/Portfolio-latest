@@ -106,28 +106,23 @@ export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDiv
   return tl;
 };
 
-export const resetAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDivElement) => {
+export const resetAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDivElement, isHome: boolean) => {
   const tl = gsap.timeline();
 
-  const body = document.querySelector("body");
+  if (!isHome) {
+    const body = document.querySelector("body");
 
-  gsap.set(body, {
-    backgroundColor: "black"
-  });
+    gsap.set(body, {
+      backgroundColor: "black"
+    });
+  }
 
   gsap.set(transitionRef, {
-    transform: "translateY(100%)",
-    clipPath: "inset(70% 0% 0% 0%)",
-    borderRadius: "50% 50% 0% 0%",
-    width: "100%",
-    height: "10%",
-    opacity: 0,
-    display: "block"
+    display: "none"
   });
   gsap.set(contentRef, {
     opacity: 1,
     visibility: "visible"
   });
-
   return tl;
 };
