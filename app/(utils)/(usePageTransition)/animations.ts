@@ -24,7 +24,7 @@ export const forwardAnimation = (transitionRef: HTMLDivElement, contentRef: HTML
     width: "100%",
     height: "100%",
     opacity: 1,
-    duration: 0.75,
+    duration: 0.65,
     ease: "power3.inOut",
     onComplete: () => {
       gsap.to(contentRef, {
@@ -38,7 +38,7 @@ export const forwardAnimation = (transitionRef: HTMLDivElement, contentRef: HTML
   })
     .to(transitionRef, {
       borderRadius: "0% 0% 0% 0%",
-      duration: 0.25,
+      duration: 0.35,
       ease: "power1.inOut"
     })
     // Mettre le fond en noir à la fin de l'animation
@@ -64,8 +64,19 @@ export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDiv
   gsap.set(transitionRef, {
     transform: "translateY(0%)",
     clipPath: "inset(0% 0% 0% 0%)",
+    borderRadius: "0% 0% 0% 0%",
+    width: "100%",
+    height: "100%",
+    opacity: 1,
+    display: "block"
+  });
+
+  tl.to(transitionRef, {
+    transform: "translateY(0%)",
+    clipPath: "inset(0% 0% 0% 0%)",
     borderRadius: "0% 0% 50% 50%",
     width: "100%",
+    duration: 0.2,
     height: "100%",
     opacity: 1,
     display: "block"
@@ -78,12 +89,12 @@ export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDiv
     width: "100%",
     height: "45%",
     opacity: 1,
-    duration: 1.25,
+    duration: 1.15,
     ease: "power3.inOut",
     onComplete: () => {
       gsap.to(contentRef, {
         opacity: 1,
-        duration: 0.15,
+        duration: 0.1,
         onComplete: () => {
           if (contentRef) contentRef.style.visibility = "visible";
         }
@@ -101,7 +112,7 @@ export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDiv
       width: "100%",
       height: "35%",
       opacity: 1,
-      duration: 1.5,
+      duration: 1.05,
       ease: "power3.inOut"
     })
     .to(transitionRef, {
