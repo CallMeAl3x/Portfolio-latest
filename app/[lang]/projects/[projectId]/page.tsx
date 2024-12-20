@@ -114,7 +114,7 @@ export default function ProjectPage(props: { params: Promise<{ projectId: string
             </div>
           </div>
         </div>
-        <CloseLink href="/" />
+        <CloseLink />
       </div>
     </PageWrapper>
   );

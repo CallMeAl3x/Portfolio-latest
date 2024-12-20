@@ -1,7 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import Card from "./(elements)/Card";
 import { useMessages, useTranslations } from "next-intl";
+import { useEffect, useRef, useState } from "react";
+import { usePageAnimationStore } from "../(utils)/(usePageTransition)/usePageAnimationStore";
+import Card from "./(elements)/Card";
 
 export default function Projects() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -47,6 +48,12 @@ export default function Projects() {
   const tH = useTranslations("HomePage");
   const messages = useMessages();
   const cards = Object.keys(messages.CardList);
+
+  const setDirection = usePageAnimationStore((state) => state.setDirection);
+
+  const handleCardClick = () => {
+    setDirection("forward");
+  };
 
   // Preload images
   useEffect(() => {
@@ -102,18 +109,19 @@ export default function Projects() {
         </h2>
         <div className="cards relative mt-2 flex w-full flex-col gap-12 lg:gap-0" ref={containerRef}>
           {cards.map((card, index) => (
-            <Card
-              index={index + 1}
-              title={t(`${card}.title`)}
-              cardDescription={t(`${card}.cardDescription`)}
-              cardImage={t(`${card}.cardImage`)}
-              link={t(`${card}.link`)}
-              key={card}
-              isLaptop={isLaptop}
-              isHovered={index === activeCardIndex}
-              onMouseEnter={() => setActiveCardIndex(index)}
-              onMouseLeave={() => setActiveCardIndex(-1)}
-            />
+            <div key={card} onClick={() => handleCardClick()}>
+              <Card
+                index={index + 1}
+                title={t(`${card}.title`)}
+                cardDescription={t(`${card}.cardDescription`)}
+                cardImage={t(`${card}.cardImage`)}
+                link={t(`${card}.link`)}
+                isLaptop={isLaptop}
+                isHovered={index === activeCardIndex}
+                onMouseEnter={() => setActiveCardIndex(index)}
+                onMouseLeave={() => setActiveCardIndex(-1)}
+              />
+            </div>
           ))}
         </div>
         {isRendered && isLaptop && (

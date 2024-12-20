@@ -1,18 +1,39 @@
 "use client";
-import { useState } from "react";
-import Lines from "../(components)/(elements)/Lines";
-import Circle from "../(components)/(elements)/Circle";
-import Arrows from "../(components)/(elements)/Arrows";
-import Menu from "../(components)/Menu";
-import Projects from "../(components)/Projects";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import Arrows from "../(components)/(elements)/Arrows";
+import Circle from "../(components)/(elements)/Circle";
+import Lines from "../(components)/(elements)/Lines";
+import Logo from "../(components)/(elements)/Logo";
 import { PageWrapper } from "../(components)/(utils)/page-wrapper";
 import Footer from "../(components)/Footer";
-import Logo from "../(components)/(elements)/Logo";
+import Menu from "../(components)/Menu";
+import Projects from "../(components)/Projects";
+import { usePageAnimationStore } from "../(utils)/(usePageTransition)/usePageAnimationStore";
 
 export default function Homepage() {
   const [startArrowAnimation, setStartArrowAnimation] = useState(false);
   const t = useTranslations("HomePage");
+  const direction = usePageAnimationStore((state) => state.direction);
+
+  useEffect(() => {
+    if (direction === "backward") {
+      const scrollToProjects = () => {
+        const projectsSection = document.getElementById("projects");
+        if (projectsSection) {
+          window.scrollTo({
+            top: projectsSection.offsetTop,
+            behavior: "instant"
+          });
+        }
+      };
+
+      const projectsSection = document.getElementById("projects");
+      if (projectsSection) {
+        scrollToProjects();
+      }
+    }
+  }, [direction]);
 
   return (
     <>

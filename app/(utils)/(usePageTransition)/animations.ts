@@ -3,85 +3,88 @@ import gsap from "gsap";
 export const forwardAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDivElement, isMobile: boolean) => {
   const tl = gsap.timeline();
 
-  document.body.style.backgroundColor = "#ededed";
+  const body = document.querySelector("body");
 
-  tl.fromTo(
-    transitionRef,
-    {
-      transform: "translateY(100%)",
-      clipPath: isMobile ? "inset(70% 0% 0% 0%)" : "inset(60% 0% 0% 0%)",
-      borderRadius: isMobile ? "50% 50% 0% 0%" : "40% 40% 0% 0",
-      width: "100%",
-      height: "10%",
-      opacity: 0
-    },
-    {
-      transform: "translateY(0%)",
-      clipPath: "inset(0% 0% 0% 0%)",
-      borderRadius: isMobile ? "50% 50% 0% 0%" : "40% 40% 0% 0",
-      width: "100%",
-      height: "100%",
-      opacity: 1,
-      duration: 0.75,
-      ease: "power3.inOut",
-      onComplete: () => {
-        setTimeout(() => {
-          gsap.to(contentRef, {
-            opacity: 1,
-            onComplete: () => {
-              contentRef.style.visibility = "visible";
-            }
-          });
-        }, 250);
-      }
-    }
-  ).to(transitionRef, {
-    borderRadius: "0% 0% 0% 0%",
-    duration: 0.3,
-    ease: "power1.inOut",
-    onComplete: () => {
-      transitionRef.remove();
-      localStorage.removeItem("navigation_direction");
-      document.body.style.backgroundColor = "#0A0A0A";
-    }
+  gsap.set(body, {
+    backgroundColor: "#ededed"
   });
+  gsap.set(transitionRef, {
+    transform: "translateY(100%)",
+    clipPath: isMobile ? "inset(70% 0% 0% 0%)" : "inset(60% 0% 0% 0%)",
+    borderRadius: isMobile ? "50% 50% 0% 0%" : "40% 40% 0% 0",
+    width: "100%",
+    height: "10%",
+    opacity: 0
+  });
+
+  tl.to(transitionRef, {
+    transform: "translateY(0%)",
+    clipPath: "inset(0% 0% 0% 0%)",
+    borderRadius: isMobile ? "50% 50% 0% 0%" : "40% 40% 0% 0",
+    width: "100%",
+    height: "100%",
+    opacity: 1,
+    duration: 0.75,
+    ease: "power3.inOut",
+    onComplete: () => {
+      gsap.to(contentRef, {
+        opacity: 1,
+        duration: 0.5,
+        onComplete: () => {
+          if (contentRef) contentRef.style.visibility = "visible";
+        }
+      });
+    }
+  })
+    .to(transitionRef, {
+      borderRadius: "0% 0% 0% 0%",
+      duration: 0.25,
+      ease: "power1.inOut"
+    })
+    // Mettre le fond en noir à la fin de l'animation
+    .to("body", {
+      backgroundColor: "black", // Le fond devient noir
+      duration: 0.25,
+      onComplete: () => {
+        if (transitionRef) transitionRef.style.display = "none";
+      }
+    });
+
+  return tl;
 };
 
 export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDivElement) => {
   const tl = gsap.timeline();
 
-  tl.fromTo(
-    transitionRef,
-    {
-      transform: "translateY(0%)",
-      clipPath: "inset(0% 0% 0% 0%)",
-      borderRadius: "0% 0% 50% 50%",
-      width: "100%",
-      height: "100%",
-      opacity: 1
-    },
-    {
-      transform: "translateY(-10%)",
-      clipPath: "inset(0% 0% 0% 0%)",
-      borderRadius: "0% 0% 65% 65%",
-      width: "100%",
-      height: "45%",
-      opacity: 1,
-      duration: 1.25,
-      ease: "power3.inOut",
-      onComplete: () => {
-        setTimeout(() => {
-          gsap.to(contentRef, {
-            opacity: 1,
-            duration: 0.15,
-            onComplete: () => {
-              contentRef.style.visibility = "visible";
-            }
-          });
-        }, 350);
-      }
+  gsap.set(transitionRef, {
+    transform: "translateY(0%)",
+    clipPath: "inset(0% 0% 0% 0%)",
+    borderRadius: "0% 0% 50% 50%",
+    width: "100%",
+    height: "100%",
+    opacity: 1,
+    display: "block"
+  });
+
+  tl.to(transitionRef, {
+    transform: "translateY(-10%)",
+    clipPath: "inset(0% 0% 0% 0%)",
+    borderRadius: "0% 0% 65% 65%",
+    width: "100%",
+    height: "45%",
+    opacity: 1,
+    duration: 1.25,
+    ease: "power3.inOut",
+    onComplete: () => {
+      gsap.to(contentRef, {
+        opacity: 1,
+        duration: 0.15,
+        onComplete: () => {
+          if (contentRef) contentRef.style.visibility = "visible";
+        }
+      });
     }
-  )
+  })
     .to(transitionRef, {
       transform: "translateY(-81%)",
       clipPath: "inset(0% 0% 0% 0%)",
@@ -96,8 +99,35 @@ export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDiv
       duration: 0.3,
       ease: "power1.inOut",
       onComplete: () => {
-        transitionRef.remove();
-        localStorage.removeItem("navigation_direction");
+        if (transitionRef) transitionRef.style.display = "none";
       }
     });
+
+  return tl;
+};
+
+export const resetAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDivElement) => {
+  const tl = gsap.timeline();
+
+  const body = document.querySelector("body");
+
+  gsap.set(body, {
+    backgroundColor: "black"
+  });
+
+  gsap.set(transitionRef, {
+    transform: "translateY(100%)",
+    clipPath: "inset(70% 0% 0% 0%)",
+    borderRadius: "50% 50% 0% 0%",
+    width: "100%",
+    height: "10%",
+    opacity: 0,
+    display: "block"
+  });
+  gsap.set(contentRef, {
+    opacity: 1,
+    visibility: "visible"
+  });
+
+  return tl;
 };

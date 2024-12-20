@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
-import "../globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { routing } from "@/i18n/routing";
+import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { NavigationTracker } from "../(utils)/navigationTracker";
-import { routing } from "@/i18n/routing";
+import "../globals.css";
 
 export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const params = await props.params;
@@ -52,7 +51,6 @@ export default async function LocaleLayout(props: { children: React.ReactNode; p
   return (
     <html lang={lang}>
       <body className="antialiased" suppressHydrationWarning>
-        <NavigationTracker />
         <NextIntlClientProvider messages={messages}>
           {children}
           <Toaster richColors position="top-left" duration={2000} />

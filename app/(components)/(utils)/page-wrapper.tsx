@@ -1,28 +1,44 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { usePageTransition } from "../../(utils)/usePageTransition";
+
+import { backAnimation, forwardAnimation, resetAnimation } from "@/app/(utils)/(usePageTransition)/animations";
+import { usePageAnimationStore } from "@/app/(utils)/(usePageTransition)/usePageAnimationStore";
+import { useEffect, useRef, useState } from "react";
 
 export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
-  const { pageRef, transitionRef, contentRef } = usePageTransition();
-  const [direction, setDirection] = useState<string | null>(null);
+  const transitionRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const direction = usePageAnimationStore((state) => state.direction);
+  const [opacity, setOpacity] = useState<number>(0.01);
 
   useEffect(() => {
-    const storedDirection = localStorage.getItem("navigation_direction");
-    setDirection(storedDirection);
-  }, []);
+    if (transitionRef.current && contentRef.current) {
+      if (direction === "forward") {
+        setOpacity(0.01);
+        forwardAnimation(transitionRef.current, contentRef.current, window.innerWidth <= 768);
+      } else if (direction === "backward") {
+        setOpacity(0.01);
+        backAnimation(transitionRef.current, contentRef.current);
+      } else if (direction === null && (window.location.pathname === "/en" || window.location.pathname === "/fr")) {
+        scrollBy(0, 1);
+        setOpacity(1);
+      } else if (window.location.pathname.includes("projects") && direction === null) {
+        resetAnimation(transitionRef.current, contentRef.current);
+      } else {
+        resetAnimation(transitionRef.current, contentRef.current);
+      }
+    }
+  }, [direction]);
 
   return (
-    <>
-      <div ref={pageRef} className="relative min-h-screen overflow-hidden">
-        {direction === "forward" ? (
-          <div ref={transitionRef} className="fixed inset-x-0 bottom-0 z-[999] bg-background"></div>
-        ) : (
-          <div ref={transitionRef} className="fixed inset-x-0 top-0 z-[999] bg-background"></div>
-        )}
-        <div ref={contentRef} className="opacity-[0.01=] transition-opacity duration-500">
-          {children}
-        </div>
+    <div className="relative min-h-screen overflow-hidden">
+      {direction === "forward" ? (
+        <div ref={transitionRef} className="fixed inset-x-0 bottom-0 z-[999] bg-background"></div>
+      ) : (
+        <div ref={transitionRef} className="fixed inset-x-0 top-0 z-[999] bg-background"></div>
+      )}
+      <div ref={contentRef} className={`transition-opacity duration-500`} style={{ opacity }}>
+        {children}
       </div>
-    </>
+    </div>
   );
 };
