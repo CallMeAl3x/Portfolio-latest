@@ -56,6 +56,11 @@ export const forwardAnimation = (transitionRef: HTMLDivElement, contentRef: HTML
 export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDivElement) => {
   const tl = gsap.timeline();
 
+  // Disable clicks during the animation
+  gsap.set(contentRef, {
+    pointerEvents: "none"
+  });
+
   gsap.set(transitionRef, {
     transform: "translateY(0%)",
     clipPath: "inset(0% 0% 0% 0%)",
@@ -83,6 +88,10 @@ export const backAnimation = (transitionRef: HTMLDivElement, contentRef: HTMLDiv
           if (contentRef) contentRef.style.visibility = "visible";
         }
       });
+      // Re-enable pointer events earlier
+      setTimeout(() => {
+        contentRef.style.pointerEvents = "auto";
+      }, 300);
     }
   })
     .to(transitionRef, {
