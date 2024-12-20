@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import { useSmoothScroll } from "../../(utils)/useSmoothScroll";
+import { useSmoothScroll } from "@/app/(utils)/useSmoothScroll";
 import { useArrowAnimation } from "../../(utils)/useArrowAnimation";
 
 export default function Arrows({ startAnimation }: { startAnimation: boolean }) {
