@@ -13,7 +13,7 @@ export const forwardAnimation = (
   });
 
   gsap.set("#pagebackground", {
-    backgroundColor: "white"
+    backgroundColor: "#ededed"
   });
 
   gsap.set(transitionRef, {
