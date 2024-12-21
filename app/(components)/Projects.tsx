@@ -114,7 +114,7 @@ export default function Projects() {
         </div>
         {isRendered && isLaptop && (
           <div
-            className="pointer-events-none fixed left-0 top-0 z-50 h-[200px] w-[385px] overflow-hidden rounded-xl transition-transform duration-300 ease-out will-change-auto"
+            className="pointer-events-none fixed left-0 top-0 z-50 h-[200px] w-[385px] overflow-hidden rounded-xl transition-transform duration-200 ease-out will-change-auto"
             style={{
               transform: `translate(${mousePosition.x - 192.5}px, ${mousePosition.y - 100}px) scale(${
                 isScaled ? 1 : 0
