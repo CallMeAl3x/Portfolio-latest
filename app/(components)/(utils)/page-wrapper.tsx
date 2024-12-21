@@ -1,9 +1,10 @@
 "use client";
 
-import { backAnimation, forwardAnimation } from "@/app/(utils)/(usePageTransition)/animations";
+import { backAnimation, forwardAnimation, resetAnimation } from "@/app/(utils)/(usePageTransition)/animations";
 import { usePageAnimationStore } from "@/app/(utils)/(usePageTransition)/usePageAnimationStore";
 import useIsMobile from "@/app/(utils)/isMobile";
 import { useEffect, useRef } from "react";
+import Logo from "../(elements)/Logo";
 
 export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   const transitionRef = useRef<HTMLDivElement>(null);
@@ -19,20 +20,32 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
         forwardAnimation(transitionRef.current, contentRef.current, isMobile, setDirection);
       } else if (direction === "backward") {
         backAnimation(transitionRef.current, contentRef.current, setDirection);
+      } else if (direction === null && (window.location.pathname === "/en" || window.location.pathname === "/fr")) {
+        scrollBy(0, 1);
+        setTimeout(() => {
+          scrollBy(0, -1); // Reset animation of the circle
+        }, 100);
+      } else if (window.location.pathname.includes("projects") && direction === null) {
+        resetAnimation(transitionRef.current, contentRef.current, false, setDirection);
+      } else {
+        resetAnimation(transitionRef.current, contentRef.current, true, setDirection);
       }
     }
   }, [direction, isMobile]);
 
   return (
-    <div className="relative min-h-screen" id="pagebackground">
-      {direction === "forward" ? (
-        <div ref={transitionRef} className="fixed inset-x-0 bottom-0 z-[999] bg-background"></div>
-      ) : (
-        <div ref={transitionRef} className="fixed inset-x-0 top-0 z-[999] bg-background"></div>
-      )}
-      <div ref={contentRef} className={`transition-opacity duration-500`}>
-        {children}
+    <>
+      <Logo />
+      <div className="relative min-h-screen" id="pagebackground">
+        {direction === "forward" ? (
+          <div ref={transitionRef} className="fixed inset-x-0 bottom-0 z-[999] bg-background"></div>
+        ) : (
+          <div ref={transitionRef} className="fixed inset-x-0 top-0 z-[999] bg-background"></div>
+        )}
+        <div ref={contentRef} className={`transition-opacity duration-500`}>
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   );
 };

@@ -1,5 +1,4 @@
 import ArrowUp from "@/app/(components)/(elements)/ArrowUp";
-import Logo from "@/app/(components)/(elements)/Logo";
 import CloseLink from "@/components/closeLink";
 import { routing } from "@/i18n/routing";
 import { getProjectMetadata } from "@/lib/projectMetadata";
@@ -55,7 +54,6 @@ export default function ProjectPage(props: { params: Promise<{ projectId: string
 
   return (
     <>
-      <Logo />
       <div className="relative" id="projectpage">
         <div className="flex max-h-[100vh] min-h-[100vh] w-full justify-center px-4 pb-12 text-white">
           <div className="mt-[8.5vh] w-full max-w-[1000px]">

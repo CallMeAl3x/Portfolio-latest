@@ -25,7 +25,7 @@ export default function Projects() {
       const timer = setTimeout(() => setIsRendered(false), 150); // 300ms correspond à la durée de l'animation
       return () => clearTimeout(timer);
     }
-  }, [isVisible, activeCardIndex, !isMobile]);
+  }, [isVisible, activeCardIndex, isMobile]);
 
   // use i18n translations
   const t = useTranslations("CardList");
