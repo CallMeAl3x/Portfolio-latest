@@ -34,7 +34,7 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
         resetAnimation(transitionRef.current, contentRef.current, true, setDirection);
       }
     }
-  }, [direction, isMobile, setDirection]);
+  }, [direction, isMobile]);
 
   return (
     <div className="relative min-h-screen">
