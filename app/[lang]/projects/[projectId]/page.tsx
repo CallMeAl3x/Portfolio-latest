@@ -1,6 +1,5 @@
 import ArrowUp from "@/app/(components)/(elements)/ArrowUp";
 import Logo from "@/app/(components)/(elements)/Logo";
-import { PageWrapper } from "@/app/(components)/(utils)/page-wrapper";
 import CloseLink from "@/components/closeLink";
 import { routing } from "@/i18n/routing";
 import { getProjectMetadata } from "@/lib/projectMetadata";

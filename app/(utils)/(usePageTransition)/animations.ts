@@ -52,7 +52,7 @@ export const forwardAnimation = (
     })
     // Mettre le fond en noir à la fin de l'animation
     .to("#pagebackground", {
-      backgroundColor: "black", // Le fond devient noir
+      backgroundColor: "#0A0A0A", // Le fond devient noir
       duration: 0.25,
       onComplete: () => {
         if (transitionRef) transitionRef.style.display = "none";
@@ -148,22 +148,22 @@ export const resetAnimation = (
 ) => {
   const tl = gsap.timeline();
 
-  // if (!isHome) {
-  //   const body = document.querySelector("body");
+  if (!isHome) {
+    const body = document.querySelector("body");
 
-  //   gsap.set(body, {
-  //     backgroundColor: "black"
-  //   });
-  // }
+    gsap.set(body, {
+      backgroundColor: "#0A0A0A"
+    });
+  }
 
-  // gsap.set(transitionRef, {
-  //   display: "none"
-  // });
-  // gsap.set(contentRef, {
-  //   opacity: 1,
-  //   visibility: "visible"
-  // });
+  gsap.set(transitionRef, {
+    display: "none"
+  });
+  gsap.set(contentRef, {
+    opacity: 1,
+    visibility: "visible"
+  });
 
-  // setDirection(null);
+  setDirection(null);
   return tl;
 };

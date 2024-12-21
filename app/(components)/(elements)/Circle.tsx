@@ -25,11 +25,13 @@ export default function Circle() {
           if (self.progress > 0.6) {
             gsap.to("#logo", { fill: "#1a1c1b", duration: 0 });
             gsap.to("#mainpage", { backgroundColor: "#ededed", duration: 0 });
+            gsap.to("#landing", { backgroundColor: "#ededed", duration: 0 });
             gsap.to("#menutitle", { color: "#000000", duration: 1.25 });
             gsap.to("#menuicon", { stroke: "#000000", duration: 1.25, overwrite: true });
           } else {
             gsap.to("#logo", { fill: "#F0EDF2", duration: 0 });
             gsap.to("#mainpage", { backgroundColor: "#0a0a0a", duration: 0 });
+            gsap.to("#landing", { backgroundColor: "#0a0a0a", duration: 0 });
             gsap.to("#menutitle", { color: "#ededed", duration: 1.25 });
             gsap.to("#menuicon", { stroke: "#ededed", duration: 1.25, overwrite: true });
           }

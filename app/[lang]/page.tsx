@@ -42,7 +42,10 @@ export default function Homepage() {
         <div className="LandingSpace bg-gradient-c relative h-screen w-screen md:h-[130vh]" id="home">
           <div className="relative h-screen overflow-hidden md:h-[125vh]">
             <Arrows startAnimation={startArrowAnimation} />
-            <div className="relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden">
+            <div
+              className="relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden bg-background"
+              id="landing"
+            >
               <Circle />
               <div className="relative z-10 mt-8 flex flex-col items-center justify-center">
                 <h1 className="text-light font-khula-extrabold w-[732px] text-center leading-[85px] max-sm:max-w-sm max-sm:text-[10vw] max-sm:leading-tight sm:text-[10vw] md:text-[80px]">

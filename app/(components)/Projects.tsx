@@ -3,6 +3,7 @@ import { useMessages, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { usePageAnimationStore } from "../(utils)/(usePageTransition)/usePageAnimationStore";
 import Card from "./(elements)/Card";
+import useIsMobile from "../(utils)/isMobile";
 
 export default function Projects() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -12,10 +13,10 @@ export default function Projects() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isScaled, setIsScaled] = useState(false);
   const [isRendered, setIsRendered] = useState(false);
-
+  const isMobile = useIsMobile();
   // scale effect
   useEffect(() => {
-    if (isVisible && activeCardIndex >= 0 && isLaptop) {
+    if (isVisible && activeCardIndex >= 0 && !isMobile) {
       const timer = setTimeout(() => setIsScaled(true), 10);
       setIsRendered(true);
       return () => clearTimeout(timer);
@@ -25,23 +26,7 @@ export default function Projects() {
       const timer = setTimeout(() => setIsRendered(false), 150); // 300ms correspond à la durée de l'animation
       return () => clearTimeout(timer);
     }
-  }, [isVisible, activeCardIndex, isLaptop]);
-
-  // check if the screen is laptop
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLaptop(window.innerWidth >= 1024);
-    };
-
-    // Set initial value
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+  }, [isVisible, activeCardIndex, !isMobile]);
 
   // use i18n translations
   const t = useTranslations("CardList");
@@ -120,7 +105,7 @@ export default function Projects() {
                 cardDescription={t(`${card}.cardDescription`)}
                 cardImage={t(`${card}.cardImage`)}
                 link={t(`${card}.link`)}
-                isLaptop={isLaptop}
+                isLaptop={!isMobile}
                 isHovered={index === activeCardIndex}
                 onMouseEnter={() => setActiveCardIndex(index)}
                 onMouseLeave={() => setActiveCardIndex(-1)}
@@ -128,7 +113,7 @@ export default function Projects() {
             </div>
           ))}
         </div>
-        {isRendered && isLaptop && (
+        {isRendered && !isMobile && (
           <div
             className="pointer-events-none fixed left-0 top-0 z-50 h-[200px] w-[385px] overflow-hidden rounded-xl transition-transform duration-300 ease-out will-change-auto"
             style={{
