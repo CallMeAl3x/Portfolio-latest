@@ -11,7 +11,6 @@ export default function Circle() {
       scale: 10,
       background: "radial-gradient(circle, #B3E5FC 0%, #FFAB91 50%, #545453 100%)",
       filter: "blur(0px)",
-      rotate: 360,
       opacity: 0.001,
       duration: 1.5,
       ease: "power1.inOut",

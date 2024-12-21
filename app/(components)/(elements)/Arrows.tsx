@@ -14,7 +14,7 @@ export default function Arrows({ startAnimation }: { startAnimation: boolean }) 
           height="80%"
           viewBox="0 0 100 120"
           preserveAspectRatio="none"
-          className="pointer-events-none absolute left-0 top-[18%] z-0 will-change-transform"
+          className="pointer-events-none absolute left-0 top-[18%] z-0 mt-28 will-change-transform sm:mt-0"
           style={{
             top: "18%",
             transform: `translateY(${scrollY}px)`
@@ -26,7 +26,7 @@ export default function Arrows({ startAnimation }: { startAnimation: boolean }) 
             stroke="var(--svg-line)"
             strokeWidth="1.5"
             fill="none"
-            className="opacity-[0.01=]"
+            className="opacity-[0.01]"
             vectorEffect="non-scaling-stroke"
           />
           <path
@@ -35,7 +35,7 @@ export default function Arrows({ startAnimation }: { startAnimation: boolean }) 
             stroke="var(--svg-line)"
             strokeWidth="1.5"
             fill="none"
-            className="opacity-[0.01=]"
+            className="opacity-[0.01]"
             vectorEffect="non-scaling-stroke"
           />
         </svg>

@@ -1,6 +1,6 @@
 import { useEffect, RefObject } from "react";
 import gsap from "gsap";
-
+import useIsMobile from "./isMobile";
 interface UseNavbarAnimationProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -8,13 +8,16 @@ interface UseNavbarAnimationProps {
 }
 
 export const useNavbarAnimation = ({ isOpen, setIsOpen, navbarRef }: UseNavbarAnimationProps) => {
+  const isMobile = useIsMobile();
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const toastElement = document.querySelector("[itemID='copy-email']");
       if (
         navbarRef.current &&
         !navbarRef.current.contains(event.target as Node) &&
-        !(toastElement && toastElement.contains(event.target as Node))
+        !(toastElement && toastElement.contains(event.target as Node)) &&
+        !isMobile
       ) {
         setIsOpen(false);
       }

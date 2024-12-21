@@ -15,7 +15,7 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
     if (transitionRef.current && contentRef.current) {
       if (direction === "forward") {
         setOpacity(0.01);
-        forwardAnimation(transitionRef.current, contentRef.current, window.innerWidth <= 768, setDirection);
+        forwardAnimation(transitionRef.current, contentRef.current, setDirection);
       } else if (direction === "backward") {
         setOpacity(0.01);
         backAnimation(transitionRef.current, contentRef.current, setDirection);

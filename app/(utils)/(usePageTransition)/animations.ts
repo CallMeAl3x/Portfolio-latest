@@ -1,14 +1,16 @@
 import gsap from "gsap";
+import useIsMobile from "../isMobile";
 
 export const forwardAnimation = (
   transitionRef: HTMLDivElement,
   contentRef: HTMLDivElement,
-  isMobile: boolean,
   setDirection: (dir: "forward" | "backward" | null) => void
 ) => {
   const tl = gsap.timeline();
 
   const body = document.querySelector("body");
+
+  const isMobile = useIsMobile();
 
   gsap.set(body, {
     backgroundColor: "#ededed"

@@ -13,7 +13,7 @@ export default function Menu() {
   return (
     <>
       <div
-        className={`flex items-center transition-opacity ${!isOpen ? "opacity-100" : "opacity-[0.01=]"}`}
+        className={`flex items-center transition-opacity ${!isOpen ? "opacity-100" : "opacity-[0.01]"}`}
         onClick={handleMenu}
       >
         <>

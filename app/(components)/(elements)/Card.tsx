@@ -16,16 +16,17 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
           passHref
         >
           <p className={`mr-4 md:text-2xl ${isHovered ? "text-gray-500" : ""}`}>0{index}</p>
-          <p className={`font-khula-regular text-6xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}>
-            {title}
-          </p>
-          <p
-            className={`mb-3 ml-auto mt-auto text-2xl transition-all ${
-              isHovered ? "-translate-x-4 text-gray-500" : ""
-            }`}
-          >
-            {cardDescription}
-          </p>
+          <div className="flex flex-col justify-end gap-3 xl:w-full 2xl:flex-row 2xl:justify-between">
+            <p
+              className={`font-khula-regular text-6xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}
+            >
+              {title}
+            </p>
+
+            <p className={`mb-3 mt-auto text-2xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}>
+              {cardDescription}
+            </p>
+          </div>
         </Link>
       ) : (
         // Mobile view
