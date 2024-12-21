@@ -1,13 +1,11 @@
 import Image from "next/image";
-import React from "react";
 import { Link } from "@/i18n/routing";
 import { CardProps } from "../../(types)/card";
 
-export default function Card({ title, cardDescription, index, link, isHovered, cardImage, isLaptop }: CardProps) {
+export default function Card({ title, cardDescription, index, link, isHovered, cardImage }: CardProps) {
   return (
     <>
-      {isLaptop ? (
-        // Desktop view
+      <div className="pcview">
         <Link
           href={"/projects" + link}
           className={`group relative hidden w-full cursor-pointer px-12 font-poppins-extralight text-background after:absolute after:bottom-[12%] after:h-[1.75px] after:w-1/3 after:bg-background/40 after:duration-500 after:ease-in-out after:content-[''] lg:flex lg:py-14 xl:py-16 ${
@@ -28,11 +26,11 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
             </p>
           </div>
         </Link>
-      ) : (
-        // Mobile view
+      </div>
+      <div className="mobileview">
         <Link
           href={"/projects" + link}
-          className="group relative flex w-full flex-col items-center justify-center gap-5 font-poppins-extralight text-background"
+          className="group relative flex w-full flex-col items-center justify-center gap-5 font-poppins-extralight text-background lg:hidden"
           passHref
         >
           <div className="h-full w-full px-6">
@@ -49,7 +47,7 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
             <p className="text-center text-lg">{cardDescription}</p>
           </div>
         </Link>
-      )}
+      </div>
     </>
   );
 }

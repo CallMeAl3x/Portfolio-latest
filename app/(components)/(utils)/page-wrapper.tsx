@@ -2,7 +2,7 @@
 
 import { backAnimation, forwardAnimation, resetAnimation } from "@/app/(utils)/(usePageTransition)/animations";
 import { usePageAnimationStore } from "@/app/(utils)/(usePageTransition)/usePageAnimationStore";
-import useIsMobile from "@/app/(utils)/isMobile";
+import useIsMobile from "@/app/(utils)/userDevice";
 import { useEffect, useRef } from "react";
 import Logo from "../(elements)/Logo";
 
@@ -31,7 +31,7 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
         resetAnimation(transitionRef.current, contentRef.current, true, setDirection);
       }
     }
-  }, [direction, isMobile]);
+  }, [direction, isMobile, setDirection]);
 
   return (
     <>

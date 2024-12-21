@@ -1,6 +1,6 @@
 import { useEffect, RefObject } from "react";
 import gsap from "gsap";
-import useIsMobile from "./isMobile";
+import useIsMobile from "./userDevice";
 interface UseNavbarAnimationProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
