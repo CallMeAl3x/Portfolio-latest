@@ -21,6 +21,9 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
         backAnimation(transitionRef.current, contentRef.current, setDirection);
       } else if (direction === null && (window.location.pathname === "/en" || window.location.pathname === "/fr")) {
         scrollBy(0, 1);
+        setTimeout(() => {
+          scrollBy(0, -1); // Reset animation of the circle
+        }, 100);
         setOpacity(1);
       } else if (window.location.pathname.includes("projects") && direction === null) {
         resetAnimation(transitionRef.current, contentRef.current, false, setDirection);
