@@ -37,7 +37,7 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   }, [direction, isMobile]);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen" id="pagebackground">
       {direction === "forward" ? (
         <div ref={transitionRef} className="fixed inset-x-0 bottom-0 z-[999] bg-background"></div>
       ) : (

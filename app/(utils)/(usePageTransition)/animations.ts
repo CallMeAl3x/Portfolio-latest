@@ -8,18 +8,22 @@ export const forwardAnimation = (
 ) => {
   const tl = gsap.timeline();
 
-  const body = document.querySelector("body");
-
-  gsap.set(body, {
-    backgroundColor: "#ededed"
+  gsap.set(contentRef, {
+    visibility: "hidden"
   });
+
+  gsap.set("#pagebackground", {
+    backgroundColor: "white"
+  });
+
   gsap.set(transitionRef, {
     transform: "translateY(100%)",
     clipPath: isMobile ? "inset(70% 0% 0% 0%)" : "inset(60% 0% 0% 0%)",
     borderRadius: isMobile ? "50% 50% 0% 0%" : "40% 40% 0% 0",
     width: "100%",
     height: "10%",
-    opacity: 0
+    opacity: 1,
+    display: "block"
   });
 
   tl.to(transitionRef, {
@@ -47,7 +51,7 @@ export const forwardAnimation = (
       ease: "power1.inOut"
     })
     // Mettre le fond en noir à la fin de l'animation
-    .to("body", {
+    .to("#pagebackground", {
       backgroundColor: "black", // Le fond devient noir
       duration: 0.25,
       onComplete: () => {
@@ -144,22 +148,22 @@ export const resetAnimation = (
 ) => {
   const tl = gsap.timeline();
 
-  if (!isHome) {
-    const body = document.querySelector("body");
+  // if (!isHome) {
+  //   const body = document.querySelector("body");
 
-    gsap.set(body, {
-      backgroundColor: "black"
-    });
-  }
+  //   gsap.set(body, {
+  //     backgroundColor: "black"
+  //   });
+  // }
 
-  gsap.set(transitionRef, {
-    display: "none"
-  });
-  gsap.set(contentRef, {
-    opacity: 1,
-    visibility: "visible"
-  });
+  // gsap.set(transitionRef, {
+  //   display: "none"
+  // });
+  // gsap.set(contentRef, {
+  //   opacity: 1,
+  //   visibility: "visible"
+  // });
 
-  setDirection(null);
+  // setDirection(null);
   return tl;
 };

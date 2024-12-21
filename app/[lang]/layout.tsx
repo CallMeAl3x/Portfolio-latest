@@ -6,6 +6,7 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import SmoothScrolling from "../(components)/SmoothScrolling";
 import "../globals.css";
+import { PageWrapper } from "../(components)/(utils)/page-wrapper";
 
 export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const params = await props.params;
@@ -53,7 +54,9 @@ export default async function LocaleLayout(props: { children: React.ReactNode; p
     <html lang={lang}>
       <body className="antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
-          <SmoothScrolling>{children}</SmoothScrolling>
+          <SmoothScrolling>
+            <PageWrapper>{children}</PageWrapper>
+          </SmoothScrolling>
           <Toaster richColors position="top-left" duration={2000} />
         </NextIntlClientProvider>
       </body>

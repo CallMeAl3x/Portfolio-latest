@@ -5,7 +5,6 @@ import Arrows from "../(components)/(elements)/Arrows";
 import Circle from "../(components)/(elements)/Circle";
 import Lines from "../(components)/(elements)/Lines";
 import Logo from "../(components)/(elements)/Logo";
-import { PageWrapper } from "../(components)/(utils)/page-wrapper";
 import Footer from "../(components)/Footer";
 import Menu from "../(components)/Menu";
 import Projects from "../(components)/Projects";
@@ -37,7 +36,7 @@ export default function Homepage() {
 
   return (
     <>
-      <PageWrapper>
+      <main id="mainpage">
         <Logo />
         <Menu />
         <div className="LandingSpace bg-gradient-c relative h-screen w-screen md:h-[130vh]" id="home">
@@ -61,7 +60,7 @@ export default function Homepage() {
         <div className="h-[100vh]"></div>
         <Projects />
         <Footer />
-      </PageWrapper>
+      </main>
     </>
   );
 }
