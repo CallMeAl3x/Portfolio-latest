@@ -2,6 +2,7 @@
 
 import { backAnimation, forwardAnimation, resetAnimation } from "@/app/(utils)/(usePageTransition)/animations";
 import { usePageAnimationStore } from "@/app/(utils)/(usePageTransition)/usePageAnimationStore";
+import useIsMobile from "@/app/(utils)/isMobile";
 import { useEffect, useRef, useState } from "react";
 
 export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
@@ -11,11 +12,13 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   const [opacity, setOpacity] = useState<number>(0.01);
   const setDirection = usePageAnimationStore((state) => state.setDirection);
 
+  const isMobile = useIsMobile();
+
   useEffect(() => {
     if (transitionRef.current && contentRef.current) {
       if (direction === "forward") {
         setOpacity(0.01);
-        forwardAnimation(transitionRef.current, contentRef.current, setDirection);
+        forwardAnimation(transitionRef.current, contentRef.current, isMobile, setDirection);
       } else if (direction === "backward") {
         setOpacity(0.01);
         backAnimation(transitionRef.current, contentRef.current, setDirection);
@@ -31,10 +34,10 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
         resetAnimation(transitionRef.current, contentRef.current, true, setDirection);
       }
     }
-  }, [direction]);
+  }, [direction, isMobile, setDirection]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
+    <div className="relative min-h-screen">
       {direction === "forward" ? (
         <div ref={transitionRef} className="fixed inset-x-0 bottom-0 z-[999] bg-background"></div>
       ) : (

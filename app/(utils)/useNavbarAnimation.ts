@@ -60,5 +60,5 @@ export const useNavbarAnimation = ({ isOpen, setIsOpen, navbarRef }: UseNavbarAn
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen, setIsOpen, navbarRef]);
+  }, [isOpen, setIsOpen, navbarRef, isMobile]);
 };
