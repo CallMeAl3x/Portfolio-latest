@@ -1,5 +1,5 @@
 import ArrowUp from "@/app/(components)/(elements)/ArrowUp";
-import CloseLink from "@/components/closeLink";
+import CloseLink from "@/app/(components)/(elements)/closeLink";
 import { routing } from "@/i18n/routing";
 import { getProjectMetadata } from "@/lib/projectMetadata";
 import { projectKeys } from "@/lib/utils";
