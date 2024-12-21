@@ -6,9 +6,13 @@ import { Link } from "@/i18n/routing";
 
 export default function CloseLink() {
   const setDirection = usePageAnimationStore((state) => state.setDirection);
+  const direction = usePageAnimationStore((state) => state.direction);
 
   const handleBackClick = () => {
-    setDirection("backward");
+    // Empêcher de relancer l'animation si la direction est déjà "backward"
+    if (direction !== "backward") {
+      setDirection("backward");
+    }
   };
 
   return (

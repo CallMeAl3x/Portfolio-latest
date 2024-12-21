@@ -50,9 +50,13 @@ export default function Projects() {
   const cards = Object.keys(messages.CardList);
 
   const setDirection = usePageAnimationStore((state) => state.setDirection);
+  const direction = usePageAnimationStore((state) => state.direction);
 
   const handleCardClick = () => {
-    setDirection("forward");
+    // Empêcher de relancer l'animation si la direction est déjà "backward"
+    if (direction !== "forward") {
+      setDirection("forward");
+    }
   };
 
   // Preload images
