@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import _ScrollTrigger from "gsap/ScrollTrigger";
-gsap.registerPlugin(_ScrollTrigger);
 import { useNavbarAnimation } from "../(utils)/useNavbarAnimation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { MenuTabsProps } from "../(types)/menuTab";
@@ -9,6 +8,7 @@ import { useMessages, useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { useCopyToClipboard } from "../(utils)/useCopyToClipboard";
+gsap.registerPlugin(_ScrollTrigger);
 
 export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
   const messages = useMessages();
@@ -36,7 +36,7 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
       <nav
         id="navbar"
         ref={navbarRef}
-        className="fixed right-0 z-[100] flex h-screen w-1/3 max-w-screen-md translate-x-full flex-col justify-center overflow-y-auto bg-foreground p-6 will-change-auto max-2xl:w-1/2 max-xl:w-2/3 max-md:w-full"
+        className="fixed right-0 z-[99999] flex h-screen w-1/3 max-w-screen-md translate-x-full flex-col justify-center overflow-y-auto bg-foreground p-6 will-change-auto max-2xl:w-1/2 max-xl:w-2/3 max-md:w-full"
       >
         <div className="mt-2 flex items-center justify-between px-8">
           <LanguageSwitcher />
