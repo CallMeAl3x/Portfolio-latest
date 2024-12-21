@@ -9,7 +9,6 @@ export default function Projects() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(false);
-  const [isLaptop, setIsLaptop] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isScaled, setIsScaled] = useState(false);
   const [isRendered, setIsRendered] = useState(false);
