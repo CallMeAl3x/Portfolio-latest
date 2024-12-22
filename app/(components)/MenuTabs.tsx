@@ -36,7 +36,7 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
       <nav
         id="navbar"
         ref={navbarRef}
-        className="fixed right-0 z-[99999] flex h-screen w-1/3 max-w-screen-md translate-x-full flex-col justify-center overflow-y-auto bg-foreground p-6 will-change-auto max-2xl:w-1/2 max-xl:w-2/3 max-md:w-full"
+        className="fixed right-0 z-[9999] flex h-screen w-1/3 max-w-screen-md translate-x-full flex-col justify-center overflow-y-auto bg-foreground p-6 will-change-auto max-2xl:w-1/2 max-xl:w-2/3 max-md:w-full"
       >
         <div className="mt-2 flex items-center justify-between px-8">
           <LanguageSwitcher />
