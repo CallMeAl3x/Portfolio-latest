@@ -17,7 +17,12 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     if (transitionRef.current && contentRef.current) {
       if (direction === "forward") {
-        forwardAnimation(transitionRef.current, contentRef.current, isMobile, setDirection);
+        contentRef.current.style.visibility = "hidden";
+        setTimeout(() => {
+          if (transitionRef.current && contentRef.current) {
+            return forwardAnimation(transitionRef.current, contentRef.current, isMobile, setDirection);
+          }
+        }, 100);
       } else if (direction === "backward") {
         backAnimation(transitionRef.current, contentRef.current, setDirection);
       } else if (direction === null && (window.location.pathname === "/en" || window.location.pathname === "/fr")) {

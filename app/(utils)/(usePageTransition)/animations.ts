@@ -84,15 +84,8 @@ export const backAnimation = (
     display: "block"
   });
 
-  tl.to(transitionRef, {
-    transform: "translateY(0%)",
-    clipPath: "inset(0% 0% 0% 0%)",
-    borderRadius: "0% 0% 50% 50%",
-    width: "100%",
-    duration: 0.25,
-    height: "100%",
-    opacity: 1,
-    display: "block"
+  tl.to(contentRef, {
+    visibility: "visible"
   });
 
   tl.to(transitionRef, {
