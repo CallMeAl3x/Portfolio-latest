@@ -89,7 +89,7 @@ export const backAnimation = (
     clipPath: "inset(0% 0% 0% 0%)",
     borderRadius: "0% 0% 50% 50%",
     width: "100%",
-    duration: 0.2,
+    duration: 0.25,
     height: "100%",
     opacity: 1,
     display: "block"
@@ -100,9 +100,9 @@ export const backAnimation = (
     clipPath: "inset(0% 0% 0% 0%)",
     borderRadius: "0% 0% 65% 65%",
     width: "100%",
-    height: "45%",
+    height: "35%",
     opacity: 1,
-    duration: 1.15,
+    duration: 0.6,
     ease: "power3.inOut",
     onComplete: () => {
       gsap.to(contentRef, {
@@ -123,9 +123,9 @@ export const backAnimation = (
       clipPath: "inset(0% 0% 0% 0%)",
       borderRadius: "0% 0% 85% 85%",
       width: "100%",
-      height: "35%",
+      height: "25%",
       opacity: 1,
-      duration: 1.05,
+      duration: 1.5,
       ease: "power3.inOut"
     })
     .to(transitionRef, {
