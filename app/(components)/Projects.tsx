@@ -2,8 +2,8 @@
 import { useMessages, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { usePageAnimationStore } from "../(utils)/(usePageTransition)/usePageAnimationStore";
-import Card from "./(elements)/Card";
 import { useIsLaptop } from "../(utils)/userDevice";
+import Card from "./(elements)/Card";
 
 export default function Projects() {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
@@ -33,6 +33,10 @@ export default function Projects() {
   const tH = useTranslations("HomePage");
   const messages = useMessages();
   const cards = Object.keys(messages.CardList);
+
+  const isZenPet = cards.find((card) => card === "zenpet");
+
+  console.log(isZenPet);
 
   const setDirection = usePageAnimationStore((state) => state.setDirection);
   const direction = usePageAnimationStore((state) => state.direction);
@@ -129,12 +133,13 @@ export default function Projects() {
               }}
             >
               {cards.map((card, index) => (
-                <img
-                  key={index}
-                  src={t(`${card}.cardImage`)}
-                  alt={t(`${card}.description`)}
-                  className="h-[200px] w-[385px] object-cover object-center"
-                />
+                <div key={index} className="relative h-[200px] w-[385px] overflow-hidden">
+                  <img
+                    src={t(`${card}.cardImage`)}
+                    alt={t(`${card}.description`)}
+                    className={`h-full w-full ${card === "zenpet" ? "object-contain" : "object-cover object-center"}`}
+                  />
+                </div>
               ))}
             </div>
           </div>

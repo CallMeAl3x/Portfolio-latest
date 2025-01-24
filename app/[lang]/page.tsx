@@ -59,6 +59,7 @@ export default function Homepage() {
         </div>
         {/* Div de test pour simuler du scroll */}
         <div className="h-[100vh]"></div>
+        {/* <About /> */}
         <Projects />
         <Footer />
       </main>

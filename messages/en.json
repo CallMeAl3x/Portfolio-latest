@@ -14,6 +14,45 @@
     "getInTouch": "Get in touch"
   },
   "CardList": {
+    "zenpet": {
+      "title": "ZenPet",
+      "cardDescription": "Mobile Application",
+      "description": "ZenPet is a comprehensive mobile application that revolutionizes pet care management.Developed with Expo and NativeWind, ZenPet features an intuitive and elegant interface, designed to simplify pet owners' lives while connecting a community of pet enthusiasts and service providers.",
+      "technologies": {
+        "frontend": "React Native, NativeWind, Expo",
+        "backend": "AppWritte"
+      },
+      "cardImage": "/img/projects/zenpet.png",
+      "img": "/img/projects/zenpet.png",
+      "visitUrl": "https://github.com/CallMeAl3x/ZenPet",
+      "link": "/zenpet"
+    },
+    "bourse-des-voyages": {
+      "title": "Bourse des voyages",
+      "cardDescription": "Web Development / API",
+      "description": "Site web permettant de comparer et de réserver des voyages, des vols, des hôtels et des vacances. Interface intuitive offrant les meilleures offres des tour-opérateurs avec un système de filtrage avancé pour trouver le voyage idéal selon votre budget et vos préférences.",
+      "technologies": {
+        "frontend": "VueJS, Sass, NuxtJS",
+        "backend": "Wordpress, Pinia"
+      },
+      "cardImage": "/img/projects/bdv.png",
+      "img": "/img/projects/bdv.png",
+      "visitUrl": "https://www.bourse-des-voyages.com/",
+      "link": "/bourse-des-voyages"
+    },
+    "chatbot": {
+      "title": "ChatBot",
+      "cardDescription": "Web Application / AI",
+      "description": "This is a personal project for a chatbot application, which allows you to chat with a robot and ask it questions on various topics. The chatbot is capable of answering simple questions and conducting basic conversations. It was made following a Hackaton on the subject of AI.",
+      "technologies": {
+        "frontend": "NextJS, TailwindCSS; Shadcn",
+        "backend": "OpenAI, Anthropic"
+      },
+      "cardImage": "/img/projects/chatbot.png",
+      "img": "/img/projects/chatbot.png",
+      "visitUrl": "https://chatbot.bonefons.com/",
+      "link": "/chatbot"
+    },
     "weather-app": {
       "title": "Weather App",
       "cardDescription": "Web Development / API",
@@ -26,45 +65,6 @@
       "img": "/img/projects/weather-app.webp",
       "visitUrl": "https://weather.bonefons.com/",
       "link": "/weather-app"
-    },
-    "web-documentary": {
-      "title": "Web Documentary",
-      "cardDescription": "Web Documentation / Interactive",
-      "description": "A second-year DUT MMI (S3) project exploring dating applications, focusing on male experiences. The project aims to uncover the challenges of these platforms by blending interactivity and credibility.",
-      "technologies": {
-        "frontend": "React, TailwindCSS, TinderCard, React Context",
-        "backend": "N/A"
-      },
-      "cardImage": "/img/projects/webdocumentary.webp",
-      "img": "/img/projects/webdocumentary.webp",
-      "visitUrl": "https://webdoc-dating-app.netlify.app/",
-      "link": "/web-documentary"
-    },
-    "data-visualization": {
-      "title": "Data Visualization",
-      "cardDescription": "Data Analysis / Graphics",
-      "description": "Second-year project in the DUT MMI (S3), this site provides cinema data analysis through APIs, displaying information via two graphs.",
-      "technologies": {
-        "frontend": "Vite, TailwindCSS, ChartJS, Zustand",
-        "backend": "API Calls"
-      },
-      "cardImage": "/img/projects/data-visualization.webp",
-      "img": "/img/projects/data-visualization.webp",
-      "visitUrl": "https://datavisualisation-cinema.netlify.app/",
-      "link": "/data-visualization"
-    },
-    "translate-app": {
-      "title": "Translate App",
-      "cardDescription": "Web Application / Translation",
-      "description": "A web application offering translation of up to 500 characters in various languages, with the ability to listen to and copy texts, including in English and French.",
-      "technologies": {
-        "frontend": "Vite, TailwindCSS, ResponsiveVoice, Mymemory",
-        "backend": "API Fetch"
-      },
-      "cardImage": "/img/projects/translate-app.webp",
-      "img": "/img/projects/translate-app.webp",
-      "visitUrl": "https://translate-app.bonefons.com/",
-      "link": "/translate-app"
     }
   }
 }

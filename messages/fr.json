@@ -14,6 +14,45 @@
     "getInTouch": "Entrer en contact"
   },
   "CardList": {
+    "zenpet": {
+      "title": "ZenPet",
+      "cardDescription": "Application Mobile",
+      "description": "Développée avec Expo et NativeWind, ZenPet présente une interface intuitive et élégante, conçue pour simplifier la vie des propriétaires d'animaux de compagnie tout en connectant une communauté de passionnés et de prestataires de services.",
+      "technologies": {
+        "frontend": "React Native, NativeWind, Expo",
+        "backend": "AppWritte"
+      },
+      "cardImage": "/img/projects/zenpet.png",
+      "img": "/img/projects/zenpet.png",
+      "visitUrl": "https://github.com/CallMeAl3x/ZenPet",
+      "link": "/zenpet"
+    },
+    "bourse-des-voyages": {
+      "title": "Bourse des voyages",
+      "cardDescription": "Comparateur de voyages et plateforme de réservation en ligne",
+      "description": "Site web permettant de comparer et de réserver des voyages, des vols, des hôtels et des vacances. Interface intuitive offrant les meilleures offres des tour-opérateurs avec un système de filtrage avancé pour trouver le voyage idéal selon votre budget et vos préférences.",
+      "technologies": {
+        "frontend": "VueJS, Sass, NuxtJS",
+        "backend": "Wordpress, Pinia"
+      },
+      "cardImage": "/img/projects/bdv.png",
+      "img": "/img/projects/bdv.png",
+      "visitUrl": "https://www.bourse-des-voyages.com/",
+      "link": "/bourse-des-voyages"
+    },
+    "chatbot": {
+      "title": "ChatBot",
+      "cardDescription": "IA / Application Web",
+      "description": "Ceci est un projet personnel d'application de chatbot, qui permet de discuter avec un robot et de lui poser des questions sur divers sujets. Le chatbot est capable de répondre à des questions simples et de mener des conversations basiques. Il a été fait suite à un Hackaton sur le sujet de l'IA",
+      "technologies": {
+        "frontend": "NextJS, TailwindCSS, OpenAI, Anthropic",
+        "backend": "N/A"
+      },
+      "cardImage": "/img/projects/chatbot.png",
+      "img": "/img/projects/chatbot.png",
+      "visitUrl": "https://chatbot.bonefons.com/",
+      "link": "/chatbot"
+    },
     "weather-app": {
       "title": "Weather App",
       "cardDescription": "Développement Web / API",
@@ -26,45 +65,6 @@
       "img": "/img/projects/weather-app.webp",
       "visitUrl": "https://weather.bonefons.com/",
       "link": "/weather-app"
-    },
-    "web-documentary": {
-      "title": "Documentaire Web",
-      "cardDescription": "Documentation Web / Interactif",
-      "description": "Un projet de deuxième année DUT MMI (S3) explorant les applications de rencontres, axé sur l'expérience masculine. Le projet vise à découvrir les défis de ces plateformes en combinant interactivité et crédibilité.",
-      "technologies": {
-        "frontend": "React, TailwindCSS, TinderCard, React Context",
-        "backend": "N/A"
-      },
-      "cardImage": "/img/projects/webdocumentary.webp",
-      "img": "/img/projects/webdocumentary.webp",
-      "visitUrl": "https://webdoc-dating-app.netlify.app/",
-      "link": "/web-documentary"
-    },
-    "data-visualization": {
-      "title": "Visualisation de Données",
-      "cardDescription": "Analyse de Données",
-      "description": "Projet de deuxième année DUT MMI (S3), ce site propose une analyse de données cinématographiques via des APIs, affichant les informations à travers deux graphiques.",
-      "technologies": {
-        "frontend": "Vite, TailwindCSS, ChartJS, Zustand",
-        "backend": "Appels API"
-      },
-      "cardImage": "/img/projects/data-visualization.webp",
-      "img": "/img/projects/data-visualization.webp",
-      "visitUrl": "https://datavisualisation-cinema.netlify.app/",
-      "link": "/data-visualization"
-    },
-    "translate-app": {
-      "title": "Application de Traduction",
-      "cardDescription": "Application Web / Traduction",
-      "description": "Une application web offrant la traduction jusqu'à 500 caractères dans différentes langues, avec la possibilité d'écouter et de copier les textes, notamment en anglais et en français.",
-      "technologies": {
-        "frontend": "Vite, TailwindCSS, ResponsiveVoice, Mymemory",
-        "backend": "API Fetch"
-      },
-      "cardImage": "/img/projects/translate-app.webp",
-      "img": "/img/projects/translate-app.webp",
-      "visitUrl": "https://translate-app.bonefons.com/",
-      "link": "/translate-app"
     }
   }
 }

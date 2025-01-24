@@ -99,9 +99,14 @@ export default function ProjectPage(props: { params: Promise<{ projectId: string
                   </div>
                 </div>
               </div>
-              <Link href={t(`${projectId}.visitUrl`)} target="_blank" rel="noopener noreferrer">
+              <Link
+                href={t(`${projectId}.visitUrl`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-auto mr-auto"
+              >
                 <img
-                  className="mb-12 h-auto max-h-[700px] w-auto select-none rounded-2xl border border-solid border-white object-cover object-top"
+                  className="mb-12 h-auto w-auto select-none rounded-2xl border border-solid border-white object-cover object-top"
                   height="100%"
                   width="100%"
                   src={t(`${projectId}.img`)}
