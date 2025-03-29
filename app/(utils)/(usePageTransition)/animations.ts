@@ -103,7 +103,6 @@ export const backAnimation = (
         duration: 0.1,
         onComplete: () => {
           if (contentRef) contentRef.style.visibility = "visible";
-          setDirection(null);
         }
       });
       // Re-enable pointer events earlier
@@ -127,6 +126,7 @@ export const backAnimation = (
       ease: "power1.inOut",
       onComplete: () => {
         if (transitionRef) transitionRef.style.display = "none";
+        setDirection(null);
       }
     });
 

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import MenuTabs from "./MenuTabs";
 import OpenIcon from "./(elements)/OpenIcon";
+import MenuTabs from "./MenuTabs";
 
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);

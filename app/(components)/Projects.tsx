@@ -34,10 +34,6 @@ export default function Projects() {
   const messages = useMessages();
   const cards = Object.keys(messages.CardList);
 
-  const isZenPet = cards.find((card) => card === "zenpet");
-
-  console.log(isZenPet);
-
   const setDirection = usePageAnimationStore((state) => state.setDirection);
   const direction = usePageAnimationStore((state) => state.direction);
 

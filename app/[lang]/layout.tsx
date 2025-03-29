@@ -4,9 +4,10 @@ import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { PageWrapper } from "../(components)/(utils)/page-wrapper";
+import ChatbotWrapper from "../(components)/ChatBotWrapper";
 import SmoothScrolling from "../(components)/SmoothScrolling";
 import "../globals.css";
-import { PageWrapper } from "../(components)/(utils)/page-wrapper";
 
 export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const params = await props.params;
@@ -56,6 +57,7 @@ export default async function LocaleLayout(props: { children: React.ReactNode; p
         <NextIntlClientProvider messages={messages}>
           <SmoothScrolling>
             <PageWrapper>{children}</PageWrapper>
+            <ChatbotWrapper />
           </SmoothScrolling>
           <Toaster richColors position="top-left" duration={2000} />
         </NextIntlClientProvider>

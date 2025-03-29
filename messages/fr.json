@@ -6,8 +6,8 @@
   },
   "NavBar": {
     "home": "Accueil",
-    "projects": "Projets",
     "about": "Présentation",
+    "projects": "Projets",
     "contact": "Contact"
   },
   "Footer": {
@@ -65,6 +65,137 @@
       "img": "/img/projects/weather-app.webp",
       "visitUrl": "https://weather.bonefons.com/",
       "link": "/weather-app"
+    }
+  },
+  "About": {
+    "presentation": {
+      "hello": "Bonjour",
+      "im": "",
+      "name": "Alexandre",
+      "surname": "Bonefons",
+      "job": "Développeur Web"
+    },
+    "languages": {
+      "title": "Langues",
+      "french": "Français",
+      "english": "Anglais",
+      "spanish": "Espagnol"
+    },
+    "tools": {
+      "title": "Outils",
+      "frontend": {
+        "title": "Frontend",
+        "technologies": [
+          {
+            "name": "TanStack",
+            "icon": "/img/icons/tanstack.png"
+          },
+          {
+            "name": "VueJS",
+            "icon": "/img/icons/vuejs.svg"
+          },
+          {
+            "name": "Shadcn",
+            "icon": "/img/icons/shadcn.svg"
+          },
+          {
+            "name": "TailwindCSS",
+            "icon": "/img/icons/tailwindcss.svg"
+          }
+        ]
+      },
+      "backend": {
+        "title": "Backend",
+        "technologies": [
+          {
+            "name": "SQL",
+            "icon": "/img/icons/sql.svg"
+          },
+          {
+            "name": "Wordpress",
+            "icon": "/img/icons/wordpress.svg"
+          },
+          {
+            "name": "Drizzle ORM",
+            "icon": "/img/icons/drizzle.png"
+          },
+          {
+            "name": "Zustand",
+            "icon": "/img/icons/zustand.svg"
+          }
+        ]
+      },
+      "others": {
+        "title": "Autre",
+        "technologies": [
+          {
+            "name": "Git",
+            "icon": "/img/icons/git.svg"
+          },
+          {
+            "name": "Azure",
+            "icon": "/img/icons/microsoft_azure.svg"
+          }
+        ]
+      }
+    },
+    "experiences": {
+      "title": "Expériences",
+      "items": {
+        "gcfillon": {
+          "date": "Juil. 2023 - Août 2023",
+          "title": "Développeur Web Junior",
+          "job": "Stage",
+          "place": "Chicoutimi (Canada)",
+          "description": "Développement React (TanStack & TailwindCSS) | Intégration ShadCN (composants UI) | Formulaires et gestion des données via Drizzle ORM",
+          "company": "GCFillon"
+        },
+        "penguinworld": {
+          "date": "Jan. 2023 - Juin 2023",
+          "title": "Développeur Web Junior",
+          "job": "Stage",
+          "place": "Lyon (France)",
+          "description": "Programmation avec VueJS version 2/3 et SaSS | Utilisation du CMS Wordpress Headless | Acquisition de compétences en gestion de projet avec des outils comme GitLab",
+          "company": "PenguinWorld"
+        },
+        "allforweb": {
+          "date": "Jan. 2022 - Juin 2022",
+          "title": "Développeur Web Junior",
+          "job": "Stage",
+          "place": "Lyon (France)",
+          "description": "Programmation CSS/PHP/JS (chartjs) | Utilisation de CMS tels que Wordpress et Prestashop",
+          "company": "Allforweb"
+        }
+      }
+    },
+    "education": {
+      "title": "Éducation",
+      "educations": [
+        {
+          "date": "2022 - 2025",
+          "title": "B.U.T MMI",
+          "school": "I.U.T De Vélizy (France)"
+        },
+        {
+          "date": "2022 - 2025",
+          "title": "Baccalauréat Informatique",
+          "school": "UQAC (Québec)"
+        },
+        {
+          "date": "2022",
+          "title": "BAC STI2D",
+          "school": "Lycée Eugène Ionesco (France)"
+        }
+      ]
+    },
+    "projects": {
+      "title": "Projets",
+      "description": "Découvrez ma partie projet où je montre mes compétences et la stack que j'ai utilisée pour les développer",
+      "view": "Voir les projets"
+    },
+    "chat": {
+      "title": "Un projet en tête ? Contactez-moi !",
+      "contact": "Alexandre.bonefons@uqac.etu.ca | +33 6 32 18 58 78"
     }
   }
 }

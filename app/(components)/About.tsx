@@ -1,164 +1,206 @@
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+import Link from "next/link";
+import ExperienceItem from "./(about)/ExperienceItem";
+import ToolItem from "./(about)/ToolItem";
+
 export default function About() {
-  const frontend = [
-    {
-      name: "Tailwind",
-      img: "/img/about/tailwind.svg"
-    },
-    {
-      name: "AngularJS",
-      img: "/img/about/angular.svg"
-    },
-    {
-      name: "NextJS",
-      img: "/img/about/nextjs.svg"
-    },
-    {
-      name: "VueJS",
-      img: "/img/about/vuejs.svg"
-    },
-    {
-      name: "Sass",
-      img: "/img/about/sass.svg"
-    },
-    {
-      name: "Shadcn",
-      img: "/img/about/shadcn.svg"
-    },
-    {
-      name: "Expo",
-      img: "/img/about/expo.svg"
-    }
-  ];
+  const t = useTranslations("About");
 
-  const backend = [
-    {
-      name: "NextJS",
-      img: "/img/about/nextjs.svg"
-    },
-    {
-      name: "PhP",
-      img: "/img/about/php.svg"
-    },
-    {
-      name: "Prisma",
-      img: "/img/about/prisma.svg"
-    },
-    {
-      name: "Wordpress",
-      img: "/img/about/wordpress.svg"
-    },
-    {
-      name: "Zustand",
-      img: "/img/about/zustand.png"
-    },
-    {
-      name: "Pinia",
-      img: "/img/about/pinia.svg"
-    },
-    {
-      name: "AWS",
-      img: "/img/about/aws.svg"
-    }
-  ];
-
-  const design = [
-    {
-      name: "Figma",
-      img: "/img/about/figma.svg"
-    },
-    {
-      name: "Photoshop",
-      img: "/img/about/photoshop.svg"
-    },
-    {
-      name: "After Effect",
-      img: "/img/about/aftereffect.svg"
-    },
-    {
-      name: "Illustrator",
-      img: "/img/about/illustrator.svg"
-    }
-  ];
-
-  const others = [
-    {
-      name: "Git",
-      img: "/img/about/git.svg"
-    },
-    {
-      name: "ChatGPT",
-      img: "/img/about/chatgpt.svg"
-    },
-    {
-      name: "Microsoft Azure",
-      img: "/img/about/microsoft_azure.svg"
-    },
-    {
-      name: "Gitlab",
-      img: "/img/about/gitlab.svg"
-    }
-  ];
-
+  const Experiencekeys = ["gcfillon", "penguinworld", "allforweb"] as const;
   return (
-    <div className="ml-auto mr-auto mt-80 grid h-[90vh] max-h-[805px] max-w-[1250px] grid-cols-5 grid-rows-5 gap-3.5 px-[4.5vw] 2xl:max-w-[65vw]">
-      <div className="col-span-3 row-span-3 rounded-2xl bg-blue-200 p-6">
-        <p className="mt-1 text-center text-3xl text-black">Front</p>
-        <div className="mt-6 grid grid-cols-3 gap-5 gap-x-6">
-          {frontend.map((item) => (
-            <div key={item.name} className="ml-auto mr-auto flex h-auto w-fit flex-col items-center gap-2">
-              <img
-                src={item.img}
-                alt={item.name}
-                className="h-12 w-12 overflow-hidden rounded-lg transition-all duration-150 hover:scale-150"
-              />
-              <p className="text-lg text-black">{item.name}</p>
+    <div className="relative flex h-full w-full items-center justify-center bg-[#EDEDED]">
+      <div
+        className="mx-auto mt-12 flex min-h-[1330px] min-w-[900px] max-w-[950px] flex-col gap-6 font-poppins-reg text-[#363636]"
+        id="about"
+      >
+        <div className="top-part flex gap-7">
+          <div className="bg-bg-box w-1/3 rounded-3xl">
+            <Image
+              src={"/img/about/profile.png"}
+              alt="Alexandre Bonefons"
+              width={200}
+              height={200}
+              className="h-full w-full rounded-3xl object-cover shadow-lg"
+            />
+          </div>
+          <div className="relative flex w-1/3 flex-col items-start justify-start gap-7 overflow-hidden rounded-3xl bg-borderbox p-4">
+            <img
+              src="/img/about/circle.svg"
+              alt="circle"
+              className="absolute bottom-[-62%] left-[67%] z-10 h-[166px] w-[180px]"
+            />
+            <div className="flex gap-2 text-[22px]">
+              <p>{t("presentation.hello")}</p>
+              <img src="/img/about/hand.svg" alt="hand" />
+              <p>{t("presentation.im")}</p>
             </div>
-          ))}
+            <div>
+              <h1 className="font-poppins-bold text-[26px]">
+                {t("presentation.name")} <br /> {t("presentation.surname")}
+              </h1>
+              <p className="mt-2 text-[19px]">{t("presentation.job")}</p>
+            </div>
+          </div>
+
+          <div className="relative flex w-2/3 flex-col items-start justify-start gap-7 overflow-hidden rounded-3xl bg-borderbox p-4 font-poppins-bold">
+            <img
+              src="/img/about/circle.svg"
+              alt="circle"
+              className="absolute bottom-[-62%] left-[-23%] z-10 h-[166px] w-[180px]"
+            />
+            <h2 className="text-[26px]">{t("languages.title")}</h2>
+            <ul className="flex w-full flex-row justify-between">
+              <div className="flex h-full flex-col gap-2 text-[19px]">
+                <li>{t("languages.french")}</li>
+                <li>{t("languages.english")}</li>
+                <li>{t("languages.spanish")}</li>
+              </div>
+              <div className="flex h-full flex-col gap-2 text-[19px]">
+                <img src="/img/about/progress_bar.svg" className="h-[30px]" height="60px" width="100%" alt="" />
+                <img src="/img/about/progress_bar.svg" className="h-[30px]" height="60px" width="80%" alt="" />
+                <img src="/img/about/progress_bar.svg" className="h-[30px]" height="60px" width="60%" alt="" />
+              </div>
+            </ul>
+          </div>
         </div>
-      </div>
-      <div className="col-span-2 col-start-4 row-span-2 rounded-2xl bg-slate-200 p-6">
-        <p className="mt-1 text-center text-3xl text-black">Design</p>
-        <div className="mt-8 grid grid-cols-3 gap-8 gap-x-6">
-          {design.map((item) => (
-            <div key={item.name} className="ml-auto mr-auto flex h-auto w-fit flex-col items-center gap-2">
-              <img
-                src={item.img}
-                alt={item.name}
-                className="h-12 w-12 overflow-hidden rounded-lg transition-all duration-150 hover:scale-150"
-              />
-              <p className="text-lg text-black">{item.name}</p>
+        <div className="middle-part flex gap-6">
+          <div className="flex w-[23.3333%] flex-col items-center justify-start gap-6 rounded-2xl bg-borderbox p-4">
+            <h2 className="font-poppins-bold text-[26px]">{t("tools.title")}</h2>
+            <div className="text-center">
+              <span className="rounded-3xl bg-[#2C0505] px-4 py-1 font-poppins-light text-sm text-white">
+                {t("tools.frontend.title")}
+              </span>
+              <ul className="mt-6 flex flex-col gap-4">
+                <div className="flex items-center gap-5">
+                  <ToolItem name="TanStack" icon="tanstack.svg" />
+                  <ToolItem name="VueJS" icon="vuejs.svg" />
+                </div>
+                <div className="flex items-center gap-6">
+                  <ToolItem name="Shadcn" icon="shadcn.svg" />
+                  <ToolItem name="Tailwind" icon="tailwind.svg" />
+                </div>
+              </ul>
             </div>
-          ))}
+            <div className="text-center">
+              <span className="rounded-3xl bg-[#2C0505] px-4 py-1 font-poppins-light text-sm text-white">
+                {t("tools.backend.title")}
+              </span>
+              <ul className="mt-6 flex flex-col gap-4">
+                <div className="flex items-center gap-8">
+                  <ToolItem name="SQL" icon="sql.svg" />
+                  <ToolItem name="Wordpress" icon="wordpress.svg" />
+                </div>
+                <div className="flex items-center gap-10">
+                  <ToolItem name="Drizzle" icon="drizzle.svg" />
+                  <ToolItem name="Zustand" icon="zustand.png" />
+                </div>
+              </ul>
+            </div>
+            <div className="text-center">
+              <span className="rounded-3xl bg-[#2C0505] px-4 py-1 font-poppins-light text-sm text-white">
+                {t("tools.others.title")}
+              </span>
+              <ul className="mt-6 flex flex-col gap-4">
+                <div className="flex items-center gap-8">
+                  <ToolItem name="Git" icon="git.svg" />
+                  <ToolItem name="Azure" icon="microsoft_azure.svg" />
+                </div>
+              </ul>
+            </div>
+          </div>
+          <div className="relative flex w-3/4 flex-col items-start justify-start gap-4 overflow-hidden rounded-2xl bg-borderbox p-4">
+            <img
+              src="/img/about/circle.svg"
+              alt="circle"
+              className="absolute left-[22%] top-[-9%] z-10 h-[166px] w-[180px]"
+            />
+            <h2 className="ml-2 font-poppins-bold text-[26px]">{t("experiences.title")}</h2>
+            <div className="ml-2 mr-4 flex w-[97%] flex-col gap-4 font-poppins-reg text-[17px]">
+              {Experiencekeys.map((key) => {
+                const descriptionArray = t(`experiences.items.${key}.description`)
+                  .split("|")
+                  .map((item) => item.trim());
+
+                return (
+                  <ExperienceItem
+                    key={key}
+                    date={t(`experiences.items.${key}.date`)}
+                    title={t(`experiences.items.${key}.title`)}
+                    job={t(`experiences.items.${key}.job`)}
+                    place={t(`experiences.items.${key}.place`)}
+                    description={descriptionArray}
+                    compagny={t(`experiences.items.${key}.company`)}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="col-span-3 col-start-1 row-span-2 row-start-4 rounded-2xl bg-zinc-600 p-6">
-        <p className="mt-1 text-center text-3xl text-white">Others</p>
-        <div className="mt-6 grid grid-cols-3 gap-5 gap-x-6">
-          {others.map((item) => (
-            <div key={item.name} className="ml-auto mr-auto flex h-auto w-fit flex-col items-center gap-2">
-              <img
-                src={item.img}
-                alt={item.name}
-                className="h-12 w-12 overflow-hidden rounded-lg transition-all duration-150 hover:scale-150"
-              />
-              <p className="text-lg text-black">{item.name}</p>
+        <div className="bottom-part flex w-full gap-6">
+          <div className="flex w-1/2 flex-col gap-4">
+            <div className="flex flex-col gap-4 rounded-xl bg-borderbox p-4">
+              <h2 className="font-poppins-bold text-[26px]">{t("education.title")}</h2>
+
+              <div className="flex w-full flex-row gap-6">
+                <div className="w-1/2 rounded-3xl bg-green-500 p-4 font-poppins-bold text-[20px]">
+                  <p>2024</p>
+
+                  <p>Bac Informatique</p>
+                  <p>
+                    <span className="font-poppins-light text-sm">UniversitÃ© du QuÃ©bec Ã Chicoutimi</span>
+                  </p>
+                </div>
+
+                <div className="w-1/2 rounded-3xl bg-borderbox p-4 font-poppins-bold text-[26px] !shadow-none">
+                  <p>2024</p>
+
+                  <p>BUT MMI</p>
+                  <p>
+                    <span className="font-poppins-light text-sm">I.U.T De VÃ©lizy (France)</span>
+                  </p>
+                </div>
+              </div>
+              <div className="flex w-full flex-row gap-6">
+                <div className="w-1/2 rounded-3xl bg-borderbox p-4 font-poppins-bold text-[26px] !shadow-none">
+                  <p>2024</p>
+
+                  <p>BUT MMI</p>
+                  <p>
+                    <span className="font-poppins-light text-sm">I.U.T De VÃ©lizy (France)</span>
+                  </p>
+                </div>
+                <div className="w-1/2 rounded-3xl bg-green-500 p-4 font-poppins-bold text-[20px]">
+                  <p>2024</p>
+
+                  <p>Bac Informatique</p>
+                  <p>
+                    <span className="font-poppins-light text-sm">UniversitÃ© du QuÃ©bec Ã Chicoutimi</span>
+                  </p>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-      <div className="col-span-2 col-start-4 row-span-3 row-start-3 rounded-2xl bg-neutral-600 p-6">
-        <p className="mt-1 text-center text-3xl text-white">Backend</p>
-        <div className="mt-6 grid grid-cols-3 gap-12 gap-x-6">
-          {backend.map((item) => (
-            <div key={item.name} className="ml-auto mr-auto flex h-auto w-fit flex-col items-center gap-2">
-              <img
-                src={item.img}
-                alt={item.name}
-                className="h-12 w-12 overflow-hidden rounded-lg transition-all duration-150 hover:scale-150"
-              />
-              <p className="text-lg text-black">{item.name}</p>
+          </div>
+          <div className="flex w-1/2 flex-col gap-4">
+            <div className="flex flex-col gap-4 rounded-xl bg-borderbox p-4 px-6">
+              <h2 className="font-poppins-bold text-[26px]">{t("projects.title")}</h2>
+
+              <div className="flex w-full flex-col gap-6">
+                <p className="font-poppins-reg text-xl">{t("projects.description")}</p>
+                <Link href="/#projects" className="ml-auto mr-3 mt-[69px] flex flex-row gap-4 pb-1">
+                  <p className="font-poppins-reg text-2xl">{t("projects.view")}</p>
+                  <img src="/img/about/arrow.svg" height="28px" width="28px" alt="" />
+                </Link>
+              </div>
             </div>
-          ))}
+            <div className="flex flex-col gap-4 rounded-xl border border-black p-4 px-6">
+              <h2 className="font-poppins-bold text-[26px]">{t("chat.title")}</h2>
+
+              <div className="flex w-full flex-col gap-6">
+                <p className="font-poppins-reg text-[15px]">{t("chat.contact")}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

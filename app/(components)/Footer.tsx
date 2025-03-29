@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import { useCopyToClipboard } from "../(utils)/useCopyToClipboard";
 
 const contactLinks = [
@@ -36,7 +35,7 @@ export default function Footer() {
             // Utilisation d'un bouton pour l'email (non cliquable)
             <button
               key={index}
-              className="flex w-full max-w-[11rem] cursor-pointer items-center justify-center gap-2 rounded-[22px] bg-background px-8 py-2 lg:w-fit lg:justify-normal lg:px-10"
+              className="flex w-full max-w-[11rem] cursor-pointer items-center justify-center gap-2 rounded-[22px] bg-background px-8 py-2 hover:scale-105 lg:w-fit lg:justify-normal lg:px-10"
               onClick={handleCopy}
             >
               <img src={icon} className="h-[20px] w-[24px] max-w-none" alt={alt} />
@@ -47,7 +46,7 @@ export default function Footer() {
             <Link key={index} href={href} target="_blank" rel="noreferrer">
               <button
                 aria-label="socialmedias"
-                className="flex w-full max-w-[11rem] items-center justify-center gap-2 rounded-[22px] bg-background px-8 py-2 lg:w-fit lg:justify-normal lg:px-10"
+                className="flex w-full max-w-[11rem] items-center justify-center gap-2 rounded-[22px] bg-background px-8 py-2 hover:scale-105 lg:w-fit lg:justify-normal lg:px-10"
               >
                 <img src={icon} className="h-[20px] w-[24px] max-w-none" alt={alt} />
                 <p className="dark:text-text text-xl text-foreground">{text}</p>

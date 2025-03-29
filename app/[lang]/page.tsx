@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Arrows from "../(components)/(elements)/Arrows";
 import Circle from "../(components)/(elements)/Circle";
 import Lines from "../(components)/(elements)/Lines";
+import About from "../(components)/About";
 import Footer from "../(components)/Footer";
 import Menu from "../(components)/Menu";
 import Projects from "../(components)/Projects";
@@ -58,8 +59,8 @@ export default function Homepage() {
           <Lines onAnimationComplete={() => setStartArrowAnimation(true)} />
         </div>
         {/* Div de test pour simuler du scroll */}
-        <div className="h-[100vh]"></div>
-        {/* <About /> */}
+        <div className="h-[35vh]"></div>
+        <About />
         <Projects />
         <Footer />
       </main>

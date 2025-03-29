@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       colors: {
         background: "hsl(var(--background))",
+        borderbox: "hsl(var(--border-box))",
         foreground: "hsl(var(--foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",
@@ -58,6 +59,7 @@ const config: Config = {
         "poppins-reg": ["poppins-reg", "sans-serif"],
         "poppins-light": ["poppins-light", "sans-serif"],
         "poppins-extralight": ["poppins-extralight", "sans-serif"],
+        "poppins-bold": ["poppins-bold", "sans-serif"],
         "khula-regular": ["khula-regular", "sans-serif"],
         "khula-light": ["khula-light", "sans-serif"]
       },

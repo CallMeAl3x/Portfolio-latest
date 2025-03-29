@@ -18,6 +18,13 @@
   }
 
   @font-face {
+    font-family: "poppins-bold";
+    font-style: normal;
+    font-display: swap;
+    src: url(/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
+  }
+
+  @font-face {
     font-family: "poppins-extralight";
     font-style: normal;
     font-display: swap;
@@ -64,6 +71,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --border-box: 60 67% 100%;
   }
   .dark {
     --background: 0 0% 4%;
@@ -90,6 +98,7 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+    --border-box: 60 67% 100%;
   }
 }
 
@@ -133,6 +142,11 @@ body {
   mask-image: linear-gradient(to bottom, var(--foreground) 0%, var(--foreground) 80%, transparent 100%);
 }
 
+.bg-borderbox {
+  background-color: hsl(var(--border-box));
+  box-shadow: inset 1px 22px 27.6px 5px #2f2d2d14;
+}
+
 .transition-opacity {
   transition: opacity 0.25s ease-in-out;
 }
@@ -160,4 +174,17 @@ body {
   to {
     transform: scale(1);
   }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
 }
