@@ -1,4 +1,4 @@
 export { ChatBotIcon } from "./ChatBotIcon";
 export { default as ChatBox } from "./ChatBox";
-export { ChatContent } from "./ChatContent";
+export { ChatInterface } from "./ChatInterface";
 export { SubmitButton } from "./SubmitButton";

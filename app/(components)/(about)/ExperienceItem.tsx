@@ -19,7 +19,7 @@ export default function ExperienceItem({
 }: ExperienceItemProps) {
   return (
     <div
-      className={`experience-item z-20 flex w-full flex-row gap-2 rounded-3xl bg-[#7FC3EC] p-5 text-white ${className}`}
+      className={`experience-item z-20 flex w-full flex-row gap-2 rounded-3xl bg-accent p-5 text-white ${className}`}
     >
       <div className="flex flex-row items-end">
         <div className="flex flex-col gap-3">

@@ -293,7 +293,7 @@ export default function About() {
                   <h2 className="font-poppins-bold text-[26px]">{t("education.title")}</h2>
 
                   <div className="flex w-full flex-row gap-6">
-                    <div className="w-1/2 rounded-3xl bg-[#7FC3EC] p-4 font-poppins-bold text-[20px] text-white">
+                    <div className="w-1/2 rounded-3xl bg-accent p-4 font-poppins-bold text-[20px] text-white">
                       <p>{t("education.formations.BUT-MMI.date")}</p>
                       <p>{t("education.formations.BUT-MMI.title")}</p>
                       <p>
@@ -468,7 +468,7 @@ export default function About() {
             />
             <h2 className="text-center font-poppins-bold text-[26px]">{t("education.title")}</h2>
             <div className="flex w-full flex-row gap-6 text-white">
-              <div className="w-full rounded-3xl bg-[#7FC3EC] p-4 font-poppins-bold text-[23px]">
+              <div className="w-full rounded-3xl bg-accent p-4 font-poppins-bold text-[23px]">
                 <p>{t("education.formations.BUT-MMI.date")}</p>
                 <p>{t("education.formations.BUT-MMI.title")}</p>
                 <p>
