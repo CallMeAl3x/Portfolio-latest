@@ -1,135 +1,93 @@
-"use client";
+import React, { useState } from "react";
+import { ChatCompletionStreamRequestMessages } from "@mistralai/mistralai/models/components";
 import { sendMessage } from "@/actions/chat";
-import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
-import { Expand, Minimize, Minus } from "lucide-react";
-import { useActionState, useEffect, useRef, useState } from "react";
 import { ChatBotIcon } from "./ChatBotIcon";
-import { ChatContent } from "./ChatContent";
 
-export default function ChatBox() {
-  const formRef = useRef<HTMLFormElement>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const chatBoxRef = useRef<HTMLDivElement>(null);
-  const [isExpanded, setIsExpanded] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+const ChatBot: React.FC = () => {
+  const [messages, setMessages] = useState<ChatCompletionStreamRequestMessages[]>([]);
+  const [userInput, setUserInput] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
   const [showChat, setShowChat] = useState(false);
 
-  const handleSubmit = async (formData: FormData) => {
-    await formAction(formData);
-    formRef.current?.reset();
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!userInput.trim()) return;
 
-  const [state, formAction] = useActionState(sendMessage, { messages: [], error: null });
-
-  const chatContent = (
-    <ChatContent
-      state={state}
-      formRef={formRef}
-      messagesEndRef={messagesEndRef}
-      handleSubmit={handleSubmit}
-      isExpanded={isExpanded}
-    />
-  );
-
-  const handleOutsideClick = (event: MouseEvent) => {
-    if (chatBoxRef.current && !chatBoxRef.current.contains(event.target as Node)) {
-      setShowChat(false);
-      setIsExpanded(false);
-    }
-  };
-
-  useEffect(() => {
-    if (showChat) {
-      document.addEventListener("mousedown", handleOutsideClick);
+    const response = await sendMessage(messages, userInput);
+    if (response.error) {
+      setError(response.error);
     } else {
-      document.removeEventListener("mousedown", handleOutsideClick);
+      setMessages(response.messages as ChatCompletionStreamRequestMessages[]);
+      setUserInput("");
+      setError(null);
     }
-
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, [showChat]);
+  };
 
   if (!showChat) {
     return <ChatBotIcon onClick={() => setShowChat(true)} />;
   }
 
   return (
-    <>
-      {/* Mobile Drawer - visible only on small screens */}
-      <div className="md:hidden">
-        <Drawer open={isOpen} onOpenChange={setIsOpen}>
-          <DrawerTrigger asChild>
-            <ChatBotIcon onClick={() => {}} />
-          </DrawerTrigger>
-          <DrawerContent className="fixed inset-x-0 bottom-0 h-[85vh] rounded-t-xl border-t border-gray-200 bg-white">
-            <DrawerHeader className="border-b bg-white px-6">
-              <div className="flex items-center justify-between">
-                <DrawerTitle className="text-lg font-semibold text-gray-900">Alexandre&apos;s assistant</DrawerTitle>
-                <DrawerClose className="rounded-lg p-2 text-gray-500 hover:bg-gray-100">
-                  <Minus size={20} />
-                </DrawerClose>
-              </div>
-            </DrawerHeader>
-            <div className="flex h-[calc(85vh-90px)] flex-col bg-white">{chatContent}</div>
-          </DrawerContent>
-        </Drawer>
-      </div>
-
-      {/* Desktop Chat - hidden on small screens */}
-      <div className="hidden md:block">
-        {isExpanded ? (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
-            <div ref={chatBoxRef} className="flex h-[85vh] w-[70vw] flex-col rounded-xl bg-white shadow-2xl">
-              <div className="flex items-center justify-between rounded-t-xl border-b bg-white p-6">
-                <h3 className="text-xl font-semibold text-gray-900">Alexandre&apos;s assistant</h3>
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => setIsExpanded(false)}
-                    className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
-                  >
-                    <Minimize size={22} />
-                  </button>
-                  <button
-                    onClick={() => setShowChat(false)}
-                    className="rounded-lg p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
-                  >
-                    <Minus size={22} />
-                  </button>
-                </div>
-              </div>
-              {chatContent}
-            </div>
-          </div>
-        ) : (
-          <div
-            ref={chatBoxRef}
-            className="absolute bottom-16 right-0 mb-4 flex h-96 w-80 flex-col rounded-xl border border-gray-200 bg-white shadow-xl"
-          >
-            <ChatBotIcon onClick={() => setShowChat(false)} />
-
-            <div className="flex items-center justify-between rounded-t-xl border-b-[0.5px] border-black/40 bg-white p-4">
-              <h3 className="font-semibold text-gray-900">Alexandre&apos;s assistant</h3>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setIsExpanded(true)}
-                  className="rounded-lg p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
-                >
-                  <Expand size={20} />
-                </button>
-                <button
-                  onClick={() => setShowChat(false)}
-                  className="rounded-lg p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
-                >
-                  <Minus size={20} />
-                </button>
-              </div>
-            </div>
-            {chatContent}
-          </div>
-        )}
-      </div>
-    </>
+    <div style={{ maxWidth: "600px", margin: "0 auto", padding: "1rem" }}>
+      <h1>ChatBot</h1>
+      <ChatContent messages={messages} />
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      <form onSubmit={handleSubmit} style={{ display: "flex", marginTop: "1rem" }}>
+        <input
+          type="text"
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+          placeholder="Type your message..."
+          style={{
+            flex: 1,
+            padding: "0.5rem",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+            marginRight: "0.5rem"
+          }}
+        />
+        <button
+          type="submit"
+          style={{
+            padding: "0.5rem 1rem",
+            borderRadius: "4px",
+            border: "none",
+            backgroundColor: "#007BFF",
+            color: "#fff",
+            cursor: "pointer"
+          }}
+        >
+          Send
+        </button>
+      </form>
+    </div>
   );
-}
+};
+
+const ChatContent: React.FC<{ messages: ChatCompletionStreamRequestMessages[] }> = ({ messages }) => {
+  return (
+    <div
+      style={{
+        border: "1px solid #ccc",
+        borderRadius: "4px",
+        padding: "1rem",
+        height: "400px",
+        overflowY: "auto",
+        backgroundColor: "#f9f9f9"
+      }}
+    >
+      {messages.length === 0 ? (
+        <p>No messages yet. Start the conversation!</p>
+      ) : (
+        messages.map((message, index) => (
+          <div key={index} style={{ marginBottom: "1rem" }}>
+            <strong>{message.role === "user" ? "You" : "Assistant"}:</strong>
+            <p style={{ marginTop: "0.5rem", whiteSpace: "pre-wrap" }}>{String(message.content)}</p>
+          </div>
+        ))
+      )}
+    </div>
+  );
+};
+
+export default ChatBot;
