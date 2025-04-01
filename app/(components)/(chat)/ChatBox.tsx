@@ -10,7 +10,6 @@ import ChatInterface from "./ChatInterface";
 const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<ChatCompletionStreamRequestMessages[]>([]);
   const [userInput, setUserInput] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
   const [showChat, setShowChat] = useState(false);
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
@@ -23,11 +22,9 @@ const ChatBot: React.FC = () => {
 
     const response = await sendMessage(messages, userInput);
     if (response.error) {
-      setError(response.error);
     } else {
       setMessages(response.messages as ChatCompletionStreamRequestMessages[]);
       setUserInput("");
-      setError(null);
     }
   };
 
@@ -48,7 +45,7 @@ const ChatBot: React.FC = () => {
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
     };
-  }, [showChat, isMobile]);
+  }, [showChat, isMobile, handleOutsideClick]);
 
   if (!showChat) {
     return <ChatBotIcon onClick={() => setShowChat(true)} />;
