@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const useIsMobile = (): boolean => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
@@ -39,7 +39,7 @@ const useIsTablet = (): boolean => {
 };
 
 const useIsLaptop = (): boolean => {
-  const [isLaptop, setIsLaptop] = useState<boolean>(false);
+  const [isLaptop, setIsLaptop] = useState<boolean>(true);
 
   const checkIsLaptop = () => {
     setIsLaptop(window.innerWidth > 1024); // Adjust the breakpoints as needed
@@ -57,6 +57,6 @@ const useIsLaptop = (): boolean => {
   return isLaptop;
 };
 
-export { useIsMobile, useIsLaptop, useIsTablet };
+export { useIsLaptop, useIsMobile, useIsTablet };
 
 export default useIsMobile;
