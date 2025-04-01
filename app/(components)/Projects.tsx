@@ -91,7 +91,7 @@ export default function Projects() {
   }, [cards, activeCardIndex]);
 
   return (
-    <div className="pt-[25vh]" id="projects">
+    <div className="pt-[30vh] md:pt-[25vh]" id="projects">
       <div className="ml-auto mr-auto flex max-w-[1048px] flex-col items-center justify-center gap-9 2xl:max-w-[1300px]">
         <h2 className="mb-8 text-center font-poppins-light text-2xl text-background md:text-3xl xl:text-4xl">
           {tH("selectedProjects")}

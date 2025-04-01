@@ -59,7 +59,6 @@ export default function Homepage() {
           <Lines onAnimationComplete={() => setStartArrowAnimation(true)} />
         </div>
         {/* Div de test pour simuler du scroll */}
-        <div className="h-[35vh]"></div>
         <About />
         <Projects />
         <Footer />

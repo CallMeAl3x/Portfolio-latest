@@ -66,7 +66,7 @@ export default function ChatBox() {
           <DrawerContent className="fixed inset-x-0 bottom-0 h-[85vh] rounded-t-xl border-t border-gray-200 bg-white">
             <DrawerHeader className="border-b bg-white px-6">
               <div className="flex items-center justify-between">
-                <DrawerTitle className="text-lg font-semibold text-gray-900">Alexandre's assistant</DrawerTitle>
+                <DrawerTitle className="text-lg font-semibold text-gray-900">Alexandre&apos;s assistant</DrawerTitle>
                 <DrawerClose className="rounded-lg p-2 text-gray-500 hover:bg-gray-100">
                   <Minus size={20} />
                 </DrawerClose>
@@ -83,7 +83,7 @@ export default function ChatBox() {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
             <div ref={chatBoxRef} className="flex h-[85vh] w-[70vw] flex-col rounded-xl bg-white shadow-2xl">
               <div className="flex items-center justify-between rounded-t-xl border-b bg-white p-6">
-                <h3 className="text-xl font-semibold text-gray-900">Alexandre's assistant</h3>
+                <h3 className="text-xl font-semibold text-gray-900">Alexandre&apos;s assistant</h3>
                 <div className="flex gap-3">
                   <button
                     onClick={() => setIsExpanded(false)}
@@ -110,7 +110,7 @@ export default function ChatBox() {
             <ChatBotIcon onClick={() => setShowChat(false)} />
 
             <div className="flex items-center justify-between rounded-t-xl border-b-[0.5px] border-black/40 bg-white p-4">
-              <h3 className="font-semibold text-gray-900">Alexandre's assistant</h3>
+              <h3 className="font-semibold text-gray-900">Alexandre&apos;s assistant</h3>
               <div className="flex gap-2">
                 <button
                   onClick={() => setIsExpanded(true)}

@@ -169,24 +169,24 @@
       }
     },
     "education": {
-      "title": "Éducation",
-      "educations": [
-        {
+      "title": "Formations",
+      "formations": {
+        "BUT-MMI": {
           "date": "2022 - 2025",
           "title": "B.U.T MMI",
-          "school": "I.U.T De Vélizy (France)"
+          "school": "I.U.T  De Velizy (France)"
         },
-        {
+        "BAC-INFO": {
           "date": "2022 - 2025",
           "title": "Baccalauréat Informatique",
-          "school": "UQAC (Québec)"
+          "school": "UQAC (Quebec)"
         },
-        {
+        "BAC-STI2D": {
           "date": "2022",
           "title": "BAC STI2D",
           "school": "Lycée Eugène Ionesco (France)"
         }
-      ]
+      }
     },
     "projects": {
       "title": "Projets",

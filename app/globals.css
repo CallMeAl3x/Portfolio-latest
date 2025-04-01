@@ -167,6 +167,11 @@ body {
   transition: transform 0.25s ease-in-out;
 }
 
+.ringImage {
+  max-width: none;
+  user-select: none;
+}
+
 @keyframes scale-up {
   from {
     transform: scale(0.1);

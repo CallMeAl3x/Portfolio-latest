@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
 import { CardProps } from "../../(types)/card";
 
 export default function Card({ title, cardDescription, index, link, isHovered, cardImage }: CardProps) {
@@ -16,12 +16,14 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
           <p className={`mr-4 md:text-2xl ${isHovered ? "text-gray-500" : ""}`}>0{index}</p>
           <div className="flex flex-col justify-end gap-3 xl:w-full 2xl:flex-row 2xl:justify-between">
             <p
-              className={`font-khula-regular text-6xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}
+              className={`w-auto text-nowrap font-khula-regular text-6xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}
             >
               {title}
             </p>
 
-            <p className={`mb-3 mt-auto text-2xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}>
+            <p
+              className={`mb-3 mt-auto text-end text-2xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}
+            >
               {cardDescription}
             </p>
           </div>
