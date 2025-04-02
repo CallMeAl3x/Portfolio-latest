@@ -1,5 +1,6 @@
 import { ChatCompletionStreamRequestMessages } from "@mistralai/mistralai/models/components";
 import { LoaderIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import React, { useEffect } from "react";
 import { SubmitButton } from "./SubmitButton";
 
@@ -21,6 +22,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   ref
 }) => {
   const messagesEndRef = (ref || React.createRef<HTMLDivElement>()) as React.RefObject<HTMLDivElement>; // Ensure ref is used properly
+  const t = useTranslations("About.chatbot");
 
   // Scroll to the bottom whenever messages change
   useEffect(() => {
@@ -33,7 +35,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
     <>
       <div className="chat-content h-full flex-1 space-y-4 overflow-y-auto bg-gray-50 p-4">
         {messages.length === 0 ? (
-          <p className="font-poppins-reg italic text-gray-600">No messages yet...</p>
+          <p className="font-poppins-reg italic text-gray-600">{t("noMessage")}</p>
         ) : (
           messages.map((message, index) => (
             <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>

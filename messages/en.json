@@ -200,7 +200,8 @@
     "chatbot": {
       "title": "Alexandre's Assistant",
       "placeholder": "Ask me a question",
-      "send": "Send"
+      "send": "Send",
+      "noMessage": "Please enter a message"
     }
   }
 }
