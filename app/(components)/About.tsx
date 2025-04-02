@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { useIsLaptop } from "../(utils)/userDevice";
 import ExperienceItem from "./(about)/ExperienceItem";
 import ToolItem from "./(about)/ToolItem";
+import Ring from "./(elements)/Ring";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,13 +83,12 @@ export default function About() {
   useEffect(() => {
     if (!aboutRef.current) return;
 
-    // Create a timeline with ScrollTrigger
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: aboutRef.current,
         start: "top bottom",
-        end: "58% top", // End the animation earlier in the scroll
-        scrub: 1 // Adding a small value for smoother scrubbing
+        end: "58% top",
+        scrub: 1
       }
     });
 
@@ -104,8 +104,8 @@ export default function About() {
       y: 800,
       rotation: 90,
       scale: 0.55,
-      opacity: 0, // Add fade out
-      duration: 0.5, // Reduce duration to make it disappear faster
+      opacity: 0,
+      duration: 0.5,
       ease: "power1.in"
     });
 
@@ -126,7 +126,7 @@ export default function About() {
             ref={aboutRef}
           >
             <div className="top-part flex gap-7">
-              <div className="bg-bg-box box-image relative w-1/3 overflow-hidden rounded-3xl">
+              <div className="box-image relative w-1/3 overflow-hidden rounded-3xl">
                 <Image
                   src={"/img/about/profile.png"}
                   alt="Alexandre Bonefons"
@@ -134,26 +134,10 @@ export default function About() {
                   height={200}
                   className="h-full w-full rounded-3xl object-cover shadow-lg"
                 />
-                <img
-                  src="/img/about/ring.svg"
-                  alt="ring"
-                  className="ringImage absolute z-10 h-[914px] w-[845px]"
-                  style={{
-                    top: "116px",
-                    left: "363px"
-                  }}
-                />
+                <Ring top={116} left={363} />
               </div>
               <div className="box-effect box-profile relative flex w-1/3 flex-col items-start justify-start gap-7 overflow-hidden rounded-3xl bg-borderbox p-4">
-                <img
-                  src="/img/about/ring.svg"
-                  alt="ring"
-                  className="ringImage absolute z-10 h-[914px] w-[845px] transition-transform duration-200 ease-out"
-                  style={{
-                    top: "114px",
-                    left: "117px"
-                  }}
-                />
+                <Ring top={114} left={117} />
                 <div className="flex gap-2 text-[22px]">
                   <p>{t("presentation.hello")}</p>
                   <img src="/img/about/hand.svg" alt="hand" />
@@ -168,15 +152,7 @@ export default function About() {
               </div>
 
               <div className="box-effect box-languages relative flex w-2/3 flex-col items-start justify-start gap-7 overflow-hidden rounded-3xl bg-borderbox p-4 font-poppins-bold">
-                <img
-                  src="/img/about/ring.svg"
-                  alt="ring"
-                  className="ringImage absolute z-10 h-[914px] w-[845px]"
-                  style={{
-                    top: "114px",
-                    left: "-140px"
-                  }}
-                />
+                <Ring top={114} left={-140} />
                 <h2 className="text-[26px]">{t("languages.title")}</h2>
                 <ul className="flex w-full flex-row justify-between">
                   <div className="flex h-full flex-col gap-2 text-[19px]">
@@ -194,15 +170,7 @@ export default function About() {
             </div>
             <div className="middle-part flex gap-6">
               <div className="box-effect box-tools relative flex w-[23.3333%] flex-col items-center justify-start gap-6 overflow-hidden rounded-2xl bg-borderbox p-4">
-                <img
-                  src="/img/about/ring.svg"
-                  alt="ring"
-                  className="ringImage absolute z-10 h-[914px] w-[845px]"
-                  style={{
-                    top: "-118px",
-                    left: "363px"
-                  }}
-                />
+                <Ring top={-118} left={363} />
                 <h2 className="font-poppins-bold text-[26px]">{t("tools.title")}</h2>
                 <div className="text-center">
                   <span className="rounded-3xl bg-[#2C0505] px-4 py-1 font-poppins-light text-sm text-white">
@@ -247,15 +215,7 @@ export default function About() {
                 </div>
               </div>
               <div className="box-effect box-experiences relative flex w-3/4 flex-col items-start justify-start gap-4 overflow-hidden rounded-2xl bg-borderbox p-4">
-                <img
-                  src="/img/about/ring.svg"
-                  alt="ring"
-                  className="ringImage absolute z-10 h-[914px] w-[845px]"
-                  style={{
-                    left: "117px",
-                    top: "-118px"
-                  }}
-                />
+                <Ring top={-118} left={117} />
                 <h2 className="ml-2 font-poppins-bold text-[26px]">{t("experiences.title")}</h2>
                 <div className="ml-2 mr-4 flex w-[97%] flex-col gap-4 font-poppins-reg text-[17px]">
                   {ExperienceKeys.map((key) => {
@@ -281,15 +241,7 @@ export default function About() {
             <div className="bottom-part flex w-full gap-6">
               <div className="flex w-1/2 flex-col gap-4">
                 <div className="box-effect box-education relative flex flex-col gap-4 overflow-hidden rounded-xl bg-borderbox p-4 px-6">
-                  <img
-                    src="/img/about/ring.svg"
-                    alt="ring"
-                    className="ringImage absolute z-10 h-[914px] w-[845px]"
-                    style={{
-                      top: "-821px",
-                      left: "362px"
-                    }}
-                  />
+                  <Ring top={-821} left={362} />
                   <h2 className="font-poppins-bold text-[26px]">{t("education.title")}</h2>
 
                   <div className="flex w-full flex-row gap-6">
@@ -322,15 +274,7 @@ export default function About() {
               </div>
               <div className="flex w-1/2 flex-col gap-4">
                 <div className="box-effect box-projects relative flex flex-col gap-4 overflow-hidden rounded-xl bg-borderbox p-4 px-6">
-                  <img
-                    src="/img/about/ring.svg"
-                    alt="ring"
-                    className="ringImage absolute z-10 h-[914px] w-[845px]"
-                    style={{
-                      top: "-819px",
-                      left: "-123px"
-                    }}
-                  />
+                  <Ring top={-819} left={-123} />
                   <h2 className="font-poppins-bold text-[26px]">{t("projects.title")}</h2>
 
                   <div className="flex w-full flex-col gap-6">
@@ -342,15 +286,7 @@ export default function About() {
                   </div>
                 </div>
                 <div className="box-effect relative flex flex-col gap-4 overflow-hidden rounded-xl border border-black p-4 px-6">
-                  <img
-                    src="/img/about/ring.svg"
-                    alt="ring"
-                    className="ringImage absolute z-10 h-[914px] w-[845px]"
-                    style={{
-                      top: "-1138px",
-                      left: "-124px"
-                    }}
-                  />
+                  <Ring top={-1138} left={-124} />
                   <h2 className="font-poppins-bold text-[26px]">{t("chat.title")}</h2>
 
                   <div className="flex w-full flex-col gap-6">

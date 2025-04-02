@@ -3,6 +3,7 @@ import useIsMobile from "@/app/(utils)/userDevice";
 import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { ChatCompletionStreamRequestMessages } from "@mistralai/mistralai/models/components";
 import { Expand, Minimize, Minus } from "lucide-react";
+import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
 import { ChatBotIcon } from "./ChatBotIcon";
 import ChatInterface from "./ChatInterface";
@@ -16,7 +17,7 @@ const ChatBot: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const isMobile = useIsMobile();
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
+  const t = useTranslations("About.chatbot");
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!userInput.trim()) return;
@@ -58,7 +59,7 @@ const ChatBot: React.FC = () => {
 
   return (
     <>
-      <div className="relative md:hidden">
+      <div className="relative font-poppins-bold md:hidden">
         <Drawer open={isOpen} onOpenChange={setIsOpen}>
           <DrawerTrigger asChild>
             <ChatBotIcon />
@@ -66,7 +67,7 @@ const ChatBot: React.FC = () => {
           <DrawerContent className="fixed inset-x-0 bottom-0 h-[85vh] rounded-t-xl border-t border-gray-200 bg-white">
             <DrawerHeader className="border-b bg-white px-6">
               <div className="flex items-center justify-between">
-                <DrawerTitle className="text-lg font-semibold text-gray-900">Alexandre&apos;s assistant</DrawerTitle>
+                <DrawerTitle className="font-poppins-regular text-lg text-gray-900">{t("title")}</DrawerTitle>
                 <DrawerClose className="rounded-lg p-2 text-gray-500 hover:bg-gray-100">
                   <Minus size={20} />
                 </DrawerClose>
@@ -91,7 +92,7 @@ const ChatBot: React.FC = () => {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
             <div ref={chatBoxRef} className="flex h-[85vh] w-[70vw] flex-col rounded-xl bg-white shadow-2xl">
               <div className="flex items-center justify-between rounded-t-xl border-b bg-white p-6">
-                <h3 className="text-xl font-semibold text-gray-900">Alexandre&apos;s assistant</h3>
+                <h3 className="font-poppins-bold text-xl text-gray-900">{t("title")}</h3>
                 <div className="flex gap-3">
                   <button
                     onClick={() => setIsExpanded(false)}
@@ -124,7 +125,7 @@ const ChatBot: React.FC = () => {
             <ChatBotIcon onClick={() => setShowChat(false)} />
 
             <div className="flex items-center justify-between rounded-t-xl border-b-[0.5px] border-black/40 bg-white p-4">
-              <h3 className="font-semibold text-gray-900">Alexandre&apos;s assistant</h3>
+              <h3 className="font-poppins-reg text-gray-900">{t("title")}</h3>
               <div className="flex gap-2">
                 <button
                   onClick={() => setIsExpanded(true)}

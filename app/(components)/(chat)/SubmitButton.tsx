@@ -1,13 +1,15 @@
 import { LoaderIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface SubmitButtonProps {
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   userInput: string;
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
-  isLoading?: boolean; // Optional loading prop
+  isLoading?: boolean;
 }
 
 export function SubmitButton({ handleSubmit, userInput, setUserInput, isLoading }: SubmitButtonProps) {
+  const t = useTranslations("About.chatbot");
   return (
     <form onSubmit={handleSubmit} className="flex">
       <input
@@ -15,8 +17,8 @@ export function SubmitButton({ handleSubmit, userInput, setUserInput, isLoading 
         value={userInput}
         name="message"
         onChange={(e) => setUserInput(e.target.value)}
-        placeholder="Type your message..."
-        className="font-roboto flex-1 border border-gray-200 p-2 text-black focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
+        placeholder={t("placeholder")}
+        className="flex-1 border border-gray-200 p-2 font-poppins-reg text-black focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
         required
         maxLength={500}
       />
@@ -24,7 +26,11 @@ export function SubmitButton({ handleSubmit, userInput, setUserInput, isLoading 
         type="submit"
         className="rounded-t-tlg bg-accent px-4 py-2 text-white transition-colors hover:bg-indigo-700 disabled:bg-indigo-300"
       >
-        {!isLoading ? "Send" : <LoaderIcon size={18} className="spin transform" />}
+        {!isLoading ? (
+          <p className="font-poppins-reg">{t("send")}</p>
+        ) : (
+          <LoaderIcon size={18} className="spin transform" />
+        )}
       </button>
     </form>
   );

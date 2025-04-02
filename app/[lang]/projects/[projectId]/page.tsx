@@ -55,7 +55,7 @@ export default function ProjectPage(props: { params: Promise<{ projectId: string
   return (
     <>
       <div className="relative" id="projectpage">
-        <div className="flex max-h-[100vh] min-h-[100vh] w-full justify-center px-4 pb-12 text-white">
+        <div className="flex min-h-[100vh] w-full justify-center px-4 pb-12 text-white">
           <div className="mt-[8.5vh] w-full max-w-[1000px]">
             <div className="mb-[4vh] flex w-full flex-row items-center pr-4 sm:gap-4 xl:justify-between">
               <h1 className="khula-regular text-7xl tracking-[calc(6rem*0.03)] max-sm:text-[11.5vw] lg:text-8xl">

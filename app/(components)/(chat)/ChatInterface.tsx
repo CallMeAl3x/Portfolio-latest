@@ -1,7 +1,7 @@
 import { ChatCompletionStreamRequestMessages } from "@mistralai/mistralai/models/components";
+import { LoaderIcon } from "lucide-react";
 import React, { useEffect } from "react";
 import { SubmitButton } from "./SubmitButton";
-import { LoaderIcon } from "lucide-react";
 
 interface ChatInterfaceProps {
   messages: ChatCompletionStreamRequestMessages[];
@@ -31,15 +31,15 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
 
   return (
     <>
-      <div className="chat-content h-full flex-1 space-y-4 overflow-y-auto bg-[#f9f9f9] p-4">
+      <div className="chat-content h-full flex-1 space-y-4 overflow-y-auto bg-gray-50 p-4">
         {messages.length === 0 ? (
-          <p className="text-black"></p>
+          <p className="font-poppins-reg italic text-gray-600">No messages yet...</p>
         ) : (
           messages.map((message, index) => (
             <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
               <div
-                className={`max-w-[80%] rounded-lg p-3 text-black ${
-                  message.role === "user" ? "bg-accent text-white shadow-sm" : "bg-gray-100 text-gray-800 shadow-sm"
+                className={`max-w-[80%] rounded-xl px-3 py-2 text-gray-800 shadow-md ${
+                  message.role === "user" ? "bg-blue-500 text-white" : "bg-white"
                 }`}
               >
                 {String(message.content)}
@@ -49,14 +49,16 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
         )}
         {isLoading && (
           <div className="flex justify-start">
-            <div className="max-w-[80%] rounded-lg bg-gray-100 p-3 text-gray-800 shadow-sm">
+            <div className="max-w-[80%] rounded-xl bg-white px-3 py-2 text-gray-800 shadow-md">
               <LoaderIcon size={18} className="spin transform" />
+              Thinking...
             </div>
           </div>
         )}
         {/* Add a div at the end of the messages list for scrolling */}
         <div ref={messagesEndRef} />
       </div>
+
       <SubmitButton
         handleSubmit={handleSubmit}
         userInput={userInput}

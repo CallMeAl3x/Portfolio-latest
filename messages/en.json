@@ -196,6 +196,11 @@
     "chat": {
       "title": "Let's chat! I'm ready to work on exctinting projects",
       "contact": "Alexandre.bonefons@uqac.etu.ca | +33 6 32 18 58 78"
+    },
+    "chatbot": {
+      "title": "Alexandre's Assistant",
+      "placeholder": "Ask me a question",
+      "send": "Send"
     }
   }
 }
