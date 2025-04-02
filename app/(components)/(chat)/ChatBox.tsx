@@ -15,6 +15,7 @@ const ChatBot: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const isMobile = useIsMobile();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,6 +26,7 @@ const ChatBot: React.FC = () => {
     } else {
       setMessages(response.messages as ChatCompletionStreamRequestMessages[]);
       setUserInput("");
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -73,6 +75,7 @@ const ChatBot: React.FC = () => {
             <div className="flex h-[calc(85vh-90px)] flex-col bg-white">
               <ChatInterface
                 messages={messages}
+                ref={messagesEndRef}
                 userInput={userInput}
                 setUserInput={setUserInput}
                 handleSubmit={handleSubmit}
@@ -105,6 +108,7 @@ const ChatBot: React.FC = () => {
                 </div>
               </div>
               <ChatInterface
+                ref={messagesEndRef}
                 messages={messages}
                 userInput={userInput}
                 setUserInput={setUserInput}
@@ -137,6 +141,7 @@ const ChatBot: React.FC = () => {
               </div>
             </div>
             <ChatInterface
+              ref={messagesEndRef}
               messages={messages}
               userInput={userInput}
               setUserInput={setUserInput}

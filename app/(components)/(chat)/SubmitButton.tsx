@@ -1,10 +1,13 @@
+import { LoaderIcon } from "lucide-react";
+
 interface SubmitButtonProps {
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
   userInput: string;
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
+  isLoading?: boolean; // Optional loading prop
 }
 
-export function SubmitButton({ handleSubmit, userInput, setUserInput }: SubmitButtonProps) {
+export function SubmitButton({ handleSubmit, userInput, setUserInput, isLoading }: SubmitButtonProps) {
   return (
     <form onSubmit={handleSubmit} className="flex">
       <input
@@ -21,7 +24,7 @@ export function SubmitButton({ handleSubmit, userInput, setUserInput }: SubmitBu
         type="submit"
         className="rounded-t-tlg bg-accent px-4 py-2 text-white transition-colors hover:bg-indigo-700 disabled:bg-indigo-300"
       >
-        Send
+        {!isLoading ? "Send" : <LoaderIcon size={18} className="spin transform" />}
       </button>
     </form>
   );
