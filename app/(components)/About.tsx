@@ -273,15 +273,21 @@ export default function About() {
                 </div>
               </div>
               <div className="flex w-1/2 flex-col gap-4">
-                <div className="box-effect box-projects relative flex flex-col gap-4 overflow-hidden rounded-xl bg-borderbox p-4 px-6">
+                <div className="box-projects relative flex flex-col gap-4 overflow-hidden rounded-xl bg-borderbox p-4 px-6">
                   <Ring top={-819} left={-123} />
                   <h2 className="font-poppins-bold text-[26px]">{t("projects.title")}</h2>
 
-                  <div className="flex w-full flex-col gap-6">
+                  <div className="z-20 flex w-full flex-col gap-6">
                     <p className="font-poppins-reg text-xl">{t("projects.description")}</p>
-                    <Link href="/#projects" className="ml-auto mr-3 mt-[30px] flex flex-row gap-4 pb-1">
+                    <Link href="/#projects" className="group ml-auto mr-3 mt-[30px] flex flex-row gap-4 pb-1">
                       <p className="font-poppins-reg text-2xl">{t("projects.view")}</p>
-                      <img src="/img/about/arrow.svg" height="28px" width="28px" alt="" />
+                      <img
+                        src="/img/about/arrow.svg"
+                        className="transition-transform duration-200 group-hover:scale-125"
+                        height="28px"
+                        width="28px"
+                        alt=""
+                      />
                     </Link>
                   </div>
                 </div>
