@@ -21,9 +21,11 @@ export function SubmitButton({ handleSubmit, userInput, setUserInput, isLoading 
         className="flex-1 border border-gray-200 p-2 font-poppins-reg text-black focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500"
         required
         maxLength={500}
+        disabled={isLoading}
       />
       <button
         type="submit"
+        disabled={isLoading}
         className="rounded-t-tlg bg-accent px-4 py-2 text-white transition-colors hover:bg-indigo-700 disabled:bg-indigo-300"
       >
         {!isLoading ? (
