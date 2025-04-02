@@ -2,7 +2,10 @@
   "HomePage": {
     "title": "Turning ideas into creative solutions.",
     "description": "Innovative web developer crafting unique user experiences.",
-    "selectedProjects": "Selected Projects"
+    "selectedProjects": "Selected Projects",
+    "seeMore": "See more",
+    "seeLess": "See less",
+    "rightNow": "Right Now"
   },
   "NavBar": {
     "home": "Home",
@@ -29,7 +32,7 @@
     },
     "bourse-des-voyages": {
       "title": "Bourse des voyages",
-      "cardDescription": "Web Development / API",
+      "cardDescription": "Web site for booking flight tickets online",
       "description": "Site web permettant de comparer et de réserver des voyages, des vols, des hôtels et des vacances. Interface intuitive offrant les meilleures offres des tour-opérateurs avec un système de filtrage avancé pour trouver le voyage idéal selon votre budget et vos préférences.",
       "technologies": {
         "frontend": "VueJS, Sass, NuxtJS",
@@ -65,6 +68,32 @@
       "img": "/img/projects/weather-app.webp",
       "visitUrl": "https://weather.bonefons.com/",
       "link": "/weather-app"
+    },
+    "gcfillon": {
+      "title": "GCFillon",
+      "cardDescription": "Intern Application/ Timesheet Management",
+      "description": "Website for managing employee payslips for the company GCFillon. It allows managing employees, payslips, and hours worked. It is developed with TanStack and TailwindCSS/Shadcn for the front end and Drizzle/Zod for the backend. No link is available at the moment as it is an internal application.",
+      "technologies": {
+        "frontend": "TanStack, TailwindCSS, Shadcn",
+        "backend": "Drizzle ORM, Zod"
+      },
+      "cardImage": "/img/projects/gcfillon.webp",
+      "img": "/img/projects/gcfillon.webp",
+      "visitUrl": "",
+      "link": "/gcfillon"
+    },
+    "translate-app": {
+      "title": "Translate App",
+      "cardDescription": "Web Development / API",
+      "description": "A web application allowing users to translate words and phrases into different languages. The application uses the translation API to provide accurate and fast translations.",
+      "technologies": {
+        "frontend": "Vite, TailwindCSS, React Context",
+        "backend": "Fetch API"
+      },
+      "cardImage": "/img/projects/translate-app.webp",
+      "img": "/img/projects/translate-app.webp",
+      "visitUrl": "https://translate-app.bonefons.com/",
+      "link": "/translate-app"
     }
   },
   "About": {

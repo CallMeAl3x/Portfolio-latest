@@ -5,4 +5,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const projectKeys = ["zenpet", "bourse-des-voyages", "chatbot", "weather-app"] as const;
+export const projectKeys = [
+  "zenpet",
+  "bourse-des-voyages",
+  "chatbot",
+  "weather-app",
+  "gcfillon",
+  "translate-app"
+] as const;

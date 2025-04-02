@@ -2,7 +2,10 @@
   "HomePage": {
     "title": "Transformer des idées en solutions créatives.",
     "description": "Développeur web innovant créant des expériences utilisateur uniques.",
-    "selectedProjects": "Projets Sélectionnés"
+    "selectedProjects": "Projets Sélectionnés",
+    "seeMore": "Voir plus",
+    "seeLess": "Voir moins",
+    "rightNow": "Maintenant"
   },
   "NavBar": {
     "home": "Accueil",
@@ -29,7 +32,7 @@
     },
     "bourse-des-voyages": {
       "title": "Bourse des voyages",
-      "cardDescription": "Comparateur de voyages et plateforme de réservation en ligne",
+      "cardDescription": "Site de réservation de billet d'avion en ligne",
       "description": "Site web permettant de comparer et de réserver des voyages, des vols, des hôtels et des vacances. Interface intuitive offrant les meilleures offres des tour-opérateurs avec un système de filtrage avancé pour trouver le voyage idéal selon votre budget et vos préférences.",
       "technologies": {
         "frontend": "VueJS, Sass, NuxtJS",
@@ -65,6 +68,32 @@
       "img": "/img/projects/weather-app.webp",
       "visitUrl": "https://weather.bonefons.com/",
       "link": "/weather-app"
+    },
+    "gcfillon": {
+      "title": "GCFillon",
+      "cardDescription": "Application Interne / Gestion de Paye",
+      "description": "Site permettant de gérer les fiches de payes des employés de l'entreprise GCFillon. Il permet de gérer les employés, les fiches de paye et les heures travaillées. Il est développé avec TanStack et TailwindCSS/Shadcn pour front et Drizzle/Zod pour le backend. Aucun lien n'est disponible pour le moment car c'est une application interne.",
+      "technologies": {
+        "frontend": "TanStack, TailwindCSS, Shadcn",
+        "backend": "Drizzle ORM, Zod"
+      },
+      "cardImage": "/img/projects/gcfillon.png",
+      "img": "/img/projects/gcfillon.png",
+      "visitUrl": "",
+      "link": "/gcfillon"
+    },
+    "translate-app": {
+      "title": "Translate App",
+      "cardDescription": "Développement Web / API",
+      "description": "Une application web permettant aux utilisateurs de traduire des mots et des phrases dans différentes langues. L'application utilise l'API de traduction pour fournir des traductions précises et rapides.",
+      "technologies": {
+        "frontend": "Vite, TailwindCSS, React Context",
+        "backend": "Fetch API"
+      },
+      "cardImage": "/img/projects/translate-app.webp",
+      "img": "/img/projects/translate-app.webp",
+      "visitUrl": "https://translate-app.bonefons.com/",
+      "link": "/translate-app"
     }
   },
   "About": {
