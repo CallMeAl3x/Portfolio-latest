@@ -28,12 +28,15 @@ const ChatBot: React.FC = () => {
     }
   };
 
-  const handleOutsideClick = (event: MouseEvent) => {
-    if (chatBoxRef.current && !chatBoxRef.current.contains(event.target as Node) && !isMobile) {
-      setShowChat(false);
-      setIsExpanded(false);
-    }
-  };
+  const handleOutsideClick = React.useCallback(
+    (event: MouseEvent) => {
+      if (chatBoxRef.current && !chatBoxRef.current.contains(event.target as Node) && !isMobile) {
+        setShowChat(false);
+        setIsExpanded(false);
+      }
+    },
+    [chatBoxRef, isMobile]
+  );
 
   useEffect(() => {
     if (showChat) {
@@ -112,7 +115,7 @@ const ChatBot: React.FC = () => {
         ) : (
           <div
             ref={chatBoxRef}
-            className="absolute bottom-16 right-0 mb-4 flex h-96 w-80 flex-col rounded-xl border border-gray-200 bg-white shadow-xl"
+            className="absolute bottom-16 right-0 mb-4 flex h-96 w-80 flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl"
           >
             <ChatBotIcon onClick={() => setShowChat(false)} />
 

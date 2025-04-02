@@ -14,7 +14,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({ messages, userInpu
     <>
       <div className="chat-content flex-1 space-y-4 overflow-y-auto bg-[#f9f9f9] p-4">
         {messages.length === 0 ? (
-          <p className="text-black">No messages yet. Start the conversation!</p>
+          <p className="text-black"></p>
         ) : (
           messages.map((message, index) => (
             <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
