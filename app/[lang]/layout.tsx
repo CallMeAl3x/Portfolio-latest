@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
-import { NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider, useTranslations } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { PageWrapper } from "../(components)/(utils)/page-wrapper";
@@ -13,29 +13,36 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
   const params = await props.params;
   const { lang } = params;
 
+  // Get the translations for the current language
+  const t = useTranslations("Meta");
+
+  const title = t("title"); // Access translated title
+  const description = t("description"); // Access translated description
+  const keywords = t("keywords"); // Access translated keywords
+
   return {
-    title: "Portfolio Alexandre Bonefons",
-    description: "Portfolio Alexandre Bonefons présentant ses projets de développement web et mobile.",
+    title: title,
+    description: description,
     icons: {
       icon: "/img/logo.svg"
     },
+    keywords: keywords,
     openGraph: {
       type: "website",
       locale: lang,
       url: "https://portfolio.bonefons.com",
       siteName: "Portfolio Alexandre Bonefons",
-      images: [{ url: "/preview.png", alt: "Portfolio Alexandre Bonefons" }]
+      images: [{ url: "/preview.png", alt: title }]
     },
     twitter: {
       card: "summary_large_image",
-      title: "Portfolio Alexandre Bonefons",
-      description: "Portfolio Alexandre Bonefons présentant ses projets de développement web et mobile.",
+      title: title,
+      description: description,
       creator: "@alexandrebonefons"
     },
     metadataBase: new URL("https://portfolio.bonefons.com")
   };
 }
-
 export default async function LocaleLayout(props: { children: React.ReactNode; params: Promise<{ lang: string }> }) {
   const params = await props.params;
 
