@@ -8,6 +8,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { ChatBotIcon } from "./ChatBotIcon";
 import ChatInterface from "./ChatInterface";
 
+const CHAT_STORAGE_KEY = "chatMessages";
+const CHAT_ERROR_KEY = "chatError";
+
 const ChatBot: React.FC = () => {
   const [messages, setMessages] = useState<ChatCompletionStreamRequestMessages[]>([]);
   const [userInput, setUserInput] = useState<string>("");
@@ -19,6 +22,28 @@ const ChatBot: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("About.chatbot");
   const [error, setError] = useState<{ message: string; isRateLimited?: boolean } | null>(null);
+
+  useEffect(() => {
+    // Load messages from localStorage on component mount
+    const storedMessages = localStorage.getItem(CHAT_STORAGE_KEY);
+    if (storedMessages) {
+      setMessages(JSON.parse(storedMessages));
+    }
+    const storedError = localStorage.getItem(CHAT_ERROR_KEY);
+    if (storedError) {
+      setError(JSON.parse(storedError));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save messages to localStorage whenever messages change
+    localStorage.setItem(CHAT_STORAGE_KEY, JSON.stringify(messages));
+  }, [messages]);
+
+  useEffect(() => {
+    // Save error to localStorage whenever error changes
+    localStorage.setItem(CHAT_ERROR_KEY, JSON.stringify(error));
+  }, [error]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
