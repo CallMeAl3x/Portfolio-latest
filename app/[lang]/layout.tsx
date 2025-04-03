@@ -15,7 +15,7 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
 
   return {
     title: "Portfolio Alexandre Bonefons",
-    description: "description // add a description",
+    description: "Portfolio Alexandre Bonefons présentant ses projets de développement web et mobile.",
     icons: {
       icon: "/img/logo.svg"
     },
@@ -24,12 +24,12 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
       locale: lang,
       url: "https://www.bonefons.fr",
       siteName: "Portfolio Alexandre Bonefons",
-      images: [{ url: "/img/logo.svg", alt: "Portfolio Alexandre Bonefons" }]
+      images: [{ url: "/img/preview.png", alt: "Portfolio Alexandre Bonefons" }]
     },
     twitter: {
       card: "summary_large_image",
       title: "Portfolio Alexandre Bonefons",
-      description: "description // add a description",
+      description: "Portfolio Alexandre Bonefons présentant ses projets de développement web et mobile.",
       creator: "@alexandrebonefons"
     },
     metadataBase: new URL("https://www.bonefons.fr")
