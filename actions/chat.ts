@@ -7,9 +7,9 @@ const client = new Mistral({
   apiKey: process.env.MISTRAL_API_KEY
 });
 
-const MESSAGE_LIMIT = 12;
+const MESSAGE_LIMIT = 20;
 const MAX_TOKENS = 3000;
-const REQUEST_LIMIT = 12; // Increased request limit to 15
+const REQUEST_LIMIT = 20; // Increased request limit to 15
 const TIME_WINDOW = 300000; // 5 minutes in milliseconds
 const BLOCK_DURATION = 3600000; // 1 hour in milliseconds
 
