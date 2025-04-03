@@ -232,5 +232,8 @@
       "send": "Send",
       "noMessage": "Please enter a message"
     }
+  },
+  "Error": {
+    "rateLimit": "Rate limit exceeded. Please try again later."
   }
 }

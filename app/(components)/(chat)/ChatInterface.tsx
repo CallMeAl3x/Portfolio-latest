@@ -9,8 +9,9 @@ interface ChatInterfaceProps {
   userInput: string;
   setUserInput: React.Dispatch<React.SetStateAction<string>>;
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => Promise<void>;
-  isLoading?: boolean; // Optional loading prop
-  ref?: React.Ref<HTMLDivElement>; // Optional ref prop for forwarding
+  isLoading?: boolean;
+  ref?: React.Ref<HTMLDivElement>;
+  error?: { message: string; isRateLimited?: boolean } | null;
 }
 
 export const ChatInterface: React.FC<ChatInterfaceProps> = ({
@@ -19,10 +20,12 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
   setUserInput,
   handleSubmit,
   isLoading,
-  ref
+  ref,
+  error
 }) => {
-  const messagesEndRef = (ref || React.createRef<HTMLDivElement>()) as React.RefObject<HTMLDivElement>; // Ensure ref is used properly
+  const messagesEndRef = (ref || React.createRef<HTMLDivElement>()) as React.RefObject<HTMLDivElement>;
   const t = useTranslations("About.chatbot");
+  const th = useTranslations("Error");
 
   // Scroll to the bottom whenever messages change
   useEffect(() => {
@@ -33,7 +36,10 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
 
   return (
     <>
-      <div className="chat-content h-full flex-1 space-y-4 overflow-y-auto bg-gray-50 p-4">
+      <div
+        id="chat-interface"
+        className="chat-content h-full flex-1 space-y-4 overflow-x-auto overflow-y-auto bg-gray-50 p-4"
+      >
         {messages.length === 0 ? (
           <p className="font-poppins-reg italic text-gray-600">{t("noMessage")}</p>
         ) : (
@@ -41,7 +47,7 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
             <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
               <div
                 className={`max-w-[80%] rounded-xl px-3 py-2 text-gray-800 shadow-md ${
-                  message.role === "user" ? "bg-blue-500 text-white" : "bg-white"
+                  message.role === "user" ? "bg-accent text-white" : "bg-white"
                 }`}
               >
                 {String(message.content)}
@@ -61,12 +67,19 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
         <div ref={messagesEndRef} />
       </div>
 
-      <SubmitButton
-        handleSubmit={handleSubmit}
-        userInput={userInput}
-        setUserInput={setUserInput}
-        isLoading={isLoading}
-      />
+      {error ? (
+        <>
+          <p className="mt-2 bg-transparent text-center text-red-500">{th("rateLimit")}</p>
+        </>
+      ) : (
+        <SubmitButton
+          handleSubmit={handleSubmit}
+          userInput={userInput}
+          setUserInput={setUserInput}
+          isLoading={isLoading}
+          disabled={false}
+        />
+      )}
     </>
   );
 };

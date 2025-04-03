@@ -177,9 +177,9 @@ export default function Projects() {
             >
               <circle fill="currentColor" r="11" cy="12" cx="12"></circle>
               <path
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke-width="2"
+                strokeLinejoin="round"
+                strokeLinecap="round"
+                strokeWidth="2"
                 stroke="white"
                 d="M7.5 16.5L16.5 7.5M16.5 7.5H10.5M16.5 7.5V13.5"
               ></path>

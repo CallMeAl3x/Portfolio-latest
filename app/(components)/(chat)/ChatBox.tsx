@@ -18,15 +18,19 @@ const ChatBot: React.FC = () => {
   const isMobile = useIsMobile();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("About.chatbot");
+  const [error, setError] = useState<{ message: string; isRateLimited?: boolean } | null>(null);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!userInput.trim()) return;
 
     const response = await sendMessage(messages, userInput);
     if (response.error) {
+      setError(response.error);
     } else {
       setMessages(response.messages as ChatCompletionStreamRequestMessages[]);
       setUserInput("");
+      setError(null);
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -80,6 +84,7 @@ const ChatBot: React.FC = () => {
                 userInput={userInput}
                 setUserInput={setUserInput}
                 handleSubmit={handleSubmit}
+                error={error}
               />
             </div>
           </DrawerContent>
@@ -114,6 +119,7 @@ const ChatBot: React.FC = () => {
                 userInput={userInput}
                 setUserInput={setUserInput}
                 handleSubmit={handleSubmit}
+                error={error}
               />
             </div>
           </div>
@@ -147,6 +153,7 @@ const ChatBot: React.FC = () => {
               userInput={userInput}
               setUserInput={setUserInput}
               handleSubmit={handleSubmit}
+              error={error}
             />
           </div>
         )}

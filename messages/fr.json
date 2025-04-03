@@ -232,5 +232,8 @@
       "send": "Envoyer",
       "noMessage": "Veuillez entrer un message"
     }
+  },
+  "Error": {
+    "rateLimit": "Vous avez atteint la limite de requêtes. Veuillez réessayer plus tard."
   }
 }
