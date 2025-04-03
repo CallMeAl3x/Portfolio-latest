@@ -24,7 +24,7 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
       locale: lang,
       url: "https://www.bonefons.fr",
       siteName: "Portfolio Alexandre Bonefons",
-      images: [{ url: "/img/preview.png", alt: "Portfolio Alexandre Bonefons" }]
+      images: [{ url: "/preview.svg", alt: "Portfolio Alexandre Bonefons" }]
     },
     twitter: {
       card: "summary_large_image",
