@@ -57,6 +57,8 @@ export default function Projects() {
     }
   }, [cards, t]);
 
+  const displayedCards = cards.slice(0, visibleCards);
+
   // Mouse move effect
   useEffect(() => {
     const container = containerRef.current;
@@ -91,7 +93,7 @@ export default function Projects() {
       container.removeEventListener("mouseenter", handleMouseEnter);
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [cards, activeCardIndex]);
+  }, [cards, activeCardIndex, displayedCards.length]);
 
   const handleSeeMore = () => {
     if (!allCardsVisible) {
@@ -102,8 +104,6 @@ export default function Projects() {
       setAllCardsVisible(false);
     }
   };
-
-  const displayedCards = cards.slice(0, visibleCards);
 
   return (
     <div className="pt-[30vh] md:pt-[25vh]" id="projects">
