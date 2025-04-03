@@ -93,7 +93,7 @@ const ChatBot: React.FC = () => {
           <DrawerTrigger asChild>
             <ChatBotIcon />
           </DrawerTrigger>
-          <DrawerContent className="fixed inset-x-0 bottom-0 h-[85vh] rounded-t-xl border-t border-gray-200 bg-white">
+          <DrawerContent className="fixed inset-x-0 bottom-0 h-[80lvh] rounded-t-xl border-t border-gray-200 bg-white">
             <DrawerHeader className="border-b bg-white px-6">
               <div className="flex items-center justify-between">
                 <DrawerTitle className="font-poppins-regular text-lg text-gray-900">{t("title")}</DrawerTitle>
@@ -102,16 +102,16 @@ const ChatBot: React.FC = () => {
                 </DrawerClose>
               </div>
             </DrawerHeader>
-            <div className="flex h-[calc(85vh-90px)] flex-col bg-white">
-              <ChatInterface
-                messages={messages}
-                ref={messagesEndRef}
-                userInput={userInput}
-                setUserInput={setUserInput}
-                handleSubmit={handleSubmit}
-                error={error}
-              />
-            </div>
+            {/* <div className="flex h-[calc(85vh-90px)] flex-col bg-white"> */}
+            <ChatInterface
+              messages={messages}
+              ref={messagesEndRef}
+              userInput={userInput}
+              setUserInput={setUserInput}
+              handleSubmit={handleSubmit}
+              error={error}
+            />
+            {/* </div> */}
           </DrawerContent>
         </Drawer>
       </div>

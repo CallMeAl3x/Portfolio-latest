@@ -353,7 +353,7 @@ export default function About() {
 
           <div className="box-tools relative mt-5 flex w-full max-w-[400px] flex-col items-center justify-start gap-5 rounded-2xl bg-borderbox p-3 pb-5 md:max-w-none md:justify-center">
             <h2 className="font-poppins-bold text-[26px]">{t("tools.title")}</h2>
-            <div className="flex flex-col items-start gap-6 md:mx-6 md:flex md:flex-row md:gap-12">
+            <div className="flex flex-col items-center gap-6 md:mx-6 md:flex md:flex-row md:gap-12">
               <div className="text-center">
                 <span className="rounded-3xl bg-[#2C0505] px-4 py-1 font-poppins-light text-sm text-white">
                   {t("tools.frontend.title")}

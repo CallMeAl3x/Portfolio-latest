@@ -161,17 +161,17 @@ export default function Projects() {
         >
           <div className="relative flex items-center justify-center gap-2">
             <span className="relative inline-block w-full overflow-hidden">
-              <span className="block text-center transition-transform duration-300 group-hover:-translate-y-full">
+              <span className="block text-center transition-transform duration-300 xl:group-hover:-translate-y-full">
                 {!allCardsVisible ? tH("seeMore") : tH("seeLess")}
               </span>
-              <span className="absolute inset-0 translate-y-full whitespace-nowrap text-center transition-transform duration-300 group-hover:translate-y-0">
+              <span className="absolute inset-0 translate-y-full whitespace-nowrap text-center transition-transform duration-300 xl:group-hover:translate-y-0">
                 {tH("rightNow")}
               </span>
             </span>
 
             <svg
-              className={clsx("duration-400 h-6 w-6 transition-transform group-hover:rotate-[135deg]", {
-                "group-hover:rotate-[-45deg]": allCardsVisible
+              className={clsx("duration-400 h-6 w-6 transition-transform xl:group-hover:rotate-[135deg]", {
+                "xl:group-hover:rotate-[-45deg]": allCardsVisible
               })}
               viewBox="0 0 24 24"
             >
