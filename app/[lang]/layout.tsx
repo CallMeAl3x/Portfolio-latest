@@ -1,20 +1,19 @@
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/i18n/routing";
 import type { Metadata } from "next";
-import { NextIntlClientProvider, useTranslations } from "next-intl";
-import { getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { PageWrapper } from "../(components)/(utils)/page-wrapper";
 import ChatbotWrapper from "../(components)/ChatBotWrapper";
 import SmoothScrolling from "../(components)/SmoothScrolling";
 import "../globals.css";
 
-export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
-  const params = await props.params;
-  const { lang } = params;
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const t = await getTranslations({ lang, namespace: "Metadata" });
 
   // Get the translations for the current language
-  const t = useTranslations("Meta");
 
   const title = t("title"); // Access translated title
   const description = t("description"); // Access translated description
