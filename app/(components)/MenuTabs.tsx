@@ -1,14 +1,11 @@
+import LenisLink from "@/app/(components)/LenisLink";
+import { useMessages, useTranslations } from "next-intl";
+import Image from "next/image";
 import { useRef } from "react";
-import gsap from "gsap";
-import _ScrollTrigger from "gsap/ScrollTrigger";
+import { MenuTabsProps } from "../(types)/menuTab";
+import { useCopyToClipboard } from "../(utils)/useCopyToClipboard";
 import { useNavbarAnimation } from "../(utils)/useNavbarAnimation";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { MenuTabsProps } from "../(types)/menuTab";
-import { useMessages, useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
-import Image from "next/image";
-import { useCopyToClipboard } from "../(utils)/useCopyToClipboard";
-gsap.registerPlugin(_ScrollTrigger);
 
 export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
   const messages = useMessages();
@@ -54,14 +51,13 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
           <p className="mb-8 font-khula-light text-2xl">Menu</p>
           <ul className="flex flex-col items-start justify-center gap-2">
             {navbarList.map(({ href, label }) => (
-              <li key={href}>
-                <Link
+              <li key={href} onClick={handleMenu}>
+                <LenisLink
                   href={href}
                   className="relative left-0 text-[2.5rem] transition-[left] duration-300 ease-in-out hover:left-2"
-                  onClick={handleMenu}
                 >
                   {typeof label === "string" ? label : ""}
-                </Link>
+                </LenisLink>
               </li>
             ))}
           </ul>

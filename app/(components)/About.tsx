@@ -1,8 +1,8 @@
+import LenisLink from "@/app/(components)/LenisLink";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { useIsLaptop } from "../(utils)/userDevice";
 import ExperienceItem from "./(about)/ExperienceItem";
@@ -279,7 +279,7 @@ export default function About() {
 
                   <div className="z-20 flex w-full flex-col gap-6">
                     <p className="font-poppins-reg text-xl">{t("projects.description")}</p>
-                    <Link href="/#projects" className="group ml-auto mr-3 mt-[30px] flex flex-row gap-4 pb-1">
+                    <LenisLink href="#projects" className="group ml-auto mr-3 mt-[30px] flex flex-row gap-4 pb-1">
                       <p className="font-poppins-reg text-2xl">{t("projects.view")}</p>
                       <img
                         src="/img/about/arrow.svg"
@@ -288,7 +288,7 @@ export default function About() {
                         width="28px"
                         alt=""
                       />
-                    </Link>
+                    </LenisLink>
                   </div>
                 </div>
                 <div className="box-effect relative flex flex-col gap-4 overflow-hidden rounded-xl border border-black p-4 px-6">
@@ -441,10 +441,10 @@ export default function About() {
 
             <div className="flex h-full w-full flex-col">
               <p className="font-poppins-reg text-xl">{t("projects.description")}</p>
-              <Link href="/#projects" className="ml-auto mr-3 mt-[30px] flex flex-row gap-4 pb-1">
+              <LenisLink href="#projects" className="ml-auto mr-3 mt-[30px] flex flex-row gap-4 pb-1">
                 <p className="font-poppins-reg text-2xl">{t("projects.view")}</p>
                 <img src="/img/about/arrow.svg" height="28px" width="28px" alt="" />
-              </Link>
+              </LenisLink>
             </div>
           </div>
 
