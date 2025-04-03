@@ -22,7 +22,7 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
     openGraph: {
       type: "website",
       locale: lang,
-      url: "https://www.portfolio.bonefons.fr",
+      url: "https://portfolio.bonefons.fr",
       siteName: "Portfolio Alexandre Bonefons",
       images: [{ url: "/preview.png", alt: "Portfolio Alexandre Bonefons" }]
     },
@@ -32,7 +32,7 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
       description: "Portfolio Alexandre Bonefons présentant ses projets de développement web et mobile.",
       creator: "@alexandrebonefons"
     },
-    metadataBase: new URL("https://www.portfolio.bonefons.fr")
+    metadataBase: new URL("https://portfolio.bonefons.fr")
   };
 }
 
