@@ -2,6 +2,8 @@ import { ChatCompletionStreamRequestMessages } from "@mistralai/mistralai/models
 import { LoaderIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React, { useEffect } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { SubmitButton } from "./SubmitButton";
 
 interface ChatInterfaceProps {
@@ -46,11 +48,14 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
           messages.map((message, index) => (
             <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
               <div
-                className={`max-w-[80%] rounded-xl px-3 py-2 text-gray-800 shadow-md ${
+                className={`mt-4 max-w-[80%] rounded-xl px-3 py-2 text-gray-800 shadow-md ${
                   message.role === "user" ? "bg-accent text-white" : "bg-white"
                 }`}
               >
-                {String(message.content)}
+                {/* Utilisation de ReactMarkdown pour rendre le markdown */}
+                <div className="prose prose-blue break-words">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{String(message.content)}</ReactMarkdown>
+                </div>
               </div>
             </div>
           ))
@@ -66,7 +71,6 @@ export const ChatInterface: React.FC<ChatInterfaceProps> = ({
         {/* Add a div at the end of the messages list for scrolling */}
         <div ref={messagesEndRef} />
       </div>
-
       {error ? (
         <>
           <p className="mt-2 bg-transparent text-center text-red-500">{th("rateLimit")}</p>
