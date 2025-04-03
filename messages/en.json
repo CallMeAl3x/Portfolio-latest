@@ -38,7 +38,7 @@
     "bourse-des-voyages": {
       "title": "Bourse des voyages",
       "cardDescription": "Web site for booking flight tickets online",
-      "description": "Site web permettant de comparer et de réserver des voyages, des vols, des hôtels et des vacances. Interface intuitive offrant les meilleures offres des tour-opérateurs avec un système de filtrage avancé pour trouver le voyage idéal selon votre budget et vos préférences.",
+      "description": "Website to compare and book travel, flights, hotels and vacations. Intuitive interface featuring the best offers from tour operators with an advanced filtering system to find the ideal trip to suit your budget and preferences.",
       "technologies": {
         "frontend": "VueJS, Sass, NuxtJS",
         "backend": "Wordpress, Pinia"
