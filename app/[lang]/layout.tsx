@@ -12,7 +12,6 @@ import "../globals.css";
 export async function generateMetadata(props: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const params = await props.params;
   const { lang } = params;
-  const imageUrl = `https://www.portfolio.bonefons.fr/preview.png`;
 
   return {
     title: "Portfolio Alexandre Bonefons",
@@ -25,7 +24,7 @@ export async function generateMetadata(props: { params: Promise<{ lang: string }
       locale: lang,
       url: "https://www.portfolio.bonefons.fr",
       siteName: "Portfolio Alexandre Bonefons",
-      images: [{ url: imageUrl, alt: "Portfolio Alexandre Bonefons" }]
+      images: [{ url: "/preview.png", alt: "Portfolio Alexandre Bonefons" }]
     },
     twitter: {
       card: "summary_large_image",
