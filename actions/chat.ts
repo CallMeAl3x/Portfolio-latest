@@ -94,7 +94,11 @@ export async function sendMessage(
   try {
     const context: ChatCompletionStreamRequestMessages[] = [...messages, { role: "user", content: userInput }];
     const response = await client.agents.complete({
-      agentId: "ag:f926671b:20250401:untitled-agent:ae3cd6ae", // Utilisation de l'ID agent spécifié
+      agentId:
+        process.env.MISTRAL_AGENT ||
+        (() => {
+          throw new Error("MISTRAL_AGENT environment variable is not defined");
+        })(), // Utilisation de l'ID agent spécifié
       messages: context,
       maxTokens: MAX_TOKENS
     });
