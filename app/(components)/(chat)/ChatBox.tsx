@@ -5,6 +5,7 @@ import { ChatCompletionStreamRequestMessages } from "@mistralai/mistralai/models
 import { Expand, Minimize, Minus } from "lucide-react";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
+import { Rnd } from "react-rnd";
 import { ChatBotIcon } from "./ChatBotIcon";
 import ChatInterface from "./ChatInterface";
 
@@ -18,6 +19,7 @@ const ChatBot: React.FC = () => {
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isResizing, setIsResizing] = useState(false); // new state for resizing
   const isMobile = useIsMobile();
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("About.chatbot");
@@ -62,12 +64,13 @@ const ChatBot: React.FC = () => {
 
   const handleOutsideClick = React.useCallback(
     (event: MouseEvent) => {
+      if (isResizing) return; // ignore clicks during resizing
       if (chatBoxRef.current && !chatBoxRef.current.contains(event.target as Node) && !isMobile) {
         setShowChat(false);
         setIsExpanded(false);
       }
     },
-    [chatBoxRef, isMobile]
+    [chatBoxRef, isMobile, isResizing]
   );
 
   useEffect(() => {
@@ -102,7 +105,6 @@ const ChatBot: React.FC = () => {
                 </DrawerClose>
               </div>
             </DrawerHeader>
-            {/* <div className="flex h-[calc(85vh-90px)] flex-col bg-white"> */}
             <ChatInterface
               messages={messages}
               ref={messagesEndRef}
@@ -111,13 +113,12 @@ const ChatBot: React.FC = () => {
               handleSubmit={handleSubmit}
               error={error}
             />
-            {/* </div> */}
           </DrawerContent>
         </Drawer>
       </div>
 
       {/* Desktop ChatBot Icon */}
-      <div className="hidden md:block">
+      <div className="relative hidden h-screen md:block">
         {isExpanded ? (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
             <div ref={chatBoxRef} className="flex h-[85vh] w-[70vw] flex-col rounded-xl bg-white shadow-2xl">
@@ -149,38 +150,48 @@ const ChatBot: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div
-            ref={chatBoxRef}
-            className="absolute bottom-16 right-0 mb-4 flex h-96 w-80 flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl"
+          <Rnd
+            default={{ x: -360, y: window.innerHeight - 384 - 20, width: 320, height: 384 }}
+            minWidth={320}
+            minHeight={240}
+            bounds="window"
+            lockAspectRatio={true}
+            onResizeStart={() => setIsResizing(true)}
+            onResizeStop={() => setIsResizing(false)}
+            dragHandleClassName="drag-handle"
           >
-            <ChatBotIcon onClick={() => setShowChat(false)} />
-
-            <div className="flex items-center justify-between rounded-t-xl border-b-[0.5px] border-black/40 bg-white p-4">
-              <h3 className="font-poppins-reg text-gray-900">{t("title")}</h3>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setIsExpanded(true)}
-                  className="rounded-lg p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
-                >
-                  <Expand size={20} />
-                </button>
-                <button
-                  onClick={() => setShowChat(false)}
-                  className="rounded-lg p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
-                >
-                  <Minus size={20} />
-                </button>
+            <div
+              ref={chatBoxRef}
+              className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-xl"
+            >
+              {!showChat && <ChatBotIcon onClick={() => setShowChat(false)} />}
+              <div className="drag-handle flex cursor-move items-center justify-between rounded-t-xl border-b-[0.5px] border-black/40 bg-white p-4">
+                <h3 className="font-poppins-reg text-gray-900">{t("title")}</h3>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setIsExpanded(true)}
+                    className="rounded-lg p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
+                  >
+                    <Expand size={20} />
+                  </button>
+                  <button
+                    onClick={() => setShowChat(false)}
+                    className="rounded-lg p-1.5 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
+                  >
+                    <Minus size={20} />
+                  </button>
+                </div>
               </div>
+              <ChatInterface
+                ref={messagesEndRef}
+                messages={messages}
+                userInput={userInput}
+                setUserInput={setUserInput}
+                handleSubmit={handleSubmit}
+                error={error}
+              />
             </div>
-            <ChatInterface
-              ref={messagesEndRef}
-              messages={messages}
-              userInput={userInput}
-              setUserInput={setUserInput}
-              handleSubmit={handleSubmit}
-              error={error}
-            />
-          </div>
+          </Rnd>
         )}
       </div>
     </>
