@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { routing } from "@/i18n/routing";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
@@ -68,6 +69,7 @@ export default async function LocaleLayout(props: { children: React.ReactNode; p
           </SmoothScrolling>
           <Toaster richColors position="top-left" duration={2000} />
         </NextIntlClientProvider>
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>
