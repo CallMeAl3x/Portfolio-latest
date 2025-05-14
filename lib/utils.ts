@@ -9,6 +9,7 @@ export const projectKeys = [
   "zenpet",
   "bourse-des-voyages",
   "chatbot",
+  "auth-template",
   "weather-app",
   "gcfillon",
   "translate-app"

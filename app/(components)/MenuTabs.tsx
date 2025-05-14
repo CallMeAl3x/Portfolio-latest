@@ -20,7 +20,7 @@ export default function MenuTabs({ isOpen, setIsOpen }: MenuTabsProps) {
     setIsOpen(!isOpen);
   };
 
-  const handleCopy = useCopyToClipboard("Alexandre.bonefons@outlook.fr");
+  const handleCopy = useCopyToClipboard("Alexandre.bonefons@outlook.fr", "email");
 
   const t = useTranslations("Footer");
 

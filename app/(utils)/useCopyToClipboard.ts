@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 
 // Hook personnalisé pour la gestion du clic
-export const useCopyToClipboard = (text: string) => {
+export const useCopyToClipboard = (text: string, type: "email" | "phone" = "phone") => {
   const handleCopy = (() => {
     let clickData = { count: 0, lastTime: 0 };
 
@@ -19,8 +19,13 @@ export const useCopyToClipboard = (text: string) => {
       clickData.count++;
       clickData.lastTime = currentTime;
 
+      const label =
+        type === "email"
+          ? "L'adresse email a été copiée dans le presse-papier"
+          : "Le numéro de téléphone a été copié dans le presse-papier";
+
       if (clickData.count === 1) {
-        toast.success("L'adresse a été copiée dans le presse-papier");
+        toast.success(label);
       } else if (clickData.count === 2) {
         toast.info("Tu as cliqué deux fois, continue comme ça !");
       } else if (clickData.count === 3) {

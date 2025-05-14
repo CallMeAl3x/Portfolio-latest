@@ -37,8 +37,8 @@
     },
     "bourse-des-voyages": {
       "title": "Bourse des voyages",
-      "cardDescription": "Site de réservation de billet d'avion en ligne",
-      "description": "Site web permettant de comparer et de réserver des voyages, des vols, des hôtels et des vacances. Interface intuitive offrant les meilleures offres des tour-opérateurs avec un système de filtrage avancé pour trouver le voyage idéal selon votre budget et vos préférences.",
+      "cardDescription": "Tour Opérateur / Application Web",
+      "description": "Site web permettant de réserver des voyages, des vols, des hôtels et des vacances. Interface intuitive offrant les meilleures offres des tour-opérateurs avec un système de filtrage avancé pour trouver le voyage idéal selon votre budget et vos préférences.",
       "technologies": {
         "frontend": "VueJS, Sass, NuxtJS",
         "backend": "Wordpress, Pinia"
@@ -47,6 +47,19 @@
       "img": "/img/projects/bdv.png",
       "visitUrl": "https://www.bourse-des-voyages.com/",
       "link": "/bourse-des-voyages"
+    },
+    "auth-template": {
+      "title": "Template Authentification",
+      "cardDescription": "Application Web / Authentification",
+      "description": "Template d'authentification NextJS prêt à l'emploi, facilement intégrable à toute application web. Il propose la connexion classique (email/mot de passe), ainsi que l'authentification via Google et GitHub. La sécurité est renforcée grâce à la double authentification (2FA) par application ou email.",
+      "technologies": {
+        "frontend": "NextJS, TailwindCSS, Shadcn",
+        "backend": "Prisma, Zod, Next-Auth, React QR Code"
+      },
+      "cardImage": "/img/projects/auth-template.webp",
+      "img": "/img/projects/auth-template.webp",
+      "visitUrl": "https://auth-boilerplate.bonefons.com/",
+      "link": "/auth-template"
     },
     "chatbot": {
       "title": "ChatBot",

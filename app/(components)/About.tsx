@@ -8,6 +8,7 @@ import { useIsLaptop } from "../(utils)/userDevice";
 import ExperienceItem from "./(about)/ExperienceItem";
 import ToolItem from "./(about)/ToolItem";
 import Ring from "./(elements)/Ring";
+import { useCopyToClipboard } from "../(utils)/useCopyToClipboard";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -296,7 +297,12 @@ export default function About() {
                   <h2 className="font-poppins-bold text-[26px]">{t("chat.title")}</h2>
 
                   <div className="flex w-full flex-col gap-6">
-                    <p className="font-poppins-reg text-[15px]">{t("chat.contact")}</p>
+                    <p
+                      className="font-poppins-reg text-[15px]"
+                      onClick={useCopyToClipboard("+33 6 32 18 58 78", "phone")}
+                    >
+                      {t("chat.contact")}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -461,7 +467,9 @@ export default function About() {
             <h2 className="font-poppins-bold text-[23px]">{t("chat.title")}</h2>
 
             <div className="flex w-full flex-col gap-6">
-              <p className="font-poppins-reg text-[15px]">{t("chat.contact")}</p>
+              <p className="font-poppins-reg text-[15px]" onClick={useCopyToClipboard("+33 6 32 18 58 78", "phone")}>
+                {t("chat.contact")}
+              </p>
             </div>
           </div>
         </div>

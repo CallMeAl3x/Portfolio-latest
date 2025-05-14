@@ -24,7 +24,7 @@ const contactLinks = [
 ];
 
 export default function Footer() {
-  const handleCopy = useCopyToClipboard("Alexandre.bonefons@outlook.fr");
+  const handleCopy = useCopyToClipboard("Alexandre.bonefons@outlook.fr", "email");
   return (
     <div className="footer mt-52 flex flex-col items-center justify-center gap-12 pb-20" id="contact">
       <h2 className="font-poppins-reg text-5xl text-background">Contact</h2>

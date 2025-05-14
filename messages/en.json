@@ -37,8 +37,8 @@
     },
     "bourse-des-voyages": {
       "title": "Bourse des voyages",
-      "cardDescription": "Web site for booking flight tickets online",
-      "description": "Website to compare and book travel, flights, hotels and vacations. Intuitive interface featuring the best offers from tour operators with an advanced filtering system to find the ideal trip to suit your budget and preferences.",
+      "cardDescription": "Tour Operator / Website",
+      "description": "Website to book travel, flights, hotels and vacations. Intuitive interface featuring the best offers from tour operators with an advanced filtering system to find the ideal trip to suit your budget and preferences.",
       "technologies": {
         "frontend": "VueJS, Sass, NuxtJS",
         "backend": "Wordpress, Pinia"
@@ -47,6 +47,19 @@
       "img": "/img/projects/bdv.png",
       "visitUrl": "https://www.bourse-des-voyages.com/",
       "link": "/bourse-des-voyages"
+    },
+    "auth-template": {
+      "title": "Auth Template",
+      "cardDescription": "Web Application / Authentification",
+      "description": "Ready-to-use NextJS authentication template, easily integrated into any web app. Supports classic login (email/password), Google and GitHub authentication, with enhanced security through two-factor authentication (2FA) via app or email.",
+      "technologies": {
+        "frontend": "NextJS, TailwindCSS, Shadcn",
+        "backend": "Prisma, Zod, Next-Auth, React QR Code"
+      },
+      "cardImage": "/img/projects/auth-template.webp",
+      "img": "/img/projects/auth-template.webp",
+      "visitUrl": "https://auth-boilerplate.bonefons.com/",
+      "link": "/auth-template"
     },
     "chatbot": {
       "title": "ChatBot",

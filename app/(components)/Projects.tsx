@@ -170,8 +170,9 @@ export default function Projects() {
             </span>
 
             <svg
-              className={clsx("duration-400 h-6 w-6 transition-transform xl:group-hover:rotate-[135deg]", {
-                "xl:group-hover:rotate-[-45deg]": allCardsVisible
+              className={clsx("duration-400 h-6 w-6 transition-transform", {
+                "xl:group-hover:rotate-[135deg]": !allCardsVisible,
+                "rotate-180 xl:group-hover:rotate-[-45deg]": allCardsVisible
               })}
               viewBox="0 0 24 24"
             >
