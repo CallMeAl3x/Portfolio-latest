@@ -45,7 +45,7 @@ export default function Card({ title, cardDescription, index, link, isHovered, c
             />
           </div>
           <div className="flex flex-col items-center justify-center gap-1">
-            <h3 className="font-khula-regular text-4xl">{title}</h3>
+            <h3 className="text-center font-khula-regular text-4xl md:text-left">{title}</h3>
             <p className="px-1 text-center text-lg">{cardDescription}</p>
           </div>
         </Link>
