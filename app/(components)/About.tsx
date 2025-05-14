@@ -20,6 +20,8 @@ export default function About() {
 
   const isLaptop = useIsLaptop();
 
+  const handleCopyPhone = useCopyToClipboard("+33 6 32 18 58 78", "phone");
+
   useEffect(() => {
     const circles = document.querySelectorAll(".box-effect");
     let activeCircle: HTMLElement | null = null;
@@ -297,10 +299,7 @@ export default function About() {
                   <h2 className="font-poppins-bold text-[26px]">{t("chat.title")}</h2>
 
                   <div className="flex w-full flex-col gap-6">
-                    <p
-                      className="font-poppins-reg text-[15px]"
-                      onClick={useCopyToClipboard("+33 6 32 18 58 78", "phone")}
-                    >
+                    <p className="font-poppins-reg text-[15px]" onClick={handleCopyPhone}>
                       {t("chat.contact")}
                     </p>
                   </div>
@@ -467,7 +466,7 @@ export default function About() {
             <h2 className="font-poppins-bold text-[23px]">{t("chat.title")}</h2>
 
             <div className="flex w-full flex-col gap-6">
-              <p className="font-poppins-reg text-[15px]" onClick={useCopyToClipboard("+33 6 32 18 58 78", "phone")}>
+              <p className="font-poppins-reg text-[15px]" onClick={handleCopyPhone}>
                 {t("chat.contact")}
               </p>
             </div>
