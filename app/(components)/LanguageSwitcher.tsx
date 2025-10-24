@@ -1,12 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Drawer, DrawerClose, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { Drawer, DrawerClose, DrawerContent, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { CheckIcon, ChevronDownIcon, GlobeIcon, XIcon } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-import { DialogTitle } from "@radix-ui/react-dialog";
 
 export default function LanguageSwitcher({ className }: { className?: string }) {
   const router = useRouter();
@@ -86,9 +84,7 @@ export default function LanguageSwitcher({ className }: { className?: string }) 
             <div className="grid gap-4 p-4">
               <div className="flex items-center justify-between px-2.5 font-poppins-reg text-lg">
                 {/* DialogTitle for accessibility */}
-                <DialogTitle>
-                  <VisuallyHidden.Root>Select Language</VisuallyHidden.Root>
-                </DialogTitle>
+                <DrawerTitle>Select Language</DrawerTitle>
                 <DrawerClose asChild>
                   <XIcon className="h-6 w-6" />
                 </DrawerClose>

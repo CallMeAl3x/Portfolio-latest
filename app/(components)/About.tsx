@@ -157,18 +157,18 @@ export default function About() {
               <div className="box-effect box-languages relative flex w-2/3 flex-col items-start justify-start gap-7 overflow-hidden rounded-3xl bg-borderbox p-4 font-poppins-bold">
                 <Ring top={114} left={-140} />
                 <h2 className="text-[26px]">{t("languages.title")}</h2>
-                <ul className="flex w-full flex-row justify-between">
-                  <div className="flex h-full flex-col gap-2 text-[19px]">
+                <div className="flex w-full flex-row justify-between">
+                  <ul className="flex h-full flex-col gap-2 text-[19px]">
                     <li>{t("languages.french")}</li>
                     <li>{t("languages.english")}</li>
                     <li>{t("languages.spanish")}</li>
-                  </div>
+                  </ul>
                   <div className="flex h-full flex-col gap-2 text-[19px]">
                     <img src="/img/about/progress_bar.svg" className="h-[30px]" height="60px" width="100%" alt="" />
                     <img src="/img/about/progress_bar.svg" className="h-[30px]" height="60px" width="80%" alt="" />
                     <img src="/img/about/progress_bar.svg" className="h-[30px]" height="60px" width="60%" alt="" />
                   </div>
-                </ul>
+                </div>
               </div>
             </div>
             <div className="middle-part flex gap-6">
@@ -179,42 +179,42 @@ export default function About() {
                   <span className="rounded-3xl bg-[#2C0505] px-4 py-1 font-poppins-light text-sm text-white">
                     {t("tools.frontend.title")}
                   </span>
-                  <ul className="mt-6 flex flex-col gap-4">
-                    <div className="flex items-center gap-5">
+                  <div className="mt-6 flex flex-col gap-4">
+                    <ul className="flex items-center gap-5">
                       <ToolItem name="TanStack" icon="tanstack.svg" />
                       <ToolItem name="VueJS" icon="vuejs.svg" />
-                    </div>
-                    <div className="flex items-center gap-6">
+                    </ul>
+                    <ul className="flex items-center gap-6">
                       <ToolItem name="Shadcn" icon="shadcn.svg" />
                       <ToolItem name="Tailwind" icon="tailwind.svg" />
-                    </div>
-                  </ul>
+                    </ul>
+                  </div>
                 </div>
                 <div className="text-center">
                   <span className="rounded-3xl bg-[#2C0505] px-4 py-1 font-poppins-light text-sm text-white">
                     {t("tools.backend.title")}
                   </span>
-                  <ul className="mt-6 flex flex-col gap-4">
-                    <div className="flex items-center gap-8">
+                  <div className="mt-6 flex flex-col gap-4">
+                    <ul className="flex items-center gap-8">
                       <ToolItem name="SQL" icon="sql.svg" />
                       <ToolItem name="Wordpress" icon="wordpress.svg" />
-                    </div>
-                    <div className="flex items-center gap-10">
+                    </ul>
+                    <ul className="flex items-center gap-10">
                       <ToolItem name="Drizzle" icon="drizzle.svg" />
-                      <ToolItem name="Zustand" icon="zustand.png" />
-                    </div>
-                  </ul>
+                      <ToolItem name="Zustand" icon="zustand.svg" />
+                    </ul>
+                  </div>
                 </div>
                 <div className="text-center">
                   <span className="rounded-3xl bg-[#2C0505] px-4 py-1 font-poppins-light text-sm text-white">
                     {t("tools.others.title")}
                   </span>
-                  <ul className="mt-6 flex flex-col gap-4">
-                    <div className="flex items-center gap-8">
+                  <div className="mt-6 flex flex-col gap-4">
+                    <ul className="flex items-center gap-8">
                       <ToolItem name="Git" icon="git.svg" />
                       <ToolItem name="Azure" icon="microsoft_azure.svg" />
-                    </div>
-                  </ul>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div className="box-effect box-experiences relative flex w-3/4 flex-col items-start justify-start gap-4 overflow-hidden rounded-2xl bg-borderbox p-4">
@@ -385,7 +385,7 @@ export default function About() {
                   </div>
                   <div className="flex items-center gap-10">
                     <ToolItem name="Drizzle" icon="drizzle.svg" />
-                    <ToolItem name="Zustand" icon="zustand.png" />
+                    <ToolItem name="Zustand" icon="zustand.svg" />
                   </div>
                 </ul>
               </div>

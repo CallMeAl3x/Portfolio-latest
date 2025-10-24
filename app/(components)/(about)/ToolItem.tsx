@@ -15,7 +15,7 @@ export default function ToolItem({
         src={`/img/about/${icon}`}
         style={{ width: `${size}px`, height: `${size}px` }}
         draggable={false}
-        alt={name}
+        alt={`${name} logo`}
       />
       <p>{name}</p>
     </li>
