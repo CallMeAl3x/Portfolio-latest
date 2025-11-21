@@ -3,6 +3,7 @@
 import { backAnimation, forwardAnimation, resetAnimation } from "@/app/(utils)/(usePageTransition)/animations";
 import { usePageAnimationStore } from "@/app/(utils)/(usePageTransition)/usePageAnimationStore";
 import useIsMobile from "@/app/(utils)/userDevice";
+import { usePathname } from "@/i18n/routing";
 import { useEffect, useLayoutEffect, useRef } from "react";
 import Logo from "../(elements)/Logo";
 
@@ -18,6 +19,7 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const direction = usePageAnimationStore((state) => state.direction);
   const setDirection = usePageAnimationStore((state) => state.setDirection);
+  const pathname = usePathname();
 
   const isMobile = useIsMobile();
   const animationRef = useRef<AnimationTimeline | null>(null);
@@ -54,9 +56,9 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
       return cleanup;
     }
 
-    const pathname = window.location.pathname;
-    const isHomePath = pathname === "/en" || pathname === "/fr";
-    const isProjectsPath = pathname.includes("projects");
+    const currentPath = pathname || window.location.pathname;
+    const isHomePath = currentPath === "/en" || currentPath === "/fr";
+    const isProjectsPath = currentPath.includes("projects");
 
     if (direction === "forward") {
       animationRef.current = forwardAnimation(transitionElement, contentElement, isMobileRef.current, setDirection);
@@ -93,7 +95,7 @@ export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
     animationRef.current = resetAnimation(transitionElement, contentElement, !isProjectsPath, setDirection);
 
     return cleanup;
-  }, [direction, setDirection]);
+  }, [direction, pathname, setDirection]);
 
   return (
     <>
