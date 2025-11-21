@@ -3,40 +3,99 @@
 import { backAnimation, forwardAnimation, resetAnimation } from "@/app/(utils)/(usePageTransition)/animations";
 import { usePageAnimationStore } from "@/app/(utils)/(usePageTransition)/usePageAnimationStore";
 import useIsMobile from "@/app/(utils)/userDevice";
-import { useEffect, useRef } from "react";
+import { usePathname } from "@/i18n/routing";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import Logo from "../(elements)/Logo";
+
+type AnimationTimeline =
+  | ReturnType<typeof forwardAnimation>
+  | ReturnType<typeof backAnimation>
+  | ReturnType<typeof resetAnimation>;
+
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 export const PageWrapper = ({ children }: { children: React.ReactNode }) => {
   const transitionRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const direction = usePageAnimationStore((state) => state.direction);
   const setDirection = usePageAnimationStore((state) => state.setDirection);
+  const pathname = usePathname();
 
   const isMobile = useIsMobile();
+  const animationRef = useRef<AnimationTimeline | null>(null);
+  const pendingFrameRef = useRef<number | null>(null);
+  const scrollResetTimeoutRef = useRef<number | null>(null);
+  const isMobileRef = useRef(isMobile);
 
   useEffect(() => {
-    if (transitionRef.current && contentRef.current) {
-      if (direction === "forward") {
-        forwardAnimation(transitionRef.current, contentRef.current, isMobile, setDirection);
-      } else if (direction === "backward") {
-        contentRef.current.style.visibility = "hidden";
-        setTimeout(() => {
-          if (transitionRef.current && contentRef.current) {
-            return backAnimation(transitionRef.current, contentRef.current, setDirection);
-          }
-        }, 100);
-      } else if (direction === null && (window.location.pathname === "/en" || window.location.pathname === "/fr")) {
-        scrollBy(0, 1);
-        setTimeout(() => {
-          scrollBy(0, -1); // Reset animation of the circle
-        }, 100);
-      } else if (window.location.pathname.includes("projects") && direction === null) {
-        resetAnimation(transitionRef.current, contentRef.current, false, setDirection);
-      } else {
-        resetAnimation(transitionRef.current, contentRef.current, true, setDirection);
+    isMobileRef.current = isMobile;
+  }, [isMobile]);
+
+  useIsomorphicLayoutEffect(() => {
+    const cleanup = () => {
+      if (animationRef.current) {
+        animationRef.current.kill();
+        animationRef.current = null;
       }
+      if (pendingFrameRef.current !== null) {
+        cancelAnimationFrame(pendingFrameRef.current);
+        pendingFrameRef.current = null;
+      }
+      if (scrollResetTimeoutRef.current !== null) {
+        window.clearTimeout(scrollResetTimeoutRef.current);
+        scrollResetTimeoutRef.current = null;
+      }
+    };
+
+    cleanup();
+
+    const transitionElement = transitionRef.current;
+    const contentElement = contentRef.current;
+
+    if (!transitionElement || !contentElement || typeof window === "undefined") {
+      return cleanup;
     }
-  }, [direction, isMobile, setDirection]);
+
+    const currentPath = pathname || window.location.pathname;
+    const isHomePath = currentPath === "/en" || currentPath === "/fr";
+    const isProjectsPath = currentPath.includes("projects");
+
+    if (direction === "forward") {
+      animationRef.current = forwardAnimation(transitionElement, contentElement, isMobileRef.current, setDirection);
+
+      return cleanup;
+    }
+
+    if (direction === "backward") {
+      contentElement.style.visibility = "hidden";
+      pendingFrameRef.current = requestAnimationFrame(() => {
+        pendingFrameRef.current = null;
+        if (!transitionRef.current || !contentRef.current) {
+          return;
+        }
+        animationRef.current = backAnimation(transitionRef.current, contentRef.current, setDirection);
+      });
+
+      return cleanup;
+    }
+
+    if (isHomePath) {
+      pendingFrameRef.current = requestAnimationFrame(() => {
+        pendingFrameRef.current = null;
+        window.scrollBy(0, 1);
+        scrollResetTimeoutRef.current = window.setTimeout(() => {
+          window.scrollBy(0, -1);
+          scrollResetTimeoutRef.current = null;
+        }, 100);
+      });
+
+      return cleanup;
+    }
+
+    animationRef.current = resetAnimation(transitionElement, contentElement, !isProjectsPath, setDirection);
+
+    return cleanup;
+  }, [direction, pathname, setDirection]);
 
   return (
     <>
