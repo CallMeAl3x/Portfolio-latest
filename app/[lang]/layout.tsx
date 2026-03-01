@@ -3,6 +3,7 @@ import { routing } from "@/i18n/routing";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -71,6 +72,15 @@ export default async function LocaleLayout(props: { children: React.ReactNode; p
         </NextIntlClientProvider>
         <SpeedInsights />
         <Analytics />
+        {process.env.NEXT_PUBLIC_RYBBIT_SITE_ID && (
+          <Script
+            id="rybbit-script"
+            src={`${process.env.NEXT_PUBLIC_RYBBIT_URL || "https://app.rybbit.io"}/api/script.js`}
+            data-site-id={process.env.NEXT_PUBLIC_RYBBIT_SITE_ID}
+            data-session-replay="true"
+            strategy="lazyOnload"
+          />
+        )}
       </body>
     </html>
   );
