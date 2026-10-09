@@ -1,28 +1,43 @@
 "use client";
 
-import CloseIcon from "@/app/(components)/(elements)/CloseIcon";
-import { usePageAnimationStore } from "@/app/(utils)/(usePageTransition)/usePageAnimationStore";
+import { useProjectTransition } from "@/app/(utils)/(usePageTransition)/useProjectTransition";
 import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 
+// Bouton rond de fermeture : retour à l'accueil avec la transition
 export default function CloseLink() {
-  const setDirection = usePageAnimationStore((state) => state.setDirection);
-  const direction = usePageAnimationStore((state) => state.direction);
+  const t = useTranslations("ProjectPage");
+  const { closeProject } = useProjectTransition();
 
-  const handleBackClick = () => {
-    // Empêcher de relancer l'animation si la direction est déjà "backward"
-    if (direction !== "backward") {
-      setDirection("backward");
-    }
+  // Échap ferme aussi le projet
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape" || e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
+      closeProject("/");
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [closeProject]);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    closeProject("/");
   };
 
   return (
     <Link
       href="/"
-      passHref
-      onClick={handleBackClick}
-      className="text-light poppins-regular fixed right-14 top-6 z-[9999] flex flex-row items-center gap-x-2 px-4 py-2 text-xl"
+      id="project-close"
+      className="pj-close"
+      title={t("close")}
+      aria-label={t("close")}
+      onClick={handleClick}
     >
-      <CloseIcon />
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.6">
+        <path d="M2 2l14 14M16 2L2 16" />
+      </svg>
     </Link>
   );
 }

@@ -59,7 +59,6 @@ const config: Config = {
         "poppins-reg": ["poppins-reg", "sans-serif"],
         "poppins-light": ["poppins-light", "sans-serif"],
         "poppins-extralight": ["poppins-extralight", "sans-serif"],
-        "poppins-bold": ["poppins-bold", "sans-serif"],
         "khula-regular": ["khula-regular", "sans-serif"],
         "khula-light": ["khula-light", "sans-serif"]
       },

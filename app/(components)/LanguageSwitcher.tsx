@@ -3,18 +3,19 @@ import { Button } from "@/components/ui/button";
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer";
 import { CheckIcon, ChevronDownIcon, GlobeIcon, XIcon } from "lucide-react";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { useLocale } from "next-intl";
 import React, { useState } from "react";
+import { useSwitchLocale } from "./(utils)/locale-provider";
 
 export default function LanguageSwitcher({ className }: { className?: string }) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const currentLocale = pathname.split("/")[1] as "fr" | "en";
+  const currentLocale = useLocale() as "fr" | "en";
+  const switchLocale = useSwitchLocale();
   const [isHovered, setIsHovered] = useState(false);
 
-  const switchLanguage = (lng: string) => {
-    const newPathname = pathname.replace(`/${currentLocale}`, `/${lng}`);
-    router.push(newPathname);
+  // seules les traductions changent : pas de navigation, la page reste en place
+  const switchLanguage = (lng: "fr" | "en") => {
+    switchLocale(lng);
+    setIsOpen(false);
   };
 
   const flags = {
@@ -32,10 +33,10 @@ export default function LanguageSwitcher({ className }: { className?: string }) 
         onClick={() => switchLanguage(nextLocale)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className={`relative mt-2 flex h-[75%] items-center gap-4 rounded-full border border-gray-300 bg-gray-200 px-5 shadow-[inset_6px_6px_10px_rgba(0,0,0,0.2),inset_-6px_-6px_10px_rgba(255,255,255,0.8)] ${className} hidden overflow-hidden transition-all md:block`}
+        className={`relative mt-2 flex h-[75%] items-center gap-4 rounded-full border border-gray-300 bg-gray-200 px-5 shadow-[inset_6px_6px_10px_rgba(0,0,0,0.2),inset_-6px_-6px_10px_rgba(255,255,255,0.8)] dark:border-white/15 dark:bg-white/5 dark:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.6),inset_-4px_-4px_8px_rgba(255,255,255,0.04)] ${className} hidden overflow-hidden transition-all md:block`}
       >
         <div
-          className={`relative flex h-full w-[48px] items-center justify-end gap-2 font-poppins-reg text-base font-medium uppercase text-gray-700`}
+          className={`relative flex h-full w-[48px] items-center justify-end gap-2 font-poppins-reg text-base font-medium uppercase text-gray-700 dark:text-gray-300`}
         >
           <span
             className={`absolute -left-0.5 top-3 ${isHovered ? "-translate-x-6 opacity-0" : "translate-x-0 opacity-100"} transition-all duration-500 ease-in-out`}

@@ -6,11 +6,14 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const projectKeys = [
+  "mapguesser",
+  "celia-gruss",
   "zenpet",
   "bourse-des-voyages",
+  "translate-app",
+  "gcfillon",
+  // archivés (démo hors ligne) en fin de liste
   "chatbot",
   "auth-template",
-  "weather-app",
-  "gcfillon",
-  "translate-app"
+  "weather-app"
 ] as const;

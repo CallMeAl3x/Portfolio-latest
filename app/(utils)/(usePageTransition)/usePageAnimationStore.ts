@@ -1,8 +1,11 @@
 import { create } from "zustand";
 
+// forward = accueil vers projet, backward = projet vers accueil, switch = projet suivant
+export type TransitionDirection = "forward" | "backward" | "switch" | null;
+
 interface TransitionState {
-  direction: "forward" | "backward" | null;
-  setDirection: (dir: "forward" | "backward" | null) => void;
+  direction: TransitionDirection;
+  setDirection: (dir: TransitionDirection) => void;
 }
 
 export const usePageAnimationStore = create<TransitionState>((set) => ({

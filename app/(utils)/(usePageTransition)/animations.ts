@@ -1,162 +1,103 @@
-import gsap from "gsap";
+// Transition accueil <-> projet : un calque SVG de la couleur de la page projet, sans changement de couleur (aucun flash)
+export const VEIL_ID = "page-veil";
+export const INK = "#0a0a0a";
 
-export const forwardAnimation = (
-  transitionRef: HTMLDivElement,
-  contentRef: HTMLDivElement,
-  isMobile: boolean,
-  setDirection: (dir: "forward" | "backward" | null) => void
-) => {
-  const tl = gsap.timeline();
+const EASE_OUT = "cubic-bezier(.76,0,.24,1)";
+const EASE_SOFT = "cubic-bezier(.2,.7,.2,1)";
 
-  gsap.set(contentRef, {
-    visibility: "hidden"
-  });
+export const prefersReducedMotion = () =>
+  typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  gsap.set("#pagebackground", {
-    backgroundColor: "#ededed"
-  });
+// quart in-out, très doux aux extrémités
+const inOut = (t: number) => (t < 0.5 ? 8 * t ** 4 : 1 - (-2 * t + 2) ** 4 / 2);
 
-  gsap.set(transitionRef, {
-    transform: "translateY(100%)",
-    clipPath: isMobile ? "inset(70% 0% 0% 0%)" : "inset(60% 0% 0% 0%)",
-    borderRadius: isMobile ? "50% 50% 0% 0%" : "40% 40% 0% 0",
-    width: "100%",
-    height: "10%",
-    opacity: 1,
-    display: "block"
-  });
-
-  tl.to(transitionRef, {
-    transform: "translateY(0%)",
-    clipPath: "inset(0% 0% 0% 0%)",
-    borderRadius: isMobile ? "50% 50% 0% 0%" : "40% 40% 0% 0",
-    width: "100%",
-    height: "100%",
-    opacity: 1,
-    duration: 0.65,
-    ease: "power3.inOut",
-    onComplete: () => {
-      gsap.to(contentRef, {
-        opacity: 1,
-        duration: 0.5,
-        onComplete: () => {
-          if (contentRef) contentRef.style.visibility = "visible";
-        }
-      });
-    }
-  })
-    .to(transitionRef, {
-      borderRadius: "0% 0% 0% 0%",
-      duration: 0.35,
-      ease: "power1.inOut"
-    })
-    // Mettre le fond en noir à la fin de l'animation
-    .to("#pagebackground", {
-      backgroundColor: "#0A0A0A", // Le fond devient noir
-      duration: 0.25,
-      onComplete: () => {
-        if (transitionRef) transitionRef.style.display = "none";
-        setDirection(null);
-      }
-    });
-
-  return tl;
+const getVeil = () => {
+  const veil = document.getElementById(VEIL_ID);
+  const path = veil?.querySelector("path");
+  return veil && path ? { veil, path } : null;
 };
 
-export const backAnimation = (
-  transitionRef: HTMLDivElement,
-  contentRef: HTMLDivElement,
-  setDirection: (dir: "forward" | "backward" | null) => void
-) => {
-  const tl = gsap.timeline();
-  // Disable clicks during the animation
-  gsap.set(contentRef, {
-    pointerEvents: "none"
-  });
-
-  gsap.set(transitionRef, {
-    transform: "translateY(0%)",
-    clipPath: "inset(0% 0% 0% 0%)",
-    borderRadius: "0% 0% 0% 0%",
-    width: "100%",
-    height: "100%",
-    opacity: 1,
-    display: "block"
-  });
-
-  tl.to(contentRef, {
-    visibility: "visible"
-  });
-
-  tl.to(transitionRef, {
-    transform: "translateY(-10%)",
-    clipPath: "inset(0% 0% 0% 0%)",
-    borderRadius: "0% 0% 65% 65%",
-    width: "100%",
-    height: "35%",
-    opacity: 1,
-    duration: 0.6,
-    ease: "power3.inOut",
-    onComplete: () => {
-      gsap.to(contentRef, {
-        opacity: 1,
-        duration: 0.1,
-        onComplete: () => {
-          if (contentRef) contentRef.style.visibility = "visible";
-        }
-      });
-      // Re-enable pointer events earlier
-      setTimeout(() => {
-        contentRef.style.pointerEvents = "auto";
-      }, 800);
-    }
-  })
-    .to(transitionRef, {
-      transform: "translateY(-81%)",
-      clipPath: "inset(0% 0% 0% 0%)",
-      borderRadius: "0% 0% 85% 85%",
-      width: "100%",
-      height: "25%",
-      opacity: 1,
-      duration: 1.5,
-      ease: "power3.inOut"
-    })
-    .to(transitionRef, {
-      duration: 0.3,
-      ease: "power1.inOut",
-      onComplete: () => {
-        if (transitionRef) transitionRef.style.display = "none";
-        setDirection(null);
-      }
-    });
-
-  return tl;
+export const hideVeil = () => {
+  const v = getVeil();
+  if (v) v.veil.style.display = "none";
 };
 
-export const resetAnimation = (
-  transitionRef: HTMLDivElement,
-  contentRef: HTMLDivElement,
-  isHome: boolean,
-  setDirection: (dir: "forward" | "backward" | null) => void
-) => {
-  const tl = gsap.timeline();
+// calque plein écran immédiat
+export const showFullVeil = () => {
+  const v = getVeil();
+  if (!v) return;
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+  v.veil.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  v.path.setAttribute("d", `M0 0H${W}V${H}H0Z`);
+  v.veil.style.display = "block";
+};
 
-  if (!isHome) {
-    const body = document.querySelector("body");
-
-    gsap.set(body, {
-      backgroundColor: "#0A0A0A"
-    });
-  }
-
-  gsap.set(transitionRef, {
-    display: "none"
+// edge "top" : le calque monte depuis le bas, son bord haut est bombé
+// edge "bottom" : le calque se retire vers le haut, son bord bas est bombé
+export const sweep = (edge: "top" | "bottom", from: number, to: number, duration: number) =>
+  new Promise<void>((done) => {
+    const v = getVeil();
+    if (!v) {
+      done();
+      return;
+    }
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    const bulge = Math.min(W, H) * (W < 760 ? 0.28 : 0.2);
+    v.veil.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    v.veil.style.display = "block";
+    const t0 = performance.now();
+    const frame = (now: number) => {
+      const k = Math.min(1, (now - t0) / duration);
+      const p = from + (to - from) * inOut(k);
+      const d = Math.sin(Math.PI * p) * bulge; // courbe max au milieu, plate aux deux bouts
+      const y = H * (1 - p);
+      v.path.setAttribute(
+        "d",
+        edge === "top"
+          ? `M0 ${H} L0 ${y} Q${W / 2} ${y - d} ${W} ${y} L${W} ${H}Z`
+          : `M0 0 L${W} 0 L${W} ${H - y} Q${W / 2} ${H - y + d} 0 ${H - y}Z`
+      );
+      if (k < 1) requestAnimationFrame(frame);
+      else done();
+    };
+    requestAnimationFrame(frame);
   });
-  gsap.set(contentRef, {
-    opacity: 1,
-    visibility: "visible"
-  });
 
-  setDirection(null);
-  return tl;
+export const fadeOut = (selector: string, ms = 250): Promise<void> =>
+  Promise.all(
+    Array.from(document.querySelectorAll<HTMLElement>(selector)).map(
+      (el) =>
+        el.animate([{ opacity: 1 }, { opacity: 0, transform: "translateY(-12px)" }], {
+          duration: ms,
+          easing: "ease-in",
+          fill: "forwards"
+        }).finished
+    )
+  ).then(() => undefined);
+
+// entrée échelonnée du contenu de la page projet
+export const enterContent = (root: ParentNode, delay = 0) => {
+  root.querySelector(".pj-title span")?.animate([{ transform: "translateY(105%)" }, { transform: "none" }], {
+    duration: 900,
+    delay,
+    easing: EASE_OUT,
+    fill: "both"
+  });
+  root.querySelectorAll(".pj-st").forEach((el, i) =>
+    el.animate(
+      [
+        { opacity: 0, transform: "translateY(24px)" },
+        { opacity: 1, transform: "none" }
+      ],
+      { duration: 800, delay: delay + 120 + i * 70, easing: EASE_SOFT, fill: "both" }
+    )
+  );
+  root.querySelector(".pj-shot img")?.animate([{ transform: "scale(1.08)" }, { transform: "scale(1)" }], {
+    duration: 1600,
+    delay: delay + 200,
+    easing: EASE_SOFT,
+    fill: "both"
+  });
 };

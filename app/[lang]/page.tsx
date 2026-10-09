@@ -1,68 +1,49 @@
 "use client";
-import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
-import Arrows from "../(components)/(elements)/Arrows";
-import Circle from "../(components)/(elements)/Circle";
-import Lines from "../(components)/(elements)/Lines";
+import { useLenis } from "lenis/react";
+import { useEffect, useRef } from "react";
 import About from "../(components)/About";
-import Footer from "../(components)/Footer";
+import Contact from "../(components)/Contact";
+import Cursor from "../(components)/(elements)/Cursor";
+import Grid from "../(components)/(elements)/Grid";
+import Ruler from "../(components)/(elements)/Ruler";
+import Hero from "../(components)/Hero";
 import Menu from "../(components)/Menu";
 import Projects from "../(components)/Projects";
+import { hideVeil, sweep } from "../(utils)/(usePageTransition)/animations";
 import { usePageAnimationStore } from "../(utils)/(usePageTransition)/usePageAnimationStore";
+import { releaseTransition } from "../(utils)/(usePageTransition)/useProjectTransition";
 
 export default function Homepage() {
-  const [startArrowAnimation, setStartArrowAnimation] = useState(false);
-  const t = useTranslations("HomePage");
-  const direction = usePageAnimationStore((state) => state.direction);
+  const lenis = useLenis();
+  const lenisRef = useRef(lenis);
+  lenisRef.current = lenis;
 
+  // retour d'un projet : le calque couvre encore l'écran, on cale la liste puis on le retire vers le haut
   useEffect(() => {
-    if (direction === "backward") {
-      const scrollToProjects = () => {
-        const projectsSection = document.getElementById("projects");
-        if (projectsSection) {
-          window.scrollTo({
-            top: projectsSection.offsetTop,
-            behavior: "instant"
-          });
-        }
-      };
-
-      const projectsSection = document.getElementById("projects");
-      if (projectsSection) {
-        scrollToProjects();
-      }
+    if (usePageAnimationStore.getState().direction !== "backward") return;
+    const list = document.getElementById("projects-list");
+    if (list) {
+      const rect = list.getBoundingClientRect();
+      const top = Math.max(0, rect.top + window.scrollY - Math.max(0, (window.innerHeight - rect.height) / 2));
+      window.scrollTo({ top, behavior: "instant" });
+      // Lenis connaît encore la hauteur de la page projet : on la lui fait relire avant de caler
+      lenisRef.current?.resize();
+      lenisRef.current?.scrollTo(top, { immediate: true, force: true });
     }
-  }, [direction]);
+    releaseTransition();
+    sweep("bottom", 1, 0, 1200).then(hideVeil);
+  }, []);
 
   return (
-    <>
-      <main id="mainpage">
-        <Menu />
-        <div className="LandingSpace bg-gradient-c relative h-screen w-screen md:h-[130vh]" id="home">
-          <div className="relative h-screen overflow-hidden md:h-[125vh]">
-            <Arrows startAnimation={startArrowAnimation} />
-            <div
-              className="relative flex h-screen w-screen flex-col items-center justify-center overflow-hidden bg-background"
-              id="landing"
-            >
-              <Circle />
-              <div className="relative z-10 mt-8 flex flex-col items-center justify-center">
-                <h1 className="text-light font-khula-extrabold w-[732px] text-center leading-[85px] max-sm:max-w-sm max-sm:text-[10vw] max-sm:leading-tight sm:text-[10vw] md:text-[80px]">
-                  {t("title")}
-                </h1>
-                <p className="text-gray-2 mt-4 max-w-[390px] px-4 text-center font-poppins-reg text-lg leading-[123%] max-sm:text-[4vw]">
-                  {t("description")}
-                </p>
-              </div>
-            </div>
-          </div>
-          <Lines onAnimationComplete={() => setStartArrowAnimation(true)} />
-        </div>
-        {/* Div de test pour simuler du scroll */}
-        <About />
-        <Projects />
-        <Footer />
-      </main>
-    </>
+    <main id="mainpage" className="hm-main">
+      <Menu />
+      <Hero />
+      <About />
+      <Projects />
+      <Contact />
+      <Grid />
+      <Ruler />
+      <Cursor />
+    </main>
   );
 }

@@ -7,35 +7,29 @@
     font-family: "poppins-reg";
     font-style: normal;
     font-display: swap;
-    src: url(/fonts/Poppins/Poppins-Regular.ttf) format("truetype");
+    src: url(/fonts/Poppins/Poppins-Regular.woff2) format("woff2");
   }
 
   @font-face {
     font-family: "poppins-light";
     font-style: normal;
     font-display: swap;
-    src: url(/fonts/Poppins/Poppins-Light.ttf) format("truetype");
+    src: url(/fonts/Poppins/Poppins-Light.woff2) format("woff2");
   }
 
-  @font-face {
-    font-family: "poppins-bold";
-    font-style: normal;
-    font-display: swap;
-    src: url(/fonts/Poppins/Poppins-Bold.ttf) format("truetype");
-  }
 
   @font-face {
     font-family: "poppins-extralight";
     font-style: normal;
     font-display: swap;
-    src: url(/fonts/Poppins/Poppins-ExtraLight.ttf) format("truetype");
+    src: url(/fonts/Poppins/Poppins-ExtraLight.woff2) format("woff2");
   }
 
   @font-face {
     font-family: "khula-regular";
     font-display: swap;
     font-style: normal;
-    src: url(/fonts/Khula/Khula-Regular.ttf) format("truetype");
+    src: url(/fonts/Khula/Khula-Regular.woff2) format("woff2");
   }
 
   @font-face {
@@ -43,7 +37,25 @@
     font-weight: 300;
     font-style: normal;
     font-display: swap;
-    src: url(/fonts/Khula/Khula-Light.ttf) format("truetype");
+    src: url(/fonts/Khula/Khula-Light.woff2) format("woff2");
+  }
+
+  /* Khula n'a aucune lettre accentuée : ces caractères sont pris dans Hind, de la même fonderie et au dessin très proche */
+  @font-face {
+    font-family: "khula-regular";
+    font-display: swap;
+    font-style: normal;
+    src: url(/fonts/Hind/Hind-Regular-accents.woff2) format("woff2");
+    unicode-range: U+00AB, U+00B7, U+00BB, U+00C0-00FF, U+0152-0153;
+  }
+
+  @font-face {
+    font-family: "khula-light";
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+    src: url(/fonts/Hind/Hind-Light-accents.woff2) format("woff2");
+    unicode-range: U+00AB, U+00B7, U+00BB, U+00C0-00FF, U+0152-0153;
   }
   :root {
     --background: 0 0% 100%;
@@ -105,41 +117,11 @@
 html {
   scroll-behavior: auto; /* Disable native smooth scrolling */
 }
-:root {
-  --svg-line: #2c2c2c;
-}
 
 body {
   background-color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
-}
-
-@media (max-width: 400px) {
-  #vertical-lines path:nth-child(1) {
-    d: path("M 15 0 L 15 100");
-  }
-  #vertical-lines path:nth-child(2) {
-    d: path("M 50 0 L 50 100");
-  }
-  #vertical-lines path:nth-child(3) {
-    d: path("M 85 0 L 85 100");
-  }
-
-  #left-arrow {
-    d: path("M 15 50 L 50 65 L 50 70 L 15 55 Z");
-  }
-  #right-arrow {
-    d: path("M 85 50 L 50 65 L 50 70 L 85 55 Z");
-  }
-}
-
-.circle {
-  transition: filter 0.5s ease-in-out;
-}
-
-.fade-out-line {
-  mask-image: linear-gradient(to bottom, var(--foreground) 0%, var(--foreground) 80%, transparent 100%);
+  overflow-x: clip;
 }
 
 .bg-borderbox {
@@ -160,16 +142,11 @@ body {
 }
 
 body {
-  background-color: #ededed;
+  background-color: #0a0a0a;
 }
 
 .transition-scale {
   transition: transform 0.25s ease-in-out;
-}
-
-.ringImage {
-  max-width: none;
-  user-select: none;
 }
 
 @keyframes scale-up {
@@ -192,4 +169,358 @@ body {
 
 .spin {
   animation: spin 1s linear infinite;
+}
+
+/* ---------- Liste des projets : aperçu qui suit la souris ---------- */
+.proj-preview {
+  position: fixed;
+  z-index: 50;
+  left: 0;
+  top: 0;
+  width: 385px;
+  height: 216px;
+  pointer-events: none;
+  will-change: transform;
+}
+.proj-frame {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  clip-path: inset(50% 50% 50% 50% round 12px);
+  transition: clip-path 0.55s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.proj-preview.show .proj-frame {
+  clip-path: inset(0 0 0 0 round 12px);
+}
+.proj-track {
+  transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.proj-slide {
+  height: 216px;
+  overflow: hidden;
+}
+.proj-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transform: scale(1.18);
+  transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.proj-slide.on img {
+  transform: scale(1);
+}
+
+/* ---------- Page projet ---------- */
+.pj {
+  --ink: #0a0a0a;
+  --g1: #a3a3a3;
+  --g2: #5c5c5c;
+  --line: #2a2a2a;
+  position: relative;
+  min-height: 100vh;
+  background: var(--ink);
+  color: #fff;
+  font-family: "poppins-reg", sans-serif;
+}
+.pj-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.pj-close {
+  position: fixed;
+  z-index: 999;
+  top: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #444;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    color 0.3s;
+  color: #fff;
+}
+.pj-close:hover {
+  background: #fff;
+  color: var(--ink);
+}
+.pj-hero {
+  padding-top: 14vh;
+}
+.pj-title {
+  font: clamp(56px, 11vw, 150px) / 0.9 "khula-regular", sans-serif;
+  letter-spacing: -0.01em;
+  /* marge interne pour que overflow (utile à l'animation) ne rogne ni les capitales ni les jambages */
+  padding: 0.12em 0 0.14em;
+  margin: calc(18px - 0.12em) 0 -0.14em;
+  overflow: hidden;
+}
+.pj-title span {
+  display: inline-block;
+}
+.pj-pitch {
+  font: clamp(20px, 2.4vw, 30px) / 1.3 "poppins-extralight", sans-serif;
+  max-width: 760px;
+  margin-top: 28px;
+  color: #d4d4d4;
+}
+.pj-meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 56px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.pj-meta p:first-child {
+  color: var(--g2);
+  font: 13px "khula-light", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.pj-meta p:last-child {
+  font-size: 15px;
+  color: #e5e5e5;
+}
+.pj-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  padding: 14px 22px 14px 24px;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 15px;
+  transition: gap 0.3s;
+}
+.pj-cta:hover {
+  gap: 18px;
+}
+/* projet archivé : la démo n'est plus en ligne, une mention remplace le bouton */
+.pj-archived {
+  display: inline-flex;
+  margin-top: 40px;
+  padding: 14px 24px;
+  border: 1px dashed #555;
+  border-radius: 999px;
+  color: #a3a3a3;
+  font-size: 15px;
+}
+.pj-shot {
+  margin-top: 72px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid #333;
+}
+.pj-shot img {
+  width: 100%;
+  transform-origin: top center;
+}
+.pj-figures {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 120px;
+  border-top: 1px solid var(--line);
+}
+.pj-fig {
+  padding: 28px 24px 0 0;
+}
+.pj-fig + .pj-fig {
+  padding-left: 24px;
+  border-left: 1px solid var(--line);
+}
+.pj-fig b {
+  display: block;
+  font: clamp(38px, 4.4vw, 64px) / 1 "khula-regular", sans-serif;
+  font-weight: normal;
+  font-variant-numeric: tabular-nums;
+}
+.pj-fig span {
+  display: block;
+  color: var(--g1);
+  font-size: 15px;
+  margin-top: 10px;
+  max-width: 200px;
+}
+.pj-fig small {
+  color: var(--g2);
+  font-size: 12px;
+  display: block;
+  margin-top: 6px;
+}
+.pj-cols {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 64px;
+  margin-top: 120px;
+}
+.pj-label {
+  color: var(--g2);
+  font: 13px "khula-light", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+}
+.pj-body {
+  color: #cfcfcf;
+  font-size: 17px;
+  line-height: 1.65;
+}
+.pj-body + .pj-body {
+  margin-top: 16px;
+}
+.pj-stack h4 {
+  font: 13px "khula-light", sans-serif;
+  color: var(--g1);
+  margin: 18px 0 10px;
+}
+.pj-stack > div:first-of-type h4 {
+  margin-top: 0;
+}
+.pj-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pj-chips span {
+  border: 1px solid #3a3a3a;
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-size: 14px;
+  color: #e5e5e5;
+}
+.pj-next {
+  display: block;
+  margin-top: 160px;
+  border-top: 1px solid var(--line);
+  padding: 56px 0 96px;
+  cursor: pointer;
+}
+.pj-next p {
+  color: var(--g2);
+  font: 14px "khula-light", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.pj-next .nt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: clamp(48px, 9vw, 120px) / 1 "khula-regular", sans-serif;
+  margin-top: 14px;
+  color: #555;
+  transition: color 0.4s;
+}
+.pj-next:hover .nt {
+  color: #fff;
+}
+.pj-next .arr {
+  width: clamp(48px, 7vw, 96px);
+  flex: none;
+  transition: transform 0.4s;
+}
+.pj-next:hover .arr {
+  transform: translateX(12px);
+}
+.pj-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.pj-reveal.in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pj-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+@media (max-width: 760px) {
+  .pj-meta {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pj-figures {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pj-fig,
+  .pj-fig + .pj-fig {
+    padding: 24px 12px 24px 0;
+    border-left: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .pj-fig:nth-child(even) {
+    padding-left: 12px;
+    border-left: 1px solid var(--line);
+  }
+  .pj-cols {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+  .pj-close {
+    top: 16px;
+    right: 16px;
+  }
+}
+
+/* ---------- Liste des projets : ligne (desktop) ---------- */
+.proj-row {
+  position: relative;
+  align-items: baseline;
+  gap: 18px;
+  padding: 52px 48px;
+  transition: opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.proj-row::after {
+  content: "";
+  position: absolute;
+  left: 48px;
+  bottom: 12%;
+  height: 1.75px;
+  width: 33%;
+  background: rgba(10, 10, 10, 0.35);
+  transition:
+    width 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+    background 0.6s;
+}
+.proj-row .n {
+  font-size: 24px;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.proj-row .t {
+  font-size: 64px;
+  line-height: 1;
+  white-space: nowrap;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.proj-row .d {
+  margin-left: auto;
+  font-size: 22px;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.04s;
+}
+/* une ligne survolée met les autres en retrait, plutôt que de griser celle qu'on vise */
+.proj-row.dim {
+  opacity: 0.28;
+}
+.proj-row.on::after {
+  width: calc(100% - 96px);
+  background: rgba(10, 10, 10, 0.8);
+}
+.proj-row.on .t,
+.proj-row.on .d {
+  transform: translateX(16px);
 }

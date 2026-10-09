@@ -1,12 +1,33 @@
+"use client";
 import { Link } from "@/i18n/routing";
+import { useEffect, useRef } from "react";
+import { onScroll } from "../../(utils)/scrollBus";
+
+// Le logo est fixe et passerait sur les titres : il se retire quand on descend, revient dès qu'on remonte
+function useHideOnScroll() {
+  const ref = useRef<HTMLAnchorElement>(null);
+  useEffect(() => {
+    let last = scrollY;
+    let hidden = false;
+    return onScroll(() => {
+      const y = scrollY;
+      const next = y > innerHeight * 0.6 && (y > last + 2 || (hidden && y >= last - 2));
+      if (next !== hidden) ref.current?.toggleAttribute("data-hidden", (hidden = next));
+      last = y;
+    });
+  }, []);
+  return ref;
+}
 
 export default function Logo() {
+  const ref = useHideOnScroll();
   return (
     <div className="logowrapper">
       <Link
         href="/"
         passHref
-        className="fixed left-6 top-6 z-[999] h-16 w-16 cursor-pointer lg:left-16 lg:top-8 lg:h-24 lg:w-24"
+        ref={ref}
+        className="hm-logo fixed left-6 top-6 z-[999] h-16 w-16 cursor-pointer lg:left-16 lg:top-8 lg:h-24 lg:w-24"
         aria-label="home"
       >
         <svg

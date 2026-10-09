@@ -1,0 +1,1286 @@
+/* Accueil « schéma » : héros noir, sections claires (ou sombres en thème sombre), contact noir.
+   Toutes les couleurs des sections claires passent par des variables (:root clair, html.dark sombre). */
+
+:root {
+  --hm-bg: #0a0a0a; /* héros et contact, identiques dans les deux thèmes */
+  --hm-line: #2c2c2c; /* lignes verticales du héros */
+  --hm-paper: #ededed;
+  --hm-ink: #0a0a0a;
+  --hm-ink-2: #5a5a5a; /* étiquettes monospace, texte secondaire */
+  --hm-ink-3: #3d3d3d; /* étiquettes d'en-tête de section */
+  --hm-rule: #bdbdbd; /* trait des en-têtes */
+  --hm-rule-2: #c9c9c9; /* filets (liste des projets) */
+  --hm-block: #fff; /* blocs : fiche, outils, formations */
+  --hm-block-line: #e6e6e6;
+  --hm-draw: #0a0a0a; /* traits de la frise, du schéma, des vignettes */
+  --hm-wire: #0a0a0a; /* fil de fer de la section À propos */
+  --hm-hatch: rgba(10, 10, 10, 0.18);
+  --hm-grid: rgba(10, 10, 10, 0.045);
+  --hm-head: #f0edf2; /* logo */
+  --font-reg: "poppins-reg", sans-serif;
+  --font-light: "poppins-light", sans-serif;
+  --font-khula: "khula-regular", sans-serif;
+}
+html.dark {
+  --hm-paper: #0a0a0a; /* même noir que le héros et le contact */
+  --hm-ink: #ededed;
+  --hm-ink-2: #a3a3a3;
+  --hm-ink-3: #a3a3a3;
+  --hm-rule: rgba(255, 255, 255, 0.12);
+  --hm-rule-2: rgba(255, 255, 255, 0.12);
+  --hm-block: #1c1c1c;
+  --hm-block-line: rgba(255, 255, 255, 0.12);
+  --hm-draw: #d6d6d6;
+  --hm-wire: #d6d6d6;
+  --hm-hatch: rgba(214, 214, 214, 0.28);
+  --hm-grid: rgba(255, 255, 255, 0.05);
+}
+
+/* changement de thème : le nouveau thème s'ouvre en cercle par-dessus l'ancien (ThemeToggle) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  z-index: 1;
+}
+/* pas de fondus de couleur pendant la bascule : le cercle fait tout le travail */
+html.hm-theme-switching *,
+html.hm-theme-switching *::before,
+html.hm-theme-switching *::after {
+  transition: none !important;
+}
+
+/* logo : clair sur le noir, sombre sur le clair (l'attribut est posé par useHomeScroll) */
+html[data-over-paper] {
+  --hm-head: #0a0a0a;
+}
+html.dark[data-over-paper] {
+  --hm-head: #f0edf2;
+}
+#logo {
+  fill: var(--hm-head);
+  transition: fill 0.5s;
+}
+.hm-logo {
+  transition:
+    translate 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s;
+}
+.hm-logo[data-hidden] {
+  translate: 0 -140%;
+  opacity: 0;
+  pointer-events: none;
+}
+/* menu : blanc en différence, donc toujours à l'inverse de ce qui passe dessous
+   (sections claires ou sombres, captures de projets), quel que soit le thème */
+.hm-menu {
+  mix-blend-mode: difference;
+  color: #fff;
+}
+#menutitle,
+.hm-themebtn {
+  color: inherit;
+}
+
+.hm-main {
+  background: var(--hm-bg);
+  color: #ededed;
+  font-family: var(--font-reg);
+}
+.hm-mono {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13.5px;
+  letter-spacing: 0.02em;
+  color: var(--hm-ink-2);
+}
+
+/* ---------- Héros : un écran, rien de collé ---------- */
+.hm-hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--hm-bg);
+}
+.hm-halo {
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: min(74vmin, 660px);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230, 230, 244, 0.1) 0%, rgba(230, 230, 244, 0.045) 38%, transparent 62%);
+  filter: blur(8px);
+  animation: hm-fade 1.5s cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+}
+.hm-lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, #000 70%, transparent);
+}
+.hm-lines .frame,
+.hm-grid .frame {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: min(100%, 1300px);
+  transform: translateX(-50%);
+}
+.hm-vl {
+  position: absolute;
+  top: 0;
+  bottom: -2px;
+  width: 1.5px;
+  background: var(--hm-line);
+  transform-origin: 50% 0;
+  animation: hm-grow 1.2s cubic-bezier(0.22, 1, 0.36, 1) calc(620ms + var(--o, 0) * 110ms) both;
+}
+.hm-copy {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  z-index: 3;
+}
+.hm-h1 {
+  font: 400 clamp(40px, 8vw, 80px) / 1.06 var(--font-reg);
+  width: min(780px, 92vw);
+  letter-spacing: -0.01em;
+}
+.hm-h1 .ln {
+  display: block;
+}
+.hm-h1 .wd {
+  display: inline-block;
+  animation: hm-word 0.68s cubic-bezier(0.22, 1, 0.36, 1) calc(260ms + var(--i, 0) * 80ms) both;
+}
+.hm-sub {
+  font: 300 18px / 1.35 var(--font-light);
+  color: #a3a3a3;
+  max-width: 390px;
+  margin: 18px auto 0;
+  animation: hm-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) 980ms both;
+}
+/* retour sur l'accueil pendant la visite : état final direct */
+.hm-hero.is-seen .hm-halo,
+.hm-hero.is-seen .hm-vl,
+.hm-hero.is-seen .hm-h1 .wd,
+.hm-hero.is-seen .hm-sub {
+  animation: none;
+}
+@keyframes hm-fade {
+  from { opacity: 0; }
+}
+@keyframes hm-grow {
+  from { transform: scaleY(0); }
+}
+/* 0,001 et non 0 : invisible à l'œil, mais le titre compte dès le premier affichage pour le LCP */
+@keyframes hm-word {
+  from { opacity: 0.001; transform: translateY(16px); filter: blur(6px); }
+}
+@keyframes hm-rise {
+  from { opacity: 0; transform: translateY(12px); }
+}
+
+/* ---------- Sections claires ---------- */
+.hm-about,
+.hm-projects {
+  position: relative;
+  background: var(--hm-paper);
+  color: var(--hm-ink);
+  z-index: 3;
+}
+.hm-about-body {
+  padding: 0 0 40px;
+}
+.hm-pin-in {
+  position: relative;
+  padding: 6vh 0 0;
+}
+/* bord bombé posé au-dessus d'une section : il s'aplatit à mesure qu'elle monte */
+.hm-edge {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 22vh;
+  bottom: calc(100% - 1px);
+  overflow: visible;
+  pointer-events: none;
+  z-index: 3;
+}
+.hm-edge path {
+  fill: var(--hm-edge-fill, var(--hm-paper));
+}
+.hm-edge.ink path {
+  fill: var(--hm-bg);
+}
+/* fil de la courbe : invisible en clair, il la rend lisible en sombre où les deux fonds sont du même noir */
+.hm-edge path.hm-edge-line {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+html.dark .hm-edge path.hm-edge-line {
+  stroke: rgba(255, 255, 255, 0.16);
+}
+.hm-wire {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+  overflow: visible;
+}
+.hm-wire path {
+  fill: none;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke: var(--hm-wire);
+}
+.hm-about [data-wire] {
+  opacity: 0;
+}
+
+/* grille des 3 lignes, continue sur les sections claires */
+.hm-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+.hm-grid span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--hm-grid);
+}
+html[data-on-paper] .hm-grid {
+  opacity: 1;
+}
+
+.hm-wrap {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 3;
+}
+.hm-sh {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 40px;
+  padding-top: 110px;
+}
+.hm-sh .hm-mono {
+  color: var(--hm-ink-3);
+}
+.hm-sh .rule {
+  flex: 1;
+  height: 1px;
+  background: var(--hm-rule);
+  transform-origin: left;
+}
+.hm-sh.ink .rule {
+  background: #333;
+}
+.hm-sh.ink .hm-mono {
+  color: #9a9a9a;
+}
+.hm-about-in .hm-sh {
+  padding-top: 40px;
+}
+
+/* révélations à l'arrivée à l'écran */
+.hm-rv {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hm-rv.in {
+  opacity: 1;
+  transform: none;
+}
+.hm-rv .rule {
+  transform: scaleX(0);
+  transition: transform 1.1s cubic-bezier(0.65, 0, 0.35, 1) 0.1s;
+}
+.hm-rv.in .rule {
+  transform: scaleX(1);
+}
+
+/* ---------- À propos ---------- */
+.hm-intro {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: start;
+}
+.hm-photo {
+  position: relative;
+  margin: 0 24px 0 0;
+  padding: 14px;
+}
+.hm-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  border-radius: 2px;
+  /* détourage : fondu sous les bras croisés */
+  mask-image: linear-gradient(to bottom, #000 78%, transparent 98%);
+  transition: filter 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hm-photo figcaption {
+  margin-top: 12px;
+}
+.hm-crop {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 0 solid var(--hm-draw);
+}
+.hm-crop {
+  transition: translate 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@media (hover: hover) {
+  .hm-photo:hover img {
+    filter: grayscale(0) contrast(1.05);
+  }
+  .hm-photo:hover .hm-crop.tl {
+    translate: -5px -5px;
+  }
+  .hm-photo:hover .hm-crop.tr {
+    translate: 5px -5px;
+  }
+  .hm-photo:hover .hm-crop.bl {
+    translate: -5px 5px;
+  }
+  .hm-photo:hover .hm-crop.br {
+    translate: 5px 5px;
+  }
+}
+.hm-crop.tl {
+  left: 0;
+  top: 0;
+  border-left-width: 1px;
+  border-top-width: 1px;
+}
+.hm-crop.tr {
+  right: 0;
+  top: 0;
+  border-right-width: 1px;
+  border-top-width: 1px;
+}
+.hm-crop.bl {
+  left: 0;
+  bottom: 34px;
+  border-left-width: 1px;
+  border-bottom-width: 1px;
+}
+.hm-crop.br {
+  right: 0;
+  bottom: 34px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
+.hm-statement {
+  padding: 14px 0 0 24px;
+}
+.hm-big {
+  font: 400 clamp(26px, 3.4vw, 46px) / 1.18 var(--font-reg);
+  color: var(--hm-ink);
+  max-width: 900px;
+  letter-spacing: -0.01em;
+}
+.hm-specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 48px;
+  background: var(--hm-block);
+  padding: 4px 22px;
+  border-radius: 6px;
+}
+.hm-specs div {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--hm-rule-2);
+}
+.hm-specs div:last-child,
+.hm-specs div:nth-last-child(2) {
+  border-bottom: 0;
+}
+.hm-specs dt {
+  color: var(--hm-ink-2);
+}
+.hm-specs dd {
+  color: var(--hm-ink);
+  margin-top: 6px;
+  font: 400 16px / 1.4 var(--font-reg);
+  letter-spacing: 0;
+}
+
+/* ---------- Frise : axe gradué, barres hachurées pour les stages ---------- */
+.hm-tl {
+  position: relative;
+  height: 300px;
+}
+.hm-tl-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.hm-tl-svg .axis,
+.hm-tl-svg .tick {
+  stroke: var(--hm-draw);
+  stroke-width: 1;
+}
+.hm-tl-svg text {
+  font:
+    13px ui-monospace,
+    Menlo,
+    monospace;
+  fill: var(--hm-ink-2);
+  letter-spacing: 0.06em;
+}
+.hm-tl-items {
+  position: absolute;
+  inset: 0;
+}
+.hm-ev {
+  position: absolute;
+}
+.hm-ev .bar {
+  height: 26px;
+  border: 1px solid var(--hm-draw);
+  background: repeating-linear-gradient(135deg, transparent 0 5px, var(--hm-hatch) 5px 6px);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition:
+    transform 1.2s cubic-bezier(0.65, 0, 0.35, 1) var(--d, 0s),
+    scale 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    outline-color 0.3s;
+  outline: 1px solid transparent;
+  outline-offset: 3px;
+}
+.hm-ev.now .bar {
+  background: var(--hm-draw);
+}
+.hm-ev .lab {
+  margin-top: 8px;
+  white-space: nowrap;
+}
+.hm-ev .lab b {
+  display: block;
+  font: 400 16px / 1.2 var(--font-reg);
+  color: var(--hm-ink);
+}
+.hm-ev .lab span {
+  font:
+    13px ui-monospace,
+    Menlo,
+    monospace;
+  color: var(--hm-ink-2);
+  letter-spacing: 0.04em;
+}
+.hm-tl.in .hm-ev .bar {
+  transform: scaleX(1);
+}
+.hm-ev {
+  outline: none;
+  transition: opacity 0.35s;
+}
+.hm-ev .card {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  width: 300px;
+  margin-top: 8px;
+  padding: 14px 16px 16px;
+  background: var(--hm-block);
+  border: 1px solid var(--hm-draw);
+  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.45);
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s 0.3s;
+}
+.hm-ev.end .card {
+  left: auto;
+  right: 0;
+}
+.hm-ev .card .role {
+  margin-top: 6px;
+  font: 400 15px / 1.3 var(--font-reg);
+  color: var(--hm-ink);
+}
+.hm-ev .card ul {
+  list-style: none;
+  margin-top: 10px;
+}
+.hm-ev .card li {
+  position: relative;
+  padding-left: 14px;
+  font: 300 14px / 1.45 var(--font-light);
+  color: var(--hm-ink-2);
+}
+.hm-ev .card li + li {
+  margin-top: 4px;
+}
+.hm-ev .card li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 1px;
+  background: var(--hm-draw);
+}
+.hm-ev:focus-visible .bar {
+  outline-color: var(--hm-ink);
+}
+.hm-ev:focus-visible .card,
+.hm-ev:focus-within .card {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+.hm-ev:focus-visible {
+  z-index: 11;
+}
+.hm-ev:focus-visible .bar,
+.hm-ev:focus-within .bar {
+  scale: 1 1.3;
+  outline-color: var(--hm-draw);
+}
+.hm-tl-items:has(.hm-ev:focus-visible) .hm-ev:not(:focus-visible) {
+  opacity: 0.35;
+}
+@media (hover: hover) {
+  .hm-ev:hover {
+    z-index: 11;
+  }
+  .hm-ev:hover .card {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
+  }
+  .hm-ev:hover .bar {
+    scale: 1 1.3;
+    outline-color: var(--hm-draw);
+  }
+  .hm-tl-items:has(.hm-ev:hover) .hm-ev:not(:hover) {
+    opacity: 0.35;
+  }
+}
+
+/* ---------- Outils : blocs reliés en pointillés ---------- */
+.hm-diagram {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 8%;
+  padding: 10px 0 20px;
+}
+.hm-dg-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.hm-dg-svg path {
+  fill: none;
+  stroke: var(--hm-draw);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+/* liaison active : les pointillés défilent comme un flux */
+.hm-dg-svg path.flow {
+  stroke-width: 1.5;
+  animation: hm-flow 0.7s linear infinite;
+}
+@keyframes hm-flow {
+  to {
+    stroke-dashoffset: -8;
+  }
+}
+.hm-node {
+  position: relative;
+  border: 1px solid var(--hm-draw);
+  background: var(--hm-block);
+  padding: 18px 20px 20px;
+  transition:
+    translate 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s;
+}
+.hm-node::before,
+.hm-node::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -4px;
+  border: 1px solid var(--hm-draw);
+  background: var(--hm-block);
+  border-radius: 50%;
+}
+.hm-node::before {
+  left: -4px;
+}
+.hm-node::after {
+  right: -4px;
+}
+.hm-node ul {
+  list-style: none;
+  margin-top: 14px;
+}
+.hm-node li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 400 17px / 1.9 var(--font-reg);
+  color: var(--hm-ink);
+  border-bottom: 1px dashed var(--hm-block-line);
+}
+.hm-node li:last-child {
+  border-bottom: 0;
+}
+.hm-node li img {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@media (hover: hover) {
+  .hm-node:hover {
+    translate: 0 -3px;
+    box-shadow: 0 12px 24px -16px rgba(0, 0, 0, 0.4);
+  }
+  html.dark .hm-node:hover {
+    box-shadow: 0 12px 24px -14px rgba(0, 0, 0, 0.9);
+  }
+  .hm-node li:hover img {
+    transform: rotate(-10deg) scale(1.22);
+  }
+}
+/* logos à trait sombre : inversés en thème sombre pour rester lisibles */
+html.dark .hm-node li img[data-invert] {
+  filter: invert(1);
+}
+
+/* ---------- Formations ---------- */
+.hm-spec {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--hm-block);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.hm-spec td {
+  padding: 18px 22px;
+  border-top: 1px solid var(--hm-block-line);
+  font: 400 17px / 1.4 var(--font-reg);
+  color: var(--hm-ink);
+  vertical-align: middle;
+}
+.hm-spec tr:first-child td {
+  border-top: 0;
+}
+.hm-spec td.hm-mono {
+  font:
+    14px ui-monospace,
+    Menlo,
+    monospace;
+  color: var(--hm-ink-2);
+  width: 18%;
+}
+.hm-spec td:nth-child(3) {
+  width: 20%;
+}
+.hm-spec td.tag {
+  text-align: right;
+  font:
+    12px ui-monospace,
+    Menlo,
+    monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--hm-ink);
+}
+.hm-spec td.tag:not(:empty)::before {
+  content: "● ";
+}
+
+/* ---------- Projets : le croquis se trace puis la capture le remplit ---------- */
+.hm-projects {
+  padding-bottom: calc(22vh + 60px);
+}
+.hm-prow {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0 24px;
+  align-items: end;
+  padding: 40px 0;
+  border-top: 1px solid var(--hm-rule-2);
+  cursor: pointer;
+  color: inherit;
+}
+.hm-prow:last-child {
+  border-bottom: 1px solid var(--hm-rule-2);
+}
+.hm-prow .info {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+}
+.hm-prow .num {
+  color: var(--hm-ink-2);
+}
+.hm-prow .t {
+  display: block;
+  font: 400 clamp(30px, 3.6vw, 52px) / 1.02 var(--font-khula);
+  margin-top: 14px;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hm-prow .k {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+}
+.hm-prow .go {
+  margin-top: auto;
+  color: var(--hm-ink);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition:
+    opacity 0.4s,
+    transform 0.4s;
+}
+.hm-prow:hover .go,
+.hm-prow:focus-visible .go {
+  opacity: 1;
+  transform: none;
+}
+.hm-prow:hover .t,
+.hm-prow:focus-visible .t {
+  transform: translateX(14px);
+}
+.hm-prow .info,
+.hm-prow .hm-thumb {
+  transition: opacity 0.45s;
+}
+/* les autres lignes s'estompent un peu */
+@media (hover: hover) {
+  #projects-list:has(.hm-prow:is(:hover, :focus-visible)) .hm-prow:not(:hover, :focus-visible) > * {
+    opacity: 0.42;
+  }
+}
+.hm-thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border: 1px solid var(--hm-draw);
+  overflow: hidden;
+  background: var(--hm-paper);
+}
+.hm-thumb svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.hm-thumb svg path {
+  fill: none;
+  stroke: var(--hm-draw);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.hm-prow.in .hm-thumb svg path {
+  stroke-dashoffset: 0;
+}
+.hm-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  clip-path: inset(100% 0 0 0);
+  transition:
+    clip-path 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.55s,
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hm-prow.in .hm-thumb img {
+  clip-path: inset(0 0 0 0);
+}
+.hm-prow:hover .hm-thumb img {
+  transform: scale(1.07); /* la marge laisse la parallaxe (translate) bouger sans bord visible */
+}
+/* projet archivé : capture en noir et blanc, bandeau en bas de la vignette */
+.hm-prow.is-archived .hm-thumb img {
+  filter: grayscale(1) contrast(0.9);
+}
+.hm-archived {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--hm-ink);
+  color: var(--hm-paper);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transition: opacity 0.5s 1.2s;
+}
+.hm-archived::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e5484d;
+}
+.hm-prow.in .hm-archived {
+  opacity: 1;
+}
+.hm-more {
+  display: inline-flex;
+  margin-top: 40px;
+  padding: 12px 24px;
+  border: 1px solid var(--hm-draw);
+  border-radius: 999px;
+  color: var(--hm-ink);
+  cursor: pointer;
+  background: transparent;
+  transition:
+    background 0.3s,
+    color 0.3s;
+}
+.hm-more:hover {
+  background: var(--hm-ink);
+  color: var(--hm-paper);
+}
+
+/* ---------- Contact ---------- */
+.hm-contact {
+  position: relative;
+  z-index: 4;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: var(--hm-bg);
+  color: #ededed;
+  padding-bottom: 60px;
+}
+.hm-contact .hm-wrap {
+  width: 100%;
+}
+.hm-ask {
+  font: 400 clamp(44px, 8vw, 120px) / 1 var(--font-khula);
+  margin-top: 10px;
+}
+.hm-ask .w {
+  display: inline-block;
+}
+.hm-mailrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 22px;
+  margin-top: 28px;
+}
+.hm-mail {
+  position: relative;
+  display: inline-block;
+  padding: 0 0 6px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #555;
+  color: #ededed;
+  font: 300 clamp(18px, 2.4vw, 30px) var(--font-light);
+  text-align: left;
+  cursor: pointer;
+}
+/* soulignement qui se trace de gauche à droite */
+.hm-mail::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: #ededed;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.hm-mail:hover::after,
+.hm-mail:focus-visible::after {
+  transform: scaleX(1);
+}
+.hm-write {
+  color: #8a8a8a;
+  text-decoration: none;
+  border-bottom: 1px solid #3a3a3a;
+  padding-bottom: 2px;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+.hm-write:hover,
+.hm-write:focus-visible {
+  color: #ededed;
+  border-color: #ededed;
+}
+.hm-social {
+  display: flex;
+  gap: 28px;
+  margin-top: 32px;
+}
+.hm-social a {
+  color: #a3a3a3;
+  font: 300 18px var(--font-light);
+  text-decoration: none;
+  border-bottom: 1px solid #3a3a3a;
+  padding-bottom: 3px;
+  transition:
+    color 0.3s,
+    border-color 0.3s;
+}
+.hm-social a:hover {
+  color: #ededed;
+  border-color: #ededed;
+}
+.hm-foot {
+  margin-top: 120px;
+  color: #8a8a8a;
+}
+
+/* ---------- Curseur schéma (souris seulement) ---------- */
+html.hm-has-cursor,
+html.hm-has-cursor * {
+  cursor: none !important;
+}
+html.hm-has-cursor :is(input, textarea, select, [contenteditable="true"]) {
+  cursor: text !important;
+}
+.hm-cur {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100000;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.25s;
+  will-change: transform;
+}
+.hm-cur[data-on] {
+  opacity: 1;
+}
+.hm-cur .cross {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  width: 20px;
+  height: 20px;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.25s;
+}
+.hm-cur .cross::before,
+.hm-cur .cross::after {
+  content: "";
+  position: absolute;
+  background: #fff;
+}
+.hm-cur .cross::before {
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+}
+.hm-cur .cross::after {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+}
+.hm-cur[data-state="link"] .cross {
+  transform: scale(1.7) rotate(45deg);
+}
+
+/* ---------- Règle de progression (bord droit) ---------- */
+.hm-ruler {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) and (min-width: 1000px) {
+  .hm-ruler {
+    display: block;
+    position: fixed;
+    right: 18px;
+    top: 50%;
+    z-index: 20;
+    width: 44px;
+    height: min(56vh, 460px);
+    margin-top: calc(min(56vh, 460px) / -2);
+    color: #fff;
+    mix-blend-mode: difference;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.5s,
+      visibility 0s 0.5s;
+  }
+  .hm-ruler[data-show] {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+  .hm-ruler .track {
+    position: absolute;
+    inset: 0;
+    container-type: size;
+  }
+  .hm-ruler .spine {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: currentColor;
+    opacity: 0.35;
+  }
+  .hm-ruler .minor {
+    position: absolute;
+    right: 0;
+    width: 5px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.4;
+  }
+  .hm-ruler .major {
+    position: absolute;
+    right: 0;
+    width: 44px;
+    height: 20px;
+    margin-top: -10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    padding: 0;
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+  }
+  .hm-ruler .major .dash {
+    width: 11px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+    transition:
+      width 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.3s;
+  }
+  .hm-ruler .major .lbl {
+    font-size: 11px;
+    color: inherit;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .hm-ruler .major:hover .lbl,
+  .hm-ruler .major:focus-visible .lbl {
+    opacity: 0.8;
+  }
+  .hm-ruler .major:hover .dash,
+  .hm-ruler .major:focus-visible .dash,
+  .hm-ruler .major.on .dash {
+    width: 17px;
+    opacity: 1;
+  }
+  .hm-ruler .major:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 2px;
+  }
+  .hm-ruler .mark {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    height: 0;
+    will-change: transform;
+    pointer-events: none;
+  }
+  .hm-ruler .mark .cur {
+    font-size: 12px;
+    color: inherit;
+    letter-spacing: 0.08em;
+    translate: 0 0;
+  }
+  .hm-ruler .mark .tri {
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+    border-left: 6px solid currentColor;
+    border-right: 0;
+    margin-right: 1px;
+  }
+  /* le numéro courant remplace le libellé de la graduation active */
+  .hm-ruler .major.on .lbl {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .hm-pin-in {
+    padding: 12vh 0 0;
+  }
+  .hm-intro {
+    grid-template-columns: 1fr;
+  }
+  .hm-photo {
+    margin: 0 0 24px;
+    max-width: 260px;
+  }
+  .hm-statement {
+    padding: 0;
+  }
+  .hm-specs {
+    grid-template-columns: 1fr;
+  }
+  .hm-diagram {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .hm-node::before,
+  .hm-node::after {
+    display: none;
+  }
+  .hm-prow {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .hm-prow .go {
+    display: none;
+  }
+  .hm-spec td:nth-child(3) {
+    display: none;
+  }
+  .hm-spec td {
+    padding: 16px 12px 16px 18px;
+  }
+  .hm-spec td.hm-mono {
+    width: 34%;
+    white-space: nowrap;
+  }
+  .hm-tl {
+    height: auto;
+  }
+  .hm-tl-svg {
+    display: none;
+  }
+  .hm-tl-items {
+    position: static;
+    display: grid;
+    gap: 18px;
+  }
+  .hm-ev {
+    position: static !important;
+    width: auto !important;
+    opacity: 1 !important;
+  }
+  .hm-ev .card,
+  .hm-ev.end .card {
+    position: static;
+    width: auto;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    margin-top: 12px;
+    pointer-events: auto;
+  }
+  .hm-ev .bar {
+    scale: none !important;
+  }
+}
+
+/* sans animation : tout est directement visible */
+@media (prefers-reduced-motion: reduce) {
+  .hm-about [data-wire] {
+    opacity: 1;
+  }
+  .hm-h1 .wd,
+  .hm-sub,
+  .hm-halo,
+  .hm-vl {
+    animation: none;
+  }
+  .hm-rv,
+  .hm-rv .rule {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hm-ev .bar,
+  .hm-thumb img {
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
+  .hm-photo img,
+  .hm-crop,
+  .hm-node,
+  .hm-node li img,
+  .hm-ev .card,
+  .hm-mail::after,
+  .hm-prow .t,
+  .hm-prow .info,
+  .hm-prow .hm-thumb {
+    transition: none;
+  }
+  .hm-dg-svg path.flow {
+    animation: none;
+  }
+  .hm-thumb svg path {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import OpenIcon from "./(elements)/OpenIcon";
+import ThemeToggle from "./(elements)/ThemeToggle";
 import MenuTabs from "./MenuTabs";
 
 export default function Menu() {
@@ -13,23 +14,19 @@ export default function Menu() {
   return (
     <>
       <div
-        className={`flex items-center transition-opacity ${!isOpen ? "opacity-100" : "opacity-[0.01]"}`}
-        onClick={handleMenu}
+        className={`hm-menu fixed right-4 top-[1.4rem] z-[11] flex items-center transition-opacity sm:right-16 md:top-7 ${!isOpen ? "opacity-100" : "pointer-events-none opacity-[0.01]"}`}
       >
-        <>
-          <button
-            id="menutitle"
-            className={`fixed top-7 z-[11] hidden flex-row items-center gap-x-2 px-4 py-2 font-poppins-reg text-foreground sm:right-[7.65rem] sm:flex sm:text-3xl md:right-[8.35rem] md:top-9`}
-          >
-            menu
-          </button>
-          <button
-            aria-label="menu"
-            className="text-light fixed right-4 top-[1.65rem] z-[11] flex flex-row items-center gap-x-2 px-4 py-2 font-poppins-reg text-xl sm:right-16"
-          >
-            <OpenIcon />
-          </button>
-        </>
+        <ThemeToggle className="hm-themebtn" />
+        <button
+          id="menutitle"
+          className="hidden px-3 py-2 font-poppins-reg text-foreground sm:block sm:text-3xl md:py-0"
+          onClick={handleMenu}
+        >
+          menu
+        </button>
+        <button aria-label="menu" className="px-2 py-2 font-poppins-reg text-xl sm:px-4" onClick={handleMenu}>
+          <OpenIcon />
+        </button>
       </div>
       <MenuTabs isOpen={isOpen} setIsOpen={setIsOpen} />
     </>

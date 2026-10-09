@@ -1,16 +1,39 @@
 {
   "Metadata": {
-    "title": "Alexandre Bonefons - Développeur Web",
-    "description": "Développeur web spécialisé dans la création d'applications web innovantes et conviviales. Passionné par la technologie et le design, je m'efforce de fournir des solutions de haute qualité qui répondent aux besoins de mes clients.",
-    "keywords": "développeur web, développement web, programmation, ingénieur logiciel, technologie, design, expérience utilisateur, applications web"
+    "title": "Alexandre Bonefons · Développeur web full-stack à Paris",
+    "description": "Développeur full-stack en alternance à Paris : React, Next.js, TypeScript. Créateur de MapGuesser, jeu de géographie multijoueur. Projets et parcours.",
+    "jobTitle": "Développeur web full-stack"
   },
   "HomePage": {
-    "title": "Transformer des idées en solutions créatives.",
     "description": "Développeur web innovant créant des expériences utilisateur uniques.",
-    "selectedProjects": "Projets Sélectionnés",
     "seeMore": "Voir plus",
     "seeLess": "Voir moins",
-    "rightNow": "Maintenant"
+    "titleLines": [
+      "Transformer des",
+      "idées en solutions",
+      "créatives."
+    ],
+    "sections": {
+      "about": "À propos",
+      "career": "Parcours",
+      "tools": "Outils",
+      "education": "Formations",
+      "projects": "Projets",
+      "contact": "Contact"
+    },
+    "archived": "archivé",
+    "archivedBanner": "Archivé · démo hors ligne",
+    "viewProject": "Voir le projet →",
+    "fig": "fig. {n}",
+    "contact": {
+      "ask": "Un projet en tête ?",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "foot": "Paris · 2026 · dessiné et codé à la main",
+      "write": "écrire",
+      "copy": "Copier l'adresse"
+    },
+    "ruler": "Progression dans la page"
   },
   "NavBar": {
     "home": "Accueil",
@@ -22,31 +45,176 @@
     "getInTouch": "Entrer en contact"
   },
   "CardList": {
+    "mapguesser": {
+      "title": "MapGuesser",
+      "cardDescription": "Jeu Web & Mobile / Multijoueur",
+      "description": "Jeu de géographie gratuit et multijoueur, conçu et maintenu seul de bout en bout. Plusieurs modes (carte, drapeaux, capitales, listing, pays du jour) sur 246 pays et territoires, des parties en temps réel jusqu'à 8 joueurs, des classements, un système d'amis et de modération. Le site existe en 5 langues et sort aussi en application iOS et Android.",
+      "technologies": {
+        "frontend": "TanStack Start, React, TailwindCSS, Shadcn, Zustand, Capacitor",
+        "backend": "Bun, Socket.io, PostgreSQL, Drizzle ORM, Better Auth"
+      },
+      "cardImage": "/img/projects/mapguesser-card.webp",
+      "img": "/img/projects/mapguesser.webp",
+      "visitUrl": "https://mapguesser.fr/",
+      "link": "/mapguesser",
+      "pitch": "Un jeu de géographie gratuit et multijoueur, conçu, développé et opéré seul, de la base de données à l'appli iOS.",
+      "meta": [
+        {
+          "label": "Rôle",
+          "value": "Conception, design, dev, ops"
+        },
+        {
+          "label": "En ligne depuis",
+          "value": "Novembre 2025"
+        },
+        {
+          "label": "Plateformes",
+          "value": "Web, iOS, Android"
+        },
+        {
+          "label": "Langues",
+          "value": "FR, EN, PT, IT, DE"
+        }
+      ],
+      "figures": [
+        {
+          "value": 246,
+          "label": "pays et territoires jouables"
+        },
+        {
+          "value": 130000,
+          "label": "joueurs depuis le lancement",
+          "note": "visiteurs uniques, Rybbit"
+        },
+        {
+          "value": 1750,
+          "prefix": "~",
+          "label": "parties jouées par jour"
+        },
+        {
+          "value": 5,
+          "label": "langues, une seule base de code"
+        }
+      ],
+      "body": [
+        "Plusieurs modes (carte, drapeaux, capitales, listing, pays du jour) avec des parties en temps réel jusqu'à 8 joueurs, des classements, un système d'amis et de modération.",
+        "Le site tourne sur mon propre serveur : déploiement continu, analytics auto-hébergés, base PostgreSQL optimisée à partir des vraies requêtes de prod. La même base de code sort en application iOS et Android avec Capacitor."
+      ],
+      "stack": [
+        {
+          "group": "Front",
+          "items": [
+            "TanStack Start",
+            "React",
+            "TailwindCSS",
+            "shadcn/ui",
+            "Zustand"
+          ]
+        },
+        {
+          "group": "Back",
+          "items": [
+            "Bun",
+            "Socket.io",
+            "PostgreSQL",
+            "Drizzle ORM",
+            "Better Auth"
+          ]
+        },
+        {
+          "group": "Mobile & infra",
+          "items": [
+            "Capacitor",
+            "Docker",
+            "Coolify",
+            "Rybbit"
+          ]
+        }
+      ],
+      "year": "2025"
+    },
+    "celia-gruss": {
+      "title": "Celia Gruss",
+      "cardDescription": "Site Vitrine / Client",
+      "description": "Site vitrine bilingue (français et anglais) pour Celia Gruss, comédienne, voix off et chanteuse entre Paris et Miami. Démos audio et vidéo, CV téléchargeable, formulaire de contact et un soin particulier porté au référencement et à la vitesse de chargement.",
+      "technologies": {
+        "frontend": "Astro, React, TailwindCSS",
+        "backend": "Web3Forms, Vercel"
+      },
+      "cardImage": "/img/projects/celia-gruss.webp",
+      "img": "/img/projects/celia-gruss.webp",
+      "visitUrl": "https://celiagruss.com/",
+      "link": "/celia-gruss",
+      "pitch": "Le site d'une comédienne, voix off et chanteuse entre Paris et Miami : une voix, deux langues, des démos qu'on écoute tout de suite.",
+      "meta": [
+        {
+          "label": "Rôle",
+          "value": "Design et développement"
+        },
+        {
+          "label": "Année",
+          "value": "2026"
+        },
+        {
+          "label": "Type",
+          "value": "Site vitrine bilingue"
+        },
+        {
+          "label": "Langues",
+          "value": "EN, FR"
+        }
+      ],
+      "body": [
+        "Démos audio et vidéo, CV téléchargeable et formulaire de contact. Le site est statique, rapide à charger et pensé pour être bien référencé en anglais comme en français."
+      ],
+      "stack": [
+        {
+          "group": "Front",
+          "items": [
+            "Astro",
+            "React",
+            "TailwindCSS"
+          ]
+        },
+        {
+          "group": "Services",
+          "items": [
+            "Web3Forms",
+            "Vercel"
+          ]
+        }
+      ],
+      "year": "2026"
+    },
     "zenpet": {
       "title": "ZenPet",
       "cardDescription": "Application Mobile",
+      "pitch": "Une application mobile qui simplifie la vie des propriétaires d'animaux et les met en relation avec une communauté de passionnés et de prestataires.",
       "description": "Développée avec Expo et NativeWind, ZenPet présente une interface intuitive et élégante, conçue pour simplifier la vie des propriétaires d'animaux de compagnie tout en connectant une communauté de passionnés et de prestataires de services.",
       "technologies": {
         "frontend": "React Native, NativeWind, Expo",
         "backend": "AppWritte"
       },
-      "cardImage": "/img/projects/zenpet.png",
-      "img": "/img/projects/zenpet.png",
+      "cardImage": "/img/projects/zenpet.webp",
+      "img": "/img/projects/zenpet.webp",
       "visitUrl": "https://github.com/CallMeAl3x/ZenPet",
-      "link": "/zenpet"
+      "link": "/zenpet",
+      "year": "2024"
     },
     "bourse-des-voyages": {
       "title": "Bourse des voyages",
       "cardDescription": "Tour Opérateur / Application Web",
+      "pitch": "Un site de réservation de voyages, vols et hôtels, qui réunit les meilleures offres des tour-opérateurs avec un filtrage avancé par budget et envies.",
       "description": "Site web permettant de réserver des voyages, des vols, des hôtels et des vacances. Interface intuitive offrant les meilleures offres des tour-opérateurs avec un système de filtrage avancé pour trouver le voyage idéal selon votre budget et vos préférences.",
       "technologies": {
         "frontend": "VueJS, Sass, NuxtJS",
         "backend": "Wordpress, Pinia"
       },
-      "cardImage": "/img/projects/bdv.png",
-      "img": "/img/projects/bdv.png",
+      "cardImage": "/img/projects/bdv.webp",
+      "img": "/img/projects/bdv.webp",
       "visitUrl": "https://www.bourse-des-voyages.com/",
-      "link": "/bourse-des-voyages"
+      "link": "/bourse-des-voyages",
+      "year": "2023"
     },
     "auth-template": {
       "title": "Template Authentification",
@@ -58,7 +226,7 @@
       },
       "cardImage": "/img/projects/auth-template.webp",
       "img": "/img/projects/auth-template.webp",
-      "visitUrl": "https://auth-boilerplate.bonefons.com/",
+      "archived": true,
       "link": "/auth-template"
     },
     "chatbot": {
@@ -69,9 +237,9 @@
         "frontend": "NextJS, TailwindCSS, OpenAI, Anthropic",
         "backend": "N/A"
       },
-      "cardImage": "/img/projects/chatbot.png",
-      "img": "/img/projects/chatbot.png",
-      "visitUrl": "https://chatbot.bonefons.com/",
+      "cardImage": "/img/projects/chatbot.webp",
+      "img": "/img/projects/chatbot.webp",
+      "archived": true,
       "link": "/chatbot"
     },
     "weather-app": {
@@ -84,19 +252,20 @@
       },
       "cardImage": "/img/projects/weather-app.webp",
       "img": "/img/projects/weather-app.webp",
-      "visitUrl": "https://weather.bonefons.com/",
+      "archived": true,
       "link": "/weather-app"
     },
     "gcfillon": {
       "title": "GCFillon",
       "cardDescription": "Application Interne / Gestion de Paye",
+      "pitch": "Une application interne de gestion de la paie pour l'entreprise GCFillon : employés, fiches de paie et heures travaillées.",
       "description": "Site permettant de gérer les fiches de payes des employés de l'entreprise GCFillon. Il permet de gérer les employés, les fiches de paye et les heures travaillées. Il est développé avec TanStack et TailwindCSS/Shadcn pour front et Drizzle/Zod pour le backend. Aucun lien n'est disponible pour le moment car c'est une application interne.",
       "technologies": {
         "frontend": "TanStack, TailwindCSS, Shadcn",
         "backend": "Drizzle ORM, Zod"
       },
-      "cardImage": "/img/projects/gcfillon.png",
-      "img": "/img/projects/gcfillon.png",
+      "cardImage": "/img/projects/gcfillon.webp",
+      "img": "/img/projects/gcfillon.webp",
       "visitUrl": "",
       "link": "/gcfillon"
     },
@@ -114,144 +283,178 @@
       "link": "/translate-app"
     }
   },
+  "ProjectPage": {
+    "project": "Le projet",
+    "stack": "Stack",
+    "next": "Projet suivant",
+    "archived": "Projet archivé · démo hors ligne",
+    "visit": "Voir",
+    "close": "Fermer",
+    "frontend": "Frontend",
+    "backend": "Backend"
+  },
   "About": {
-    "presentation": {
-      "hello": "Bonjour",
-      "im": "",
-      "name": "Alexandre",
-      "surname": "Bonefons",
-      "job": "Développeur Web"
+    "fig": "fig. 1 · Alexandre Bonefons",
+    "photoAlt": "Portrait d'Alexandre Bonefons",
+    "statement": "Développeur full-stack en alternance à Paris. Je dessine, je code et je mets en ligne des produits qui servent vraiment.",
+    "specs": {
+      "role": "Rôle",
+      "roleValue": "Développeur Web Full-Stack",
+      "current": "Actuel",
+      "currentValue": "Alternance chez CashNow · Ynov Paris",
+      "languages": "Langues",
+      "languagesValue": "FR · EN · ES",
+      "contact": "Contact"
     },
-    "languages": {
-      "title": "Langues",
-      "french": "Français",
-      "english": "Anglais",
-      "spanish": "Espagnol"
-    },
-    "tools": {
-      "title": "Outils",
-      "frontend": {
-        "title": "Frontend",
-        "technologies": [
-          {
-            "name": "TanStack",
-            "icon": "/img/icons/tanstack.png"
-          },
-          {
-            "name": "VueJS",
-            "icon": "/img/icons/vuejs.svg"
-          },
-          {
-            "name": "Shadcn",
-            "icon": "/img/icons/shadcn.svg"
-          },
-          {
-            "name": "TailwindCSS",
-            "icon": "/img/icons/tailwindcss.svg"
-          }
-        ]
-      },
-      "backend": {
-        "title": "Backend",
-        "technologies": [
-          {
-            "name": "SQL",
-            "icon": "/img/icons/sql.svg"
-          },
-          {
-            "name": "Wordpress",
-            "icon": "/img/icons/wordpress.svg"
-          },
-          {
-            "name": "Drizzle ORM",
-            "icon": "/img/icons/drizzle.png"
-          },
-          {
-            "name": "Zustand",
-            "icon": "/img/icons/zustand.svg"
-          }
-        ]
-      },
-      "others": {
-        "title": "Autre",
-        "technologies": [
-          {
-            "name": "Git",
-            "icon": "/img/icons/git.svg"
-          },
-          {
-            "name": "Azure",
-            "icon": "/img/icons/microsoft_azure.svg"
-          }
-        ]
-      }
-    },
-    "experiences": {
-      "title": "Expériences",
+    "timeline": {
       "items": {
-        "gcfillon": {
-          "date": "Juil. 2023 - Août 2023",
-          "title": "Développeur Web Junior",
-          "job": "Stage",
-          "place": "Chicoutimi (Canada)",
-          "description": "Développement React (TanStack & TailwindCSS) | Intégration ShadCN (composants UI) | Formulaires et gestion des données via Drizzle ORM",
-          "company": "GCFillon"
+        "allforweb": {
+          "name": "Allforweb",
+          "what": "Stage · Lyon",
+          "role": "Développeur Web Junior · Stage",
+          "date": "Jan. 2022 - Juin 2022",
+          "description": "Programmation CSS/PHP/JS (chartjs) | Utilisation de CMS tels que Wordpress et Prestashop"
         },
         "penguinworld": {
+          "name": "PenguinWorld",
+          "what": "Stage · Lyon",
+          "role": "Développeur Web Junior · Stage",
           "date": "Jan. 2023 - Juin 2023",
-          "title": "Développeur Web Junior",
-          "job": "Stage",
-          "place": "Lyon (France)",
-          "description": "Programmation avec VueJS version 2/3 et SaSS | Utilisation du CMS Wordpress Headless | Acquisition de compétences en gestion de projet avec des outils comme GitLab",
-          "company": "PenguinWorld"
+          "description": "Programmation avec VueJS version 2/3 et SaSS | Utilisation du CMS Wordpress Headless | Acquisition de compétences en gestion de projet avec des outils comme GitLab"
         },
-        "allforweb": {
-          "date": "Jan. 2022 - Juin 2022",
-          "title": "Développeur Web Junior",
-          "job": "Stage",
-          "place": "Lyon (France)",
-          "description": "Programmation CSS/PHP/JS (chartjs) | Utilisation de CMS tels que Wordpress et Prestashop",
-          "company": "Allforweb"
+        "gcfillon": {
+          "name": "GCFillon",
+          "what": "Stage · Canada",
+          "role": "Développeur Web Junior · Stage",
+          "date": "Juil. 2023 - Août 2023",
+          "description": "Développement React (TanStack & TailwindCSS) | Intégration ShadCN (composants UI) | Formulaires et gestion des données via Drizzle ORM"
+        },
+        "cashnow": {
+          "name": "CashNow",
+          "what": "Alternance · Boulogne",
+          "role": "Alternance · Développeur web",
+          "date": "Sept. 2025 - Présent",
+          "description": "Refonte du portail client Oasis | Migration Webpack vers Vite : builds 11x plus rapides | Symfony 6.4, React et TypeScript"
+        },
+        "mapguesser": {
+          "name": "MapGuesser",
+          "what": "Projet perso · 130 000 joueurs",
+          "role": "Projet perso · Créateur",
+          "date": "Fin 2025 - Présent",
+          "description": "Jeu de géographie multijoueur | Web, iOS et Android | Conçu, développé et opéré seul"
+        }
+      }
+    },
+    "tools": {
+      "groups": {
+        "front": {
+          "title": "A · Interface",
+          "technologies": [
+            {
+              "name": "React",
+              "icon": "/img/about/react.svg"
+            },
+            {
+              "name": "TypeScript",
+              "icon": "/img/about/typescript.svg"
+            },
+            {
+              "name": "TailwindCSS",
+              "icon": "/img/about/tailwind.svg"
+            },
+            {
+              "name": "shadcn/ui",
+              "icon": "/img/about/shadcn.svg",
+              "invert": true
+            }
+          ]
+        },
+        "back": {
+          "title": "B · Serveur",
+          "technologies": [
+            {
+              "name": "Symfony",
+              "icon": "/img/about/symfony.svg",
+              "invert": true
+            },
+            {
+              "name": "Bun",
+              "icon": "/img/about/bun.svg"
+            },
+            {
+              "name": "PostgreSQL",
+              "icon": "/img/about/postgresql.svg"
+            },
+            {
+              "name": "Drizzle",
+              "icon": "/img/about/drizzle.svg",
+              "invert": true
+            }
+          ]
+        },
+        "ops": {
+          "title": "C · Mise en ligne",
+          "technologies": [
+            {
+              "name": "Docker",
+              "icon": "/img/about/docker.svg"
+            },
+            {
+              "name": "Git",
+              "icon": "/img/about/git.svg"
+            },
+            {
+              "name": "Capacitor",
+              "icon": "/img/about/capacitor.svg"
+            }
+          ]
         }
       }
     },
     "education": {
-      "title": "Formations",
+      "current": "actuel",
       "formations": {
+        "YNOV-PARIS": {
+          "date": "2026 · 2027",
+          "title": "Mastère 2 Développement Web",
+          "school": "Ynov Paris"
+        },
+        "YNOV-LILLE": {
+          "date": "2025 · 2026",
+          "title": "Mastère 1 Développement Web",
+          "school": "Ynov Lille"
+        },
         "BUT-MMI": {
-          "date": "2022 - 2025",
+          "date": "2022 · 2025",
           "title": "B.U.T MMI",
-          "school": "I.U.T  De Velizy (France)"
+          "school": "IUT de Vélizy"
         },
         "BAC-INFO": {
-          "date": "2022 - 2025",
+          "date": "2022 · 2025",
           "title": "Baccalauréat Informatique",
-          "school": "UQAC (Quebec)"
-        },
-        "BAC-STI2D": {
-          "date": "2022",
-          "title": "BAC STI2D",
-          "school": "Lycée Eugène Ionesco (France)"
+          "school": "UQAC, Québec"
         }
+      },
+      "columns": {
+        "dates": "Dates",
+        "degree": "Formation",
+        "school": "École",
+        "status": "Statut"
       }
-    },
-    "projects": {
-      "title": "Projets",
-      "description": "Découvrez ma partie projet où je montre mes compétences et la stack que j'ai utilisée pour les développer",
-      "view": "Voir les projets"
-    },
-    "chat": {
-      "title": "Un projet en tête ? Contactez-moi !",
-      "contact": "Alexandre.bonefons@uqac.etu.ca | +33 6 32 18 58 78"
-    },
-    "chatbot": {
-      "title": "Assistant d'Alexandre",
-      "placeholder": "Posez-moi une question",
-      "send": "Envoyer",
-      "noMessage": "Veuillez entrer un message"
     }
   },
   "Error": {
     "rateLimit": "Vous avez atteint la limite de requêtes. Veuillez réessayer plus tard."
+  },
+  "Theme": {
+    "toLight": "Passer au thème clair",
+    "toDark": "Passer au thème sombre"
+  },
+  "Clipboard": {
+    "email": "L'adresse email a été copiée dans le presse-papier",
+    "phone": "Le numéro de téléphone a été copié dans le presse-papier",
+    "twice": "Tu as cliqué deux fois, continue comme ça !",
+    "thrice": "Tu vas user ton curseur à force de cliquer !",
+    "enough": "C'est bon, laisse-moi tranquille maintenant !"
   }
 }

@@ -1,55 +1,46 @@
+"use client";
 import { Link } from "@/i18n/routing";
-import Image from "next/image";
+import { useTranslations } from "next-intl";
+import { useRef } from "react";
 import { CardProps } from "../../(types)/card";
+import { useHoverParallax } from "../../(utils)/useHoverParallax";
+import { useReveal } from "../../(utils)/useReveal";
 
-export default function Card({ title, cardDescription, index, link, isHovered, cardImage }: CardProps) {
+// Croquis fil de fer de la vignette, tracé avant que la capture ne le remplisse
+const WIRE_PATH =
+  "M0 8 H160 M10 22 H70 M10 30 H58 M10 42 H64 M10 54 H40 M84 18 H150 V78 H84 Z M84 18 L150 78 M150 18 L84 78";
+
+// Ligne de projet : texte à gauche, grande capture à droite
+export default function Card({ index, title, cardDescription, cardImage, link, year, archived, onOpen }: CardProps) {
+  const t = useTranslations("HomePage");
+  const ref = useReveal<HTMLAnchorElement>();
+  const imgRef = useRef<HTMLImageElement>(null);
+  useHoverParallax(ref, imgRef);
+  const href = "/projects" + link;
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+    e.preventDefault();
+    onOpen(href);
+  };
+  const fig = [t("fig", { n: String(index).padStart(2, "0") }), year, archived && t("archived")]
+    .filter(Boolean)
+    .join(" · ");
+
   return (
-    <>
-      <div className="pcview">
-        <Link
-          href={"/projects" + link}
-          className={`group relative hidden w-full cursor-pointer px-12 font-poppins-extralight text-background after:absolute after:bottom-[12%] after:h-[1.75px] after:w-1/3 after:bg-background/40 after:duration-500 after:ease-in-out after:content-[''] lg:flex lg:py-14 xl:py-16 ${
-            isHovered ? "after:h-[1.95px] after:w-[92.5%] after:bg-background/60" : ""
-          }`}
-          passHref
-        >
-          <p className={`mr-4 md:text-2xl ${isHovered ? "text-gray-500" : ""}`}>0{index}</p>
-          <div className="flex flex-col justify-end gap-3 xl:w-full xl:flex-row xl:justify-between">
-            <p
-              className={`w-auto text-nowrap font-khula-regular text-6xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}
-            >
-              {title}
-            </p>
-
-            <p
-              className={`mb-3 mt-auto text-end text-2xl transition-all ${isHovered ? "translate-x-4 text-gray-500" : ""}`}
-            >
-              {cardDescription}
-            </p>
-          </div>
-        </Link>
+    <Link href={href} onClick={handleClick} className={`hm-prow hm-rv${archived ? " is-archived" : ""}`} ref={ref}>
+      <div className="info">
+        <p className="num hm-mono">{fig}</p>
+        <span className="t">{title}</span>
+        <span className="k hm-mono">{cardDescription}</span>
+        <span className="go hm-mono">{t("viewProject")}</span>
       </div>
-      <div className="mobileview">
-        <Link
-          href={"/projects" + link}
-          className="group relative flex w-full flex-col items-center justify-center gap-5 font-poppins-extralight text-background lg:hidden"
-          passHref
-        >
-          <div className="h-full w-full px-6">
-            <Image
-              src={cardImage}
-              alt={cardDescription}
-              height={200}
-              width={385}
-              className="ml-auto mr-auto rounded-lg"
-            />
-          </div>
-          <div className="flex flex-col items-center justify-center gap-1">
-            <h3 className="text-center font-khula-regular text-4xl md:text-left">{title}</h3>
-            <p className="px-1 text-center text-lg">{cardDescription}</p>
-          </div>
-        </Link>
+      <div className="hm-thumb">
+        <svg viewBox="0 0 160 100" preserveAspectRatio="none" aria-hidden="true">
+          <path pathLength="1" d={WIRE_PATH} />
+        </svg>
+        <img src={cardImage} alt="" loading="lazy" ref={imgRef} />
+        {archived && <span className="hm-archived hm-mono">{t("archivedBanner")}</span>}
       </div>
-    </>
+    </Link>
   );
 }

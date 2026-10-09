@@ -1,10 +1,10 @@
 export interface CardProps {
+  index: number;
   title: string;
   cardDescription: string;
   cardImage: string;
-  index: number;
   link: string;
-  isHovered: boolean;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
+  year?: string;
+  archived?: boolean;
+  onOpen: (href: string) => void;
 }

@@ -1,16 +1,39 @@
 {
   "Metadata": {
-    "title": "Alexandre Bonefons - Web Developer",
-    "description": "Web developer specializing in creating innovative and user-friendly web applications. Passionate about technology and design, I strive to deliver high-quality solutions that meet the needs of my clients.",
-    "keywords": "web developer, web development, programming, software engineer, technology, design, user experience, web applications"
+    "title": "Alexandre Bonefons · Full-stack web developer in Paris",
+    "description": "Full-stack developer (work-study) in Paris: React, Next.js, TypeScript. Creator of MapGuesser, a multiplayer geography game. Projects and background.",
+    "jobTitle": "Full-stack web developer"
   },
   "HomePage": {
-    "title": "Turning ideas into creative solutions.",
     "description": "Innovative web developer crafting unique user experiences.",
-    "selectedProjects": "Selected Projects",
     "seeMore": "See more",
     "seeLess": "See less",
-    "rightNow": "Right Now"
+    "titleLines": [
+      "Turning ideas",
+      "into creative",
+      "solutions."
+    ],
+    "sections": {
+      "about": "About",
+      "career": "Career",
+      "tools": "Tools",
+      "education": "Education",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "archived": "archived",
+    "archivedBanner": "Archived · demo offline",
+    "viewProject": "View project →",
+    "fig": "fig. {n}",
+    "contact": {
+      "ask": "Got a project in mind?",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "foot": "Paris · 2026 · designed and coded by hand",
+      "write": "write",
+      "copy": "Copy address"
+    },
+    "ruler": "Page progress"
   },
   "NavBar": {
     "home": "Home",
@@ -22,31 +45,176 @@
     "getInTouch": "Get in touch"
   },
   "CardList": {
+    "mapguesser": {
+      "title": "MapGuesser",
+      "cardDescription": "Web & Mobile Game / Multiplayer",
+      "description": "Free multiplayer geography game, designed and maintained solo from end to end. Several modes (map, flags, capitals, listing, country of the day) across 246 countries and territories, real-time games with up to 8 players, leaderboards, friends and moderation. The site is available in 5 languages and also ships as an iOS and Android app.",
+      "technologies": {
+        "frontend": "TanStack Start, React, TailwindCSS, Shadcn, Zustand, Capacitor",
+        "backend": "Bun, Socket.io, PostgreSQL, Drizzle ORM, Better Auth"
+      },
+      "cardImage": "/img/projects/mapguesser-card.webp",
+      "img": "/img/projects/mapguesser.webp",
+      "visitUrl": "https://mapguesser.fr/",
+      "link": "/mapguesser",
+      "pitch": "A free multiplayer geography game, designed, built and run solo, from the database to the iOS app.",
+      "meta": [
+        {
+          "label": "Role",
+          "value": "Concept, design, dev, ops"
+        },
+        {
+          "label": "Live since",
+          "value": "November 2025"
+        },
+        {
+          "label": "Platforms",
+          "value": "Web, iOS, Android"
+        },
+        {
+          "label": "Languages",
+          "value": "FR, EN, PT, IT, DE"
+        }
+      ],
+      "figures": [
+        {
+          "value": 246,
+          "label": "playable countries and territories"
+        },
+        {
+          "value": 130000,
+          "label": "players since launch",
+          "note": "unique visitors, Rybbit"
+        },
+        {
+          "value": 1750,
+          "prefix": "~",
+          "label": "games played per day"
+        },
+        {
+          "value": 5,
+          "label": "languages, one codebase"
+        }
+      ],
+      "body": [
+        "Several modes (map, flags, capitals, listing, country of the day) with real-time games for up to 8 players, leaderboards, a friends system and moderation.",
+        "The site runs on my own server: continuous deployment, self-hosted analytics, and a PostgreSQL database tuned from real production queries. The same codebase ships as an iOS and Android app with Capacitor."
+      ],
+      "stack": [
+        {
+          "group": "Front",
+          "items": [
+            "TanStack Start",
+            "React",
+            "TailwindCSS",
+            "shadcn/ui",
+            "Zustand"
+          ]
+        },
+        {
+          "group": "Back",
+          "items": [
+            "Bun",
+            "Socket.io",
+            "PostgreSQL",
+            "Drizzle ORM",
+            "Better Auth"
+          ]
+        },
+        {
+          "group": "Mobile & infra",
+          "items": [
+            "Capacitor",
+            "Docker",
+            "Coolify",
+            "Rybbit"
+          ]
+        }
+      ],
+      "year": "2025"
+    },
+    "celia-gruss": {
+      "title": "Celia Gruss",
+      "cardDescription": "Showcase Website / Client",
+      "description": "Bilingual (French and English) showcase website for Celia Gruss, actress, voice talent and singer based between Paris and Miami. Audio and video demos, downloadable resume, contact form, with a strong focus on SEO and loading speed.",
+      "technologies": {
+        "frontend": "Astro, React, TailwindCSS",
+        "backend": "Web3Forms, Vercel"
+      },
+      "cardImage": "/img/projects/celia-gruss.webp",
+      "img": "/img/projects/celia-gruss.webp",
+      "visitUrl": "https://celiagruss.com/",
+      "link": "/celia-gruss",
+      "pitch": "The website of an actress, voice actor and singer between Paris and Miami: one voice, two languages, demos you can listen to right away.",
+      "meta": [
+        {
+          "label": "Role",
+          "value": "Design and development"
+        },
+        {
+          "label": "Year",
+          "value": "2026"
+        },
+        {
+          "label": "Type",
+          "value": "Bilingual showcase site"
+        },
+        {
+          "label": "Languages",
+          "value": "EN, FR"
+        }
+      ],
+      "body": [
+        "Audio and video demos, a downloadable résumé and a contact form. The site is static, fast to load and built to rank well in both English and French."
+      ],
+      "stack": [
+        {
+          "group": "Front",
+          "items": [
+            "Astro",
+            "React",
+            "TailwindCSS"
+          ]
+        },
+        {
+          "group": "Services",
+          "items": [
+            "Web3Forms",
+            "Vercel"
+          ]
+        }
+      ],
+      "year": "2026"
+    },
     "zenpet": {
       "title": "ZenPet",
       "cardDescription": "Mobile Application",
-      "description": "ZenPet is a comprehensive mobile application that revolutionizes pet care management.Developed with Expo and NativeWind, ZenPet features an intuitive and elegant interface, designed to simplify pet owners' lives while connecting a community of pet enthusiasts and service providers.",
+      "pitch": "A mobile app that makes life easier for pet owners and connects them with a community of pet lovers and service providers.",
+      "description": "ZenPet is a comprehensive mobile application that revolutionizes pet care management. Developed with Expo and NativeWind, ZenPet features an intuitive and elegant interface, designed to simplify pet owners' lives while connecting a community of pet enthusiasts and service providers.",
       "technologies": {
         "frontend": "React Native, NativeWind, Expo",
         "backend": "AppWritte"
       },
-      "cardImage": "/img/projects/zenpet.png",
-      "img": "/img/projects/zenpet.png",
+      "cardImage": "/img/projects/zenpet.webp",
+      "img": "/img/projects/zenpet.webp",
       "visitUrl": "https://github.com/CallMeAl3x/ZenPet",
-      "link": "/zenpet"
+      "link": "/zenpet",
+      "year": "2024"
     },
     "bourse-des-voyages": {
       "title": "Bourse des voyages",
       "cardDescription": "Tour Operator / Website",
+      "pitch": "A booking site for trips, flights and hotels, bringing together the best tour-operator deals with advanced filtering by budget and preferences.",
       "description": "Website to book travel, flights, hotels and vacations. Intuitive interface featuring the best offers from tour operators with an advanced filtering system to find the ideal trip to suit your budget and preferences.",
       "technologies": {
         "frontend": "VueJS, Sass, NuxtJS",
         "backend": "Wordpress, Pinia"
       },
-      "cardImage": "/img/projects/bdv.png",
-      "img": "/img/projects/bdv.png",
+      "cardImage": "/img/projects/bdv.webp",
+      "img": "/img/projects/bdv.webp",
       "visitUrl": "https://www.bourse-des-voyages.com/",
-      "link": "/bourse-des-voyages"
+      "link": "/bourse-des-voyages",
+      "year": "2023"
     },
     "auth-template": {
       "title": "Auth Template",
@@ -58,7 +226,7 @@
       },
       "cardImage": "/img/projects/auth-template.webp",
       "img": "/img/projects/auth-template.webp",
-      "visitUrl": "https://auth-boilerplate.bonefons.com/",
+      "archived": true,
       "link": "/auth-template"
     },
     "chatbot": {
@@ -69,9 +237,9 @@
         "frontend": "NextJS, TailwindCSS; Shadcn",
         "backend": "OpenAI, Anthropic"
       },
-      "cardImage": "/img/projects/chatbot.png",
-      "img": "/img/projects/chatbot.png",
-      "visitUrl": "https://chatbot.bonefons.com/",
+      "cardImage": "/img/projects/chatbot.webp",
+      "img": "/img/projects/chatbot.webp",
+      "archived": true,
       "link": "/chatbot"
     },
     "weather-app": {
@@ -84,12 +252,13 @@
       },
       "cardImage": "/img/projects/weather-app.webp",
       "img": "/img/projects/weather-app.webp",
-      "visitUrl": "https://weather.bonefons.com/",
+      "archived": true,
       "link": "/weather-app"
     },
     "gcfillon": {
       "title": "GCFillon",
       "cardDescription": "Intern Application/ Timesheet Management",
+      "pitch": "An internal payroll app for the company GCFillon, covering employees, payslips and hours worked.",
       "description": "Website for managing employee payslips for the company GCFillon. It allows managing employees, payslips, and hours worked. It is developed with TanStack and TailwindCSS/Shadcn for the front end and Drizzle/Zod for the backend. No link is available at the moment as it is an internal application.",
       "technologies": {
         "frontend": "TanStack, TailwindCSS, Shadcn",
@@ -114,144 +283,178 @@
       "link": "/translate-app"
     }
   },
+  "ProjectPage": {
+    "project": "The project",
+    "stack": "Stack",
+    "next": "Next project",
+    "archived": "Archived project · demo offline",
+    "visit": "Visit",
+    "close": "Close",
+    "frontend": "Frontend",
+    "backend": "Backend"
+  },
   "About": {
-    "presentation": {
-      "hello": "Hello",
-      "im": "I'm",
-      "name": "Alexandre",
-      "surname": "Bonefons",
-      "job": "Web Developer"
+    "fig": "fig. 1 · Alexandre Bonefons",
+    "photoAlt": "Portrait of Alexandre Bonefons",
+    "statement": "Full-stack developer on a work-study programme in Paris. I design, code and ship products that genuinely help people.",
+    "specs": {
+      "role": "Role",
+      "roleValue": "Full-Stack Web Developer",
+      "current": "Currently",
+      "currentValue": "Work-study at CashNow · Ynov Paris",
+      "languages": "Languages",
+      "languagesValue": "FR · EN · ES",
+      "contact": "Contact"
     },
-    "languages": {
-      "title": "Languages",
-      "french": "French",
-      "english": "English",
-      "spanish": "Spanish"
-    },
-    "tools": {
-      "title": "Tools",
-      "frontend": {
-        "title": "Frontend",
-        "technologies": [
-          {
-            "name": "TanStack",
-            "icon": "/img/icons/tanstack.png"
-          },
-          {
-            "name": "VueJS",
-            "icon": "/img/icons/vuejs.svg"
-          },
-          {
-            "name": "Shadcn",
-            "icon": "/img/icons/shadcn.svg"
-          },
-          {
-            "name": "TailwindCSS",
-            "icon": "/img/icons/tailwindcss.svg"
-          }
-        ]
-      },
-      "backend": {
-        "title": "Backend",
-        "technologies": [
-          {
-            "name": "SQL",
-            "icon": "/img/icons/sql.svg"
-          },
-          {
-            "name": "Wordpress",
-            "icon": "/img/icons/wordpress.svg"
-          },
-          {
-            "name": "Drizzle ORM",
-            "icon": "/img/icons/drizzle.png"
-          },
-          {
-            "name": "Zustand",
-            "icon": "/img/icons/zustand.svg"
-          }
-        ]
-      },
-      "others": {
-        "title": "Other",
-        "technologies": [
-          {
-            "name": "Git",
-            "icon": "/img/icons/git.svg"
-          },
-          {
-            "name": "Azure",
-            "icon": "/img/icons/microsoft_azure.svg"
-          }
-        ]
-      }
-    },
-    "experiences": {
-      "title": "Experiences",
+    "timeline": {
       "items": {
-        "gcfillon": {
-          "date": "Jul. 2023 - Ago. 2023",
-          "title": "Web Developer Junior",
-          "job": "Internship",
-          "place": "Chicoutimi (Canada)",
-          "description": "Development React (TanStack & TailwindCSS) | Integration ShadCN (UI components) | Forms and data management via Drizzle ORM",
-          "company": "GCFillon"
+        "allforweb": {
+          "name": "Allforweb",
+          "what": "Internship · Lyon",
+          "role": "Junior Web Developer · Internship",
+          "date": "Jan. 2022 - June 2022",
+          "description": "CSS/PHP/JS (chartjs) programming | Use of CMS such as Wordpress and Prestashop"
         },
         "penguinworld": {
+          "name": "PenguinWorld",
+          "what": "Internship · Lyon",
+          "role": "Web Developer Junior · Internship",
           "date": "Jan. 2023 - Jun. 2023",
-          "title": "Web Developer Junior",
-          "job": "Internship",
-          "place": "Lyon (France)",
-          "description": "Programming with VueJS version 2/3 and SaSS | Use of the CMS Wordpress Headless | Acquisition of competences in project management by using tools like GitLab",
-          "company": "PenguinWorld"
+          "description": "Programming with VueJS version 2/3 and SaSS | Use of the CMS Wordpress Headless | Acquisition of competences in project management by using tools like GitLab"
         },
-        "allforweb": {
-          "date": "Jan. 2022 - June 2022",
-          "title": "Junior Web Developer",
-          "job": "Internship",
-          "place": "Lyon (France)",
-          "description": "CSS/PHP/JS (chartjs) programming  | Use of CMS such as Wordpress and Prestashop",
-          "company": "Allforweb"
+        "gcfillon": {
+          "name": "GCFillon",
+          "what": "Internship · Canada",
+          "role": "Web Developer Junior · Internship",
+          "date": "Jul. 2023 - Aug. 2023",
+          "description": "Development React (TanStack & TailwindCSS) | Integration ShadCN (UI components) | Forms and data management via Drizzle ORM"
+        },
+        "cashnow": {
+          "name": "CashNow",
+          "what": "Work-study · Boulogne",
+          "role": "Work-study · Web developer",
+          "date": "Sep. 2025 - Present",
+          "description": "Redesign of the Oasis client portal | Webpack to Vite migration: 11x faster builds | Symfony 6.4, React and TypeScript"
+        },
+        "mapguesser": {
+          "name": "MapGuesser",
+          "what": "Side project · 130,000 players",
+          "role": "Side project · Creator",
+          "date": "Late 2025 - Present",
+          "description": "Multiplayer geography game | Web, iOS and Android | Designed, built and run solo"
+        }
+      }
+    },
+    "tools": {
+      "groups": {
+        "front": {
+          "title": "A · Interface",
+          "technologies": [
+            {
+              "name": "React",
+              "icon": "/img/about/react.svg"
+            },
+            {
+              "name": "TypeScript",
+              "icon": "/img/about/typescript.svg"
+            },
+            {
+              "name": "TailwindCSS",
+              "icon": "/img/about/tailwind.svg"
+            },
+            {
+              "name": "shadcn/ui",
+              "icon": "/img/about/shadcn.svg",
+              "invert": true
+            }
+          ]
+        },
+        "back": {
+          "title": "B · Server",
+          "technologies": [
+            {
+              "name": "Symfony",
+              "icon": "/img/about/symfony.svg",
+              "invert": true
+            },
+            {
+              "name": "Bun",
+              "icon": "/img/about/bun.svg"
+            },
+            {
+              "name": "PostgreSQL",
+              "icon": "/img/about/postgresql.svg"
+            },
+            {
+              "name": "Drizzle",
+              "icon": "/img/about/drizzle.svg",
+              "invert": true
+            }
+          ]
+        },
+        "ops": {
+          "title": "C · Deployment",
+          "technologies": [
+            {
+              "name": "Docker",
+              "icon": "/img/about/docker.svg"
+            },
+            {
+              "name": "Git",
+              "icon": "/img/about/git.svg"
+            },
+            {
+              "name": "Capacitor",
+              "icon": "/img/about/capacitor.svg"
+            }
+          ]
         }
       }
     },
     "education": {
-      "title": "Education",
+      "current": "current",
       "formations": {
+        "YNOV-PARIS": {
+          "date": "2026 · 2027",
+          "title": "Master's Year 2, Web Development",
+          "school": "Ynov Paris"
+        },
+        "YNOV-LILLE": {
+          "date": "2025 · 2026",
+          "title": "Master's Year 1, Web Development",
+          "school": "Ynov Lille"
+        },
         "BUT-MMI": {
-          "date": "2022 - 2025",
+          "date": "2022 · 2025",
           "title": "B.U.T MMI",
-          "school": "I.U.T  De Velizy (France)"
+          "school": "IUT de Vélizy"
         },
         "BAC-INFO": {
-          "date": "2022 - 2025",
-          "title": "Baccalauréat Informatique",
-          "school": "UQAC (Quebec)"
-        },
-        "BAC-STI2D": {
-          "date": "2022",
-          "title": "BAC STI2D",
-          "school": "Lycée Eugène Ionesco (France)"
+          "date": "2022 · 2025",
+          "title": "Computer Science Bachelor's",
+          "school": "UQAC, Quebec"
         }
+      },
+      "columns": {
+        "dates": "Dates",
+        "degree": "Degree",
+        "school": "School",
+        "status": "Status"
       }
-    },
-    "projects": {
-      "title": "Projects",
-      "description": "Check out my Project part where i canshow my skills and stack i've used to developpe them",
-      "view": "View Projects"
-    },
-    "chat": {
-      "title": "Let's chat! I'm ready to work on exctinting projects",
-      "contact": "Alexandre.bonefons@uqac.etu.ca | +33 6 32 18 58 78"
-    },
-    "chatbot": {
-      "title": "Alexandre's Assistant",
-      "placeholder": "Ask me a question",
-      "send": "Send",
-      "noMessage": "Please enter a message"
     }
   },
   "Error": {
     "rateLimit": "Rate limit exceeded. Please try again later."
+  },
+  "Theme": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+  "Clipboard": {
+    "email": "Email address copied to clipboard",
+    "phone": "Phone number copied to clipboard",
+    "twice": "You clicked twice, keep it up!",
+    "thrice": "You're going to wear out your cursor with all that clicking!",
+    "enough": "Okay, that's enough, leave me alone now!"
   }
 }

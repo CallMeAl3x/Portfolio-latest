@@ -4,47 +4,48 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import Script from "next/script";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { ThemeProvider } from "next-themes";
+import { LocaleProvider } from "../(components)/(utils)/locale-provider";
+import { alternates, ogLocale, SITE_URL } from "@/lib/seo";
+import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/lib/contact";
 import { PageWrapper } from "../(components)/(utils)/page-wrapper";
-import ChatbotWrapper from "../(components)/ChatBotWrapper";
 import SmoothScrolling from "../(components)/SmoothScrolling";
 import "../globals.css";
+import "../home.css";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
-  const t = await getTranslations({ lang, namespace: "Metadata" });
-
-  // Get the translations for the current language
-
-  const title = t("title"); // Access translated title
-  const description = t("description"); // Access translated description
-  const keywords = t("keywords"); // Access translated keywords
+  const t = await getTranslations({ locale: lang, namespace: "Metadata" });
+  const title = t("title");
+  const description = t("description");
 
   return {
-    title: title,
-    description: description,
-    icons: {
-      icon: "/img/logo.svg"
-    },
-    keywords: keywords,
+    metadataBase: new URL(SITE_URL),
+    title,
+    description,
+    alternates: alternates(lang),
+    icons: { icon: "/img/logo.svg" },
     openGraph: {
       type: "website",
-      locale: lang,
-      url: "https://portfolio.bonefons.com",
-      siteName: "Portfolio Alexandre Bonefons",
-      images: [{ url: "/preview.png", alt: title }]
+      locale: ogLocale(lang),
+      alternateLocale: routing.locales.filter((l) => l !== lang).map(ogLocale),
+      url: `/${lang}`,
+      siteName: "Alexandre Bonefons",
+      title,
+      description
+      // image : app/[lang]/opengraph-image.tsx
     },
-    twitter: {
-      card: "summary_large_image",
-      title: title,
-      description: description,
-      creator: "@alexandrebonefons"
-    },
-    metadataBase: new URL("https://portfolio.bonefons.com")
+    twitter: { card: "summary_large_image", title, description }
   };
 }
+
+// une page pré-générée par langue au build (sinon l'accueil est rendu à chaque visite)
+export function generateStaticParams() {
+  return routing.locales.map((lang) => ({ lang }));
+}
+
 export default async function LocaleLayout(props: { children: React.ReactNode; params: Promise<{ lang: string }> }) {
   const params = await props.params;
 
@@ -56,20 +57,41 @@ export default async function LocaleLayout(props: { children: React.ReactNode; p
   if (!routing.locales.includes(lang as (typeof routing.locales)[number])) {
     notFound();
   }
+  // la langue vient du segment d'URL et non des en-têtes : permet le rendu statique
+  setRequestLocale(lang);
 
   // Providing all messages to the client
   // side is the easiest way to get started
   const messages = await getMessages();
+  const t = await getTranslations({ locale: lang, namespace: "Metadata" });
+  // données structurées : relie le site, le nom et les profils pour les moteurs de recherche
+  const person = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Alexandre Bonefons",
+    jobTitle: t("jobTitle"),
+    url: `${SITE_URL}/${lang}`,
+    email: `mailto:${EMAIL.toLowerCase()}`,
+    address: { "@type": "PostalAddress", addressLocality: "Paris", addressCountry: "FR" },
+    sameAs: [GITHUB_URL, LINKEDIN_URL],
+    knowsAbout: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL"]
+  };
   return (
-    <html lang={lang}>
+    <html lang={lang} suppressHydrationWarning>
+      <head>
+        {/* police du titre de l'accueil : c'est l'élément principal du premier écran */}
+        <link rel="preload" href="/fonts/Poppins/Poppins-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      </head>
       <body className="antialiased" suppressHydrationWarning>
-        <NextIntlClientProvider messages={messages}>
-          <SmoothScrolling>
-            <PageWrapper>{children}</PageWrapper>
-            <ChatbotWrapper />
-          </SmoothScrolling>
-          <Toaster richColors position="top-left" duration={2000} />
-        </NextIntlClientProvider>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(person) }} />
+        <LocaleProvider locale={lang as (typeof routing.locales)[number]} messages={messages}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <SmoothScrolling>
+              <PageWrapper>{children}</PageWrapper>
+            </SmoothScrolling>
+            <Toaster richColors position="top-left" duration={2000} />
+          </ThemeProvider>
+        </LocaleProvider>
         <SpeedInsights />
         <Analytics />
         {process.env.NEXT_PUBLIC_RYBBIT_SITE_ID && (
